@@ -7,6 +7,8 @@
     "dev:cms": "decap-server",
     "build": "astro build",
     "preview": "astro preview",
+    "lint": "eslint .",
+    "test": "vitest run",
     "check": "astro check"
   },
   "dependencies": {
@@ -16,7 +18,17 @@
     "typescript": "latest"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/node": "^26.1.1",
-    "decap-server": "latest"
+    "decap-server": "latest",
+    "eslint": "^10.7.0",
+    "eslint-plugin-astro": "^3.0.0",
+    "typescript-eslint": "^8.63.0",
+    "vitest": "^4.1.10"
+  },
+  "overrides": {
+    "@vercel/routing-utils": {
+      "path-to-regexp": "^6.3.0"
+    }
   }
 }
