@@ -1,4 +1,7 @@
 import { randomBytes, timingSafeEqual } from 'node:crypto';
+import type { APIRoute } from 'astro';
+
+export const prerender = false;
 
 const SITE_ORIGIN = 'https://www.kufreantia.com';
 const CALLBACK_URL = `${SITE_ORIGIN}/api/auth/github`;
@@ -74,8 +77,7 @@ function popupResponse(status: 'success' | 'error', content: Record<string, stri
   });
 }
 
-export default {
-  async fetch(request: Request): Promise<Response> {
+export const GET: APIRoute = async ({ request }) => {
     const clientId = process.env.DECAP_CLIENT_ID;
     const clientSecret = process.env.DECAP_CLIENT_SECRET;
 
@@ -148,5 +150,4 @@ export default {
     } catch {
       return popupResponse('error', { message: 'GitHub authentication could not be completed.' }, 502);
     }
-  },
 };
