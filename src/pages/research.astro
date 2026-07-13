@@ -1,0 +1,6 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro'; import PageHero from '../components/PageHero.astro'; import CollectionList from '../components/CollectionList.astro';
+const entries = (await getCollection('research')).sort((a,b)=>a.data.order-b.data.order);
+---
+<BaseLayout title="Research — Kufre Antia" description="Questions, methods, and areas of inquiry." page="research"><PageHero number="03" label="Inquiry" title="Re" accent="search." intro="Questions, methods, and areas of inquiry presented with their related outputs."/><section class="section-pad"><CollectionList items={entries.map((entry,index)=>({eyebrow:String(index+1).padStart(2,'0'),title:entry.data.title,summary:entry.data.summary,meta:entry.data.status}))}/></section></BaseLayout>

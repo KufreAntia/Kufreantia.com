@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import biography from '../data/biography.json';
+import site from '../data/site.json';
+---
+<BaseLayout title={`Biography — ${site.name}`} description={biography.pageIntroduction} page="biography">
+  <PageHero number="01" label="Profile" title="Bio" accent="graphy." intro={biography.pageIntroduction} />
+  <section class="section-pad content-grid">
+    <aside class="content-aside">{site.name}<br />{site.location}<br /><br />Full biography</aside>
+    <article class="prose reveal"><p class="lead">{biography.lead}</p>{biography.paragraphs.slice(0, 2).map((paragraph) => <p>{paragraph}</p>)}<blockquote class="quote">“{biography.quote}”</blockquote>{biography.paragraphs.slice(2).map((paragraph) => <p>{paragraph}</p>)}</article>
+  </section>
+</BaseLayout>

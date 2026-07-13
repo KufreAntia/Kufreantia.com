@@ -1,0 +1,4 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'; import site from '../data/site.json'; import biography from '../data/biography.json';
+---
+<BaseLayout title={`Curriculum Vitae — ${site.name}`} description={`Curriculum vitae of ${site.name}`} page="cv" bodyClass="cv-page"><section class="page-hero"><div class="section-tag"><span>09</span> Curriculum vitae</div><h1>Full <em>record.</em></h1><p class="page-intro">A printable CV page. Add a PDF through Site Settings in the CMS to make the main CV link download that file instead.</p></section><section class="section-pad content-grid"><aside class="content-aside">Profile</aside><article class="prose"><p class="lead">{biography.lead}</p>{biography.paragraphs.map(paragraph=><p>{paragraph}</p>)}<button class="print-button" onclick="window.print()">Print / Save as PDF</button></article></section></BaseLayout>

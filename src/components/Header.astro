@@ -1,0 +1,25 @@
+---
+import site from '../data/site.json';
+interface Props { activePage?: string }
+const { activePage = '' } = Astro.props;
+const nav = [
+  ['biography', '/biography/', 'Biography'],
+  ['portfolio', '/portfolio/', 'Portfolio'],
+  ['research', '/research/', 'Research'],
+  ['speaking', '/speaking/', 'Speaking'],
+  ['publications', '/publications/', 'Publications'],
+  ['gallery', '/gallery/', 'Gallery'],
+  ['media', '/media/', 'Media'],
+];
+---
+<header class="site-header">
+  <a class="brand" href="/"><span class="brand-mark">{site.shortName}</span><span>{site.name}</span></a>
+  <nav class="primary-nav" id="primary-nav" aria-label="Primary navigation">
+    {nav.map(([key, href, label]) => <a href={href} class:list={{ active: activePage === key }} aria-current={activePage === key ? 'page' : undefined}>{label}</a>)}
+  </nav>
+  <div class="header-tools">
+    <a href="/projects/northumbria-construct/" class:list={{ active: activePage === 'project' }}>Northumbria Construct</a>
+    <a class="cv-button" href={site.cvFile || '/cv/'}>CV ↗</a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span><span></span><i class="sr-only">Menu</i></button>
+  </div>
+</header>

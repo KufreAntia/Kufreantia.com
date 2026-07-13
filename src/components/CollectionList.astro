@@ -1,0 +1,15 @@
+---
+interface Item { eyebrow: string; title: string; summary: string; meta: string; href?: string }
+interface Props { items: Item[] }
+const { items } = Astro.props;
+---
+<div class="listing">
+  {items.map((item) => {
+    const Tag = item.href ? 'a' : 'article';
+    return <Tag class="listing-item" href={item.href}>
+      <span>{item.eyebrow}</span>
+      <div><h2>{item.title}</h2><p>{item.summary}</p></div>
+      <div class="meta">{item.meta}</div><b>{item.href ? '↗' : '—'}</b>
+    </Tag>;
+  })}
+</div>

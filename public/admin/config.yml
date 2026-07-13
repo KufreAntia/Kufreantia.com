@@ -1,0 +1,185 @@
+backend:
+  name: git-gateway
+  branch: master
+
+local_backend: true
+publish_mode: simple
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: settings
+    label: Site settings
+    files:
+      - name: site
+        label: Contact, social links & CV
+        file: src/data/site.json
+        format: json
+        fields:
+          - { label: Full name, name: name, widget: string }
+          - { label: Initials, name: shortName, widget: string }
+          - { label: Site description, name: description, widget: text }
+          - { label: Email, name: email, widget: string }
+          - { label: Location, name: location, widget: string }
+          - { label: LinkedIn URL, name: linkedin, widget: string, required: false }
+          - { label: X / Twitter URL, name: twitter, widget: string, required: false }
+          - { label: Downloadable CV, name: cvFile, widget: file, required: false }
+      - name: home
+        label: Homepage
+        file: src/data/home.json
+        format: json
+        fields:
+          - { label: Eyebrow, name: eyebrow, widget: string }
+          - { label: First name, name: firstName, widget: string }
+          - { label: Last name, name: lastName, widget: string }
+          - { label: Featured project label, name: featuredLabel, widget: string }
+          - { label: Archive introduction, name: archiveIntroduction, widget: text }
+      - name: biography
+        label: Biography
+        file: src/data/biography.json
+        format: json
+        fields:
+          - { label: Page introduction, name: pageIntroduction, widget: text }
+          - { label: Lead statement, name: lead, widget: text }
+          - label: Biography paragraphs
+            name: paragraphs
+            widget: list
+            field: { label: Paragraph, name: paragraph, widget: text }
+          - { label: Pull quote, name: quote, widget: text }
+
+  - name: projects
+    label: Projects
+    label_singular: Project
+    folder: src/content/projects
+    create: true
+    extension: json
+    format: json
+    slug: "{{slug}}"
+    summary: "{{order}} — {{title}}"
+    sortable_fields: [order, title, year]
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Summary, name: summary, widget: text }
+      - { label: Display order, name: order, widget: number, value_type: int, min: 1 }
+      - { label: Feature on homepage, name: featured, widget: boolean, default: false }
+      - { label: Project type, name: projectType, widget: string }
+      - { label: Your role, name: role, widget: string }
+      - { label: Location, name: location, widget: string }
+      - { label: Year or status, name: year, widget: string }
+      - label: Colour theme
+        name: theme
+        widget: select
+        options: [blue, clay, dark]
+        default: blue
+      - { label: Hero introduction, name: intro, widget: text }
+      - { label: Overview, name: overview, widget: text }
+      - { label: Context, name: context, widget: text }
+      - { label: Approach, name: approach, widget: text }
+      - { label: Outcomes, name: outcomes, widget: text }
+      - label: Process steps
+        name: process
+        widget: list
+        required: false
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: text }
+      - label: Project gallery
+        name: gallery
+        widget: list
+        required: false
+        fields:
+          - { label: Image, name: image, widget: image }
+          - { label: Caption, name: caption, widget: string }
+
+  - name: research
+    label: Research
+    label_singular: Research area
+    folder: src/content/research
+    create: true
+    extension: json
+    format: json
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Summary, name: summary, widget: text }
+      - { label: Status, name: status, widget: string }
+      - { label: Display order, name: order, widget: number, value_type: int, min: 1 }
+
+  - name: publications
+    label: Publications
+    label_singular: Publication
+    folder: src/content/publications
+    create: true
+    extension: json
+    format: json
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Publisher, name: publisher, widget: string }
+      - { label: Year, name: year, widget: string }
+      - { label: Type, name: type, widget: string }
+      - { label: Link, name: url, widget: string, required: false }
+      - { label: Display order, name: order, widget: number, value_type: int, min: 1 }
+
+  - name: speaking
+    label: Speaking
+    label_singular: Speaking engagement
+    folder: src/content/speaking
+    create: true
+    extension: json
+    format: json
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Venue or programme, name: venue, widget: string }
+      - { label: Year, name: year, widget: string }
+      - { label: Type, name: type, widget: string }
+      - { label: Location, name: location, widget: string }
+      - { label: Link, name: url, widget: string, required: false }
+      - { label: Display order, name: order, widget: number, value_type: int, min: 1 }
+
+  - name: awards
+    label: Awards
+    label_singular: Award
+    folder: src/content/awards
+    create: true
+    extension: json
+    format: json
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Awarding organisation, name: organisation, widget: string }
+      - { label: Year, name: year, widget: string }
+      - { label: Category, name: category, widget: string }
+      - { label: Display order, name: order, widget: number, value_type: int, min: 1 }
+
+  - name: media
+    label: Media
+    label_singular: Media appearance
+    folder: src/content/media
+    create: true
+    extension: json
+    format: json
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Outlet, name: outlet, widget: string }
+      - { label: Year, name: year, widget: string }
+      - { label: Type, name: type, widget: string }
+      - { label: Link, name: url, widget: string, required: false }
+      - { label: Display order, name: order, widget: number, value_type: int, min: 1 }
+
+  - name: gallery
+    label: Gallery
+    label_singular: Gallery image
+    folder: src/content/gallery
+    create: true
+    extension: json
+    format: json
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Project, name: project, widget: string }
+      - { label: Image, name: image, widget: image, required: false }
+      - { label: Alternative text, name: alt, widget: string }
+      - { label: Display order, name: order, widget: number, value_type: int, min: 1 }

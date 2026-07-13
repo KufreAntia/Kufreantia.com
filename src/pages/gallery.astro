@@ -1,0 +1,6 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro'; import PageHero from '../components/PageHero.astro';
+const entries=(await getCollection('gallery')).sort((a,b)=>a.data.order-b.data.order);
+---
+<BaseLayout title="Project Gallery — Kufre Antia" description="Visual project archive." page="gallery"><PageHero number="06" label="Visual archive" title="Gal" accent="lery." intro="Documentation from projects, events, research, and work in progress."/><section class="section-pad gallery-page-grid">{entries.map(entry=><div class:list={['gallery-tile',{'has-image':Boolean(entry.data.image)}]} style={entry.data.image?`background-image:url('${entry.data.image}')`:undefined} role={entry.data.image?'img':undefined} aria-label={entry.data.image?entry.data.alt:undefined}><span>{entry.data.title} / {entry.data.project}</span></div>)}</section></BaseLayout>

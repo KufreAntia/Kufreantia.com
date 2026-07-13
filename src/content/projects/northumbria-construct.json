@@ -1,0 +1,22 @@
+{
+  "title": "Northumbria Construct",
+  "summary": "A dedicated case study for the project’s story, development, contribution, and outcomes.",
+  "order": 1,
+  "featured": true,
+  "projectType": "To be confirmed",
+  "role": "To be confirmed",
+  "location": "Northumbria",
+  "year": "To be confirmed",
+  "theme": "blue",
+  "intro": "A dedicated case-study framework for the project’s story, development, contribution, and outcomes.",
+  "overview": "Use this section to establish what Northumbria Construct is, why it exists, and who it serves. Replace this copy with the project’s confirmed background and purpose.",
+  "context": "Describe the situation that prompted the project, the challenge or unmet need, and the central question that guided the response.",
+  "approach": "Explain your role, working method, collaborators, and the decisions that shaped the project.",
+  "outcomes": "Add confirmed results, outputs, testimonials, metrics, or learning here.",
+  "process": [
+    { "title": "Understand", "description": "Research the context, audience, constraints, and opportunity." },
+    { "title": "Shape", "description": "Turn findings into a clear direction, system, or working proposition." },
+    { "title": "Build", "description": "Develop the final work and document its effect with evidence." }
+  ],
+  "gallery": []
+}
