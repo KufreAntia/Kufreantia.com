@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import contact from '../data/contact.json';
+import site from '../data/site.json';
+---
+<BaseLayout title={`Contact — ${site.name}`} description={contact.pageIntroduction} page="contact">
+  <PageHero number="03" label="Contact" title="Say" accent="hello." intro={contact.pageIntroduction} />
+  <section class="section-pad content-grid">
+    <aside class="content-aside">Based in<br />{site.location}</aside>
+    <article class="prose reveal">
+      <h2>{contact.heading}</h2>
+      <p class="lead">{contact.body}</p>
+      <p><a class="arrow-link" href={`mailto:${site.email}`}>{site.email} <b>↗</b></a></p>
+      {site.linkedin && <p><a class="arrow-link" href={site.linkedin}>Connect on LinkedIn <b>↗</b></a></p>}
+    </article>
+  </section>
+</BaseLayout>

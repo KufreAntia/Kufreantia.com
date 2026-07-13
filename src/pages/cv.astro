@@ -1,4 +1,21 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'; import site from '../data/site.json'; import biography from '../data/biography.json';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import site from '../data/site.json';
+import cv from '../data/cv.json';
 ---
-<BaseLayout title={`Curriculum Vitae — ${site.name}`} description={`Curriculum vitae of ${site.name}`} page="cv" bodyClass="cv-page"><section class="page-hero"><div class="section-tag"><span>09</span> Curriculum vitae</div><h1>Full <em>record.</em></h1><p class="page-intro">A printable CV page. Add a PDF through Site Settings in the CMS to make the main CV link download that file instead.</p></section><section class="section-pad content-grid"><aside class="content-aside">Profile</aside><article class="prose"><p class="lead">{biography.lead}</p>{biography.paragraphs.map(paragraph=><p>{paragraph}</p>)}<button class="print-button" onclick="window.print()">Print / Save as PDF</button></article></section></BaseLayout>
+<BaseLayout title={`Curriculum Vitae — ${site.name}`} description={cv.pageIntroduction} page="cv" bodyClass="cv-page">
+  <section class="page-hero">
+    <div class="section-tag"><span>02</span> Curriculum vitae</div>
+    <h1>Full <em>record.</em></h1>
+    <p class="page-intro">{cv.pageIntroduction}</p>
+  </section>
+  <section class="section-pad content-grid">
+    <aside class="content-aside">Profile<br />{site.location}</aside>
+    <article class="prose reveal">
+      <p class="lead">{cv.lead}</p>
+      {cv.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      {site.cvFile && <p><a class="arrow-link" href={site.cvFile}>Download PDF <b>↗</b></a></p>}
+      <button class="print-button" onclick="window.print()">Print / Save as PDF</button>
+    </article>
+  </section>
+</BaseLayout>

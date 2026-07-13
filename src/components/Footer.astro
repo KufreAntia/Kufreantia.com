@@ -2,13 +2,13 @@
 import site from '../data/site.json';
 ---
 <footer class="site-footer">
-  <div class="footer-title">Let’s begin a<br /><a href={`mailto:${site.email}`}>conversation.</a></div>
+  <div class="footer-title">Let’s begin a<br /><a href="/contact/">conversation.</a></div>
   <nav class="footer-nav" aria-label="Footer navigation">
-    <a href="/projects/northumbria-construct/">Northumbria Construct ↗</a>
-    <a href="/awards/">Awards ↗</a>
-    <a href={site.cvFile || '/cv/'}>Curriculum vitae ↗</a>
+    <a href="/">Home ↗</a>
+    <a href="/portfolio/">Portfolio ↗</a>
+    <a href="/cv/">Curriculum vitae ↗</a>
+    <a href="/contact/">Contact ↗</a>
     {site.linkedin && <a href={site.linkedin}>LinkedIn ↗</a>}
-    {site.twitter && <a href={site.twitter}>X / Twitter ↗</a>}
     <a href="/admin/">Update website ↗</a>
   </nav>
   <div class="footer-bottom"><span>© {new Date().getFullYear()} {site.name}</span><span>{site.location}</span></div>

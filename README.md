@@ -62,7 +62,7 @@ The GitHub user signing into Decap must have write access to the repository. The
 
 ## Content structure
 
-- `src/data/` contains homepage, biography, and global site settings.
+- `src/data/` contains homepage, CV, contact, and global site settings.
 - `src/content/projects/` contains project case studies.
 - Other `src/content/` folders contain research, publications, speaking, awards, media, and gallery records.
 - `src/pages/` contains reusable Astro route templates and server endpoints.

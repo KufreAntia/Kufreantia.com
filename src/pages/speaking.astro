@@ -1,6 +1,15 @@
 ---
-import { getCollection } from 'astro:content'; import site from '../data/site.json';
-import BaseLayout from '../layouts/BaseLayout.astro'; import PageHero from '../components/PageHero.astro'; import CollectionList from '../components/CollectionList.astro';
-const entries=(await getCollection('speaking')).sort((a,b)=>a.data.order-b.data.order);
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CollectionList from '../components/CollectionList.astro';
+import site from '../data/site.json';
+const entries = (await getCollection('speaking')).sort((a, b) => a.data.order - b.data.order);
 ---
-<BaseLayout title="Speaking — Kufre Antia" description="Talks, panels, lectures, and public conversations." page="speaking"><PageHero number="04" label="Talks & panels" title="Speak" accent="ing." intro="Keynotes, panels, lectures, and thoughtful conversations for public and professional audiences."/><section class="section-pad"><CollectionList items={entries.map(entry=>({eyebrow:entry.data.year,title:entry.data.title,summary:entry.data.venue,meta:`${entry.data.type} · ${entry.data.location}`,href:entry.data.url||undefined}))}/><a class="arrow-link" href={`mailto:${site.email}?subject=Speaking%20enquiry`}>Invite Kufre to speak <b>↗</b></a></section></BaseLayout>
+<BaseLayout title="Speaking — Kufre Antia" description="Talks, panels, lectures, and public conversations." page="speaking" noindex>
+  <PageHero number="04" label="Talks & panels" title="Speak" accent="ing." intro="Keynotes, panels, lectures, and thoughtful conversations for public and professional audiences." />
+  <section class="section-pad">
+    <CollectionList items={entries.map((entry) => ({ eyebrow: entry.data.year, title: entry.data.title, summary: entry.data.venue, meta: `${entry.data.type} · ${entry.data.location}`, href: entry.data.url || undefined }))} />
+    <a class="arrow-link" href={`mailto:${site.email}?subject=Speaking%20enquiry`}>Invite Kufre to speak <b>↗</b></a>
+  </section>
+</BaseLayout>

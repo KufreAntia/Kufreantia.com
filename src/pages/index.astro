@@ -11,7 +11,7 @@ const featured = projects.sort((a, b) => a.data.order - b.data.order).find((proj
   <section class="home-hero">
     <div class="hero-meta"><span>{home.eyebrow}</span><span>London · <span data-clock>UK</span></span></div>
     <h1>{home.firstName}<br /><em>{home.lastName}.</em></h1>
-    <div class="hero-bottom"><p>{site.description}</p><a class="circle-link" href="/biography/" aria-label="Begin with the biography">Enter<br />archive ↘</a></div>
+    <div class="hero-bottom"><p>{site.description}</p><a class="circle-link" href="/portfolio/" aria-label="View the portfolio">View<br />work ↘</a></div>
     <div class="hero-mark" aria-hidden="true"><span>N</span><span>C</span></div>
   </section>
   {featured && <section class="home-feature section-pad">
@@ -24,12 +24,9 @@ const featured = projects.sort((a, b) => a.data.order - b.data.order).find((proj
   <section class="index-grid section-pad">
     <div class="section-tag"><span>02</span> Explore</div>
     <div class="page-index">
-      <a href="/biography/"><span>01</span><h3>Biography</h3><p>Background, practice and perspective.</p><b>↗</b></a>
-      <a href="/portfolio/"><span>02</span><h3>Portfolio</h3><p>Selected projects and collaborations.</p><b>↗</b></a>
-      <a href="/research/"><span>03</span><h3>Research</h3><p>Active questions and areas of inquiry.</p><b>↗</b></a>
-      <a href="/publications/"><span>04</span><h3>Publications</h3><p>Articles, essays and papers.</p><b>↗</b></a>
-      <a href="/speaking/"><span>05</span><h3>Speaking</h3><p>Talks, panels and conversations.</p><b>↗</b></a>
-      <a href="/media/"><span>06</span><h3>Media</h3><p>Press, interviews and features.</p><b>↗</b></a>
+      <a href="/portfolio/"><span>01</span><h3>Portfolio</h3><p>Selected projects and collaborations.</p><b>↗</b></a>
+      <a href="/cv/"><span>02</span><h3>Curriculum vitae</h3><p>Experience, capabilities and professional record.</p><b>↗</b></a>
+      <a href="/contact/"><span>03</span><h3>Contact</h3><p>Start a conversation about work and collaboration.</p><b>↗</b></a>
     </div>
   </section>
 </BaseLayout>

@@ -38,18 +38,25 @@ collections:
           - { label: Last name, name: lastName, widget: string }
           - { label: Featured project label, name: featuredLabel, widget: string }
           - { label: Archive introduction, name: archiveIntroduction, widget: text }
-      - name: biography
-        label: Biography
-        file: src/data/biography.json
+      - name: cv
+        label: Curriculum vitae page
+        file: src/data/cv.json
         format: json
         fields:
           - { label: Page introduction, name: pageIntroduction, widget: text }
           - { label: Lead statement, name: lead, widget: text }
-          - label: Biography paragraphs
+          - label: Profile paragraphs
             name: paragraphs
             widget: list
             field: { label: Paragraph, name: paragraph, widget: text }
-          - { label: Pull quote, name: quote, widget: text }
+      - name: contact
+        label: Contact page
+        file: src/data/contact.json
+        format: json
+        fields:
+          - { label: Page introduction, name: pageIntroduction, widget: text }
+          - { label: Main heading, name: heading, widget: string }
+          - { label: Contact message, name: body, widget: text }
 
   - name: projects
     label: Projects

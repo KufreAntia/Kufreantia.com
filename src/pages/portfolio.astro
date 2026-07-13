@@ -6,6 +6,6 @@ import CollectionList from '../components/CollectionList.astro';
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 ---
 <BaseLayout title="Portfolio — Kufre Antia" description="Selected projects and collaborations." page="portfolio">
-  <PageHero number="02" label="Work" title="Port" accent="folio." intro="Selected projects, initiatives, and collaborations presented as individual case studies." />
+  <PageHero number="01" label="Work" title="Port" accent="folio." intro="Selected projects, initiatives, and collaborations presented as individual case studies." />
   <section class="section-pad project-listing"><CollectionList items={projects.map((project, index) => ({ eyebrow: String(index + 1).padStart(2, '0'), title: project.data.title, summary: project.data.summary, meta: `${project.data.projectType} · ${project.data.year}`, href: `/projects/${project.id}/` }))} /></section>
 </BaseLayout>
