@@ -6,10 +6,45 @@
   "timelineHeading": "Journey and milestones",
   "projectsHeading": "Projects",
   "milestones": [
-    { "type": "milestone", "startYear": "2010", "endYear": "", "title": "Starting point", "organisation": "", "summary": "The beginning of the journey and the foundations of the work." },
-    { "type": "chapter", "startYear": "2014", "endYear": "2017", "title": "Practice takes shape", "organisation": "", "summary": "Skills, interests, and a professional direction begin to converge." },
-    { "type": "chapter", "startYear": "2017", "endYear": "2021", "title": "Built environment", "organisation": "", "summary": "A period of focused professional development and practical experience." },
-    { "type": "chapter", "startYear": "2021", "endYear": "Present", "title": "Northumbria Construct", "organisation": "", "summary": "A defining project bringing research, collaboration, and delivery together." },
-    { "type": "milestone", "startYear": "2026", "endYear": "", "title": "Current chapter", "organisation": "", "summary": "Building the next body of work, partnerships, and public contribution." }
+    {
+      "type": "chapter",
+      "startYear": "2010",
+      "endYear": "2016",
+      "title": "B.Eng Civil Engineering",
+      "organisation": "University of Uyo",
+      "summary": "Structural Design, Highway and Transportation Engineering, Construction Management, Sustainable Construction\nSkills, interests, and a professional direction begin to converge.\nAchievement:\nSecond Class (Honors) 2016\nEntrepreneur of the year 2015"
+    },
+    {
+      "type": "chapter",
+      "startYear": "2014",
+      "endYear": "",
+      "title": "Internship",
+      "organisation": "Sendme Engineering",
+      "summary": "Leveling Setting out of highway drainage systems\nsetting out outfall strains\nSetting out of buildings and structures\nQuantification of construction materials using spreadsheets and BIM takeoffs\n"
+    },
+    {
+      "type": "chapter",
+      "startYear": "2017",
+      "endYear": "2021",
+      "title": "Built environment",
+      "organisation": "",
+      "summary": "A period of focused professional development and practical experience."
+    },
+    {
+      "type": "chapter",
+      "startYear": "2021",
+      "endYear": "Present",
+      "title": "Northumbria Construct",
+      "organisation": "",
+      "summary": "A defining project bringing research, collaboration, and delivery together."
+    },
+    {
+      "type": "milestone",
+      "startYear": "2026",
+      "endYear": "",
+      "title": "Current chapter",
+      "organisation": "",
+      "summary": "Building the next body of work, partnerships, and public contribution."
+    }
   ]
 }
