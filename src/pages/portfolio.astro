@@ -10,22 +10,35 @@ const categories = [...new Set(projects.map((project) => project.data.category))
 <BaseLayout title="Portfolio — Kufre Antia" description={portfolio.introduction} page="portfolio">
   <section class="portfolio-hero">
     <div class="portfolio-kicker"><span>01</span> {portfolio.eyebrow}</div>
-    <h1>{portfolio.title}<br /><em>{portfolio.accent}</em></h1>
-    <p>{portfolio.introduction}</p>
-  </section>
+    <div class="portfolio-hero-copy">
+      <h1>{portfolio.title}<br /><em>{portfolio.accent}</em></h1>
+      <p>{portfolio.introduction}</p>
+    </div>
 
-  <section class="portfolio-timeline" aria-labelledby="timeline-title">
-    <header class="portfolio-section-head"><p>01 / Journey</p><h2 id="timeline-title">{portfolio.timelineHeading}</h2></header>
-    <div class="timeline-track">
-      <div class="timeline-line" aria-hidden="true"></div>
-      {portfolio.milestones.map((milestone) => (
-        <article class:list={['timeline-milestone', { featured: milestone.featured }]}>
-          <span class="timeline-dot" aria-hidden="true"></span><time>{milestone.year}</time>
-          <h3>{milestone.title}</h3><p>{milestone.summary}</p>
-        </article>
-      ))}
+    <div class="hero-timeline" data-timeline>
+      <div class="timeline-caption"><span>Journey / Milestones</span><span>Select + to explore</span></div>
+      <svg class="timeline-curve" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
+        <path data-timeline-path d="M 70 115 C 290 15, 760 20, 920 125 C 1040 220, 820 285, 525 300 C 230 315, 25 355, 90 430 C 185 525, 610 465, 930 410" />
+      </svg>
+      <div class="timeline-points">
+        {portfolio.milestones.map((milestone, index) => (
+          <div class="timeline-point" data-timeline-point>
+            <button type="button" aria-label={`Open ${milestone.year}: ${milestone.title}`} aria-controls={`milestone-${index}`} data-milestone-open={`milestone-${index}`}>+</button>
+            <div class="milestone-label"><time>{milestone.year}</time><span>{milestone.title}</span></div>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
+
+  {portfolio.milestones.map((milestone, index) => (
+    <dialog class="milestone-dialog" id={`milestone-${index}`} aria-labelledby={`milestone-title-${index}`}>
+      <button class="dialog-close" type="button" aria-label="Close milestone" data-milestone-close>×</button>
+      <time>{milestone.year}</time>
+      <h2 id={`milestone-title-${index}`}>{milestone.title}</h2>
+      <p>{milestone.summary}</p>
+    </dialog>
+  ))}
 
   <section class="portfolio-projects" aria-labelledby="projects-title">
     <header class="portfolio-section-head projects-heading">
@@ -50,7 +63,31 @@ const categories = [...new Set(projects.map((project) => project.data.category))
       ))}
     </div>
   </section>
+
   <script>
+    const timeline = document.querySelector<HTMLElement>('[data-timeline]');
+    const path = timeline?.querySelector<SVGPathElement>('[data-timeline-path]');
+    const points = [...(timeline?.querySelectorAll<HTMLElement>('[data-timeline-point]') ?? [])];
+
+    if (timeline && path && points.length) {
+      const pathLength = path.getTotalLength();
+      points.forEach((point, index) => {
+        const progress = points.length === 1 ? 0.5 : index / (points.length - 1);
+        const position = path.getPointAtLength(pathLength * progress);
+        point.style.left = `${position.x / 10}%`;
+        point.style.top = `${position.y / 5.2}%`;
+      });
+      timeline.classList.add('ready');
+    }
+
+    document.querySelectorAll<HTMLButtonElement>('[data-milestone-open]').forEach((button) => {
+      button.addEventListener('click', () => (document.getElementById(button.dataset.milestoneOpen ?? '') as HTMLDialogElement | null)?.showModal());
+    });
+    document.querySelectorAll<HTMLDialogElement>('.milestone-dialog').forEach((dialog) => {
+      dialog.querySelector<HTMLButtonElement>('[data-milestone-close]')?.addEventListener('click', () => dialog.close());
+      dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+    });
+
     const filterButtons = document.querySelectorAll<HTMLButtonElement>('[data-project-filter]');
     const cards = document.querySelectorAll<HTMLElement>('[data-project-category]');
     filterButtons.forEach((button) => button.addEventListener('click', () => {
