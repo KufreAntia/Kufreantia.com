@@ -1,6 +1,10 @@
 backend:
-  name: git-gateway
-  branch: master
+  name: github
+  repo: KufreAntia/Kufreantia.com
+  branch: main
+  site_domain: www.kufreantia.com
+  base_url: https://www.kufreantia.com
+  auth_endpoint: api/auth/github
 
 local_backend: true
 publish_mode: simple
