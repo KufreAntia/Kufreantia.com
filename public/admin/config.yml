@@ -38,6 +38,25 @@ collections:
           - { label: Last name, name: lastName, widget: string }
           - { label: Featured project label, name: featuredLabel, widget: string }
           - { label: Archive introduction, name: archiveIntroduction, widget: text }
+      - name: portfolio
+        label: Portfolio page
+        file: src/data/portfolio.json
+        format: json
+        fields:
+          - { label: Eyebrow, name: eyebrow, widget: string }
+          - { label: Main title, name: title, widget: string }
+          - { label: Accent title, name: accent, widget: string }
+          - { label: Introduction, name: introduction, widget: text }
+          - { label: Timeline heading, name: timelineHeading, widget: string }
+          - { label: Projects heading, name: projectsHeading, widget: string }
+          - label: Timeline milestones
+            name: milestones
+            widget: list
+            fields:
+              - { label: Year, name: year, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Summary, name: summary, widget: text }
+              - { label: Featured milestone, name: featured, widget: boolean, default: false }
       - name: cv
         label: Curriculum vitae page
         file: src/data/cv.json
@@ -74,6 +93,8 @@ collections:
       - { label: Display order, name: order, widget: number, value_type: int, min: 1 }
       - { label: Feature on homepage, name: featured, widget: boolean, default: false }
       - { label: Project type, name: projectType, widget: string }
+      - { label: Portfolio category, name: category, widget: string, default: Selected work }
+      - { label: Card image, name: thumbnail, widget: image, required: false }
       - { label: Your role, name: role, widget: string }
       - { label: Location, name: location, widget: string }
       - { label: Year or status, name: year, widget: string }

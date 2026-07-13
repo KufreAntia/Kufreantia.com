@@ -10,6 +10,8 @@ const projects = defineCollection({
     order: z.number(),
     featured: z.boolean().default(false),
     projectType: z.string(),
+    category: z.string().default('Selected work'),
+    thumbnail: z.string().optional(),
     role: z.string(),
     location: z.string(),
     year: z.string(),
