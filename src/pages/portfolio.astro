@@ -74,8 +74,8 @@ const categories = [...new Set(projects.map((project) => project.data.category))
         return value.toLowerCase() === 'present' ? currentYear : Number(value);
       };
       const timelineYears = points.flatMap((point) => [parseYear(point.dataset.startYear), parseYear(point.dataset.endYear)]).filter(Number.isFinite);
-      const firstYear = Math.min(...timelineYears);
-      const lastYear = Math.max(...timelineYears, currentYear);
+      const firstYear = timelineYears.length ? Math.min(...timelineYears) : currentYear;
+      const lastYear = timelineYears.length ? Math.max(...timelineYears, currentYear) : currentYear;
       const progressFor = (year: number) => lastYear === firstYear ? 0.5 : (year - firstYear) / (lastYear - firstYear);
 
       const placeTimeline = () => {
@@ -87,6 +87,10 @@ const categories = [...new Set(projects.map((project) => project.data.category))
 
         points.forEach((point) => {
           const startYear = parseYear(point.dataset.startYear);
+          if (!Number.isFinite(startYear)) {
+            point.hidden = true;
+            return;
+          }
           const parsedEndYear = parseYear(point.dataset.endYear);
           const endYear = Number.isFinite(parsedEndYear) ? parsedEndYear : startYear;
           const position = positionFor((startYear + endYear) / 2);
@@ -112,6 +116,7 @@ const categories = [...new Set(projects.map((project) => project.data.category))
           }
 
           if (point.classList.contains('chapter')) {
+            point.classList.toggle('has-duration', Number.isFinite(parsedEndYear));
             const startPosition = positionFor(startYear);
             const endPosition = positionFor(endYear);
             const startCap = point.querySelector<HTMLElement>('[data-duration-cap="start"]');
@@ -122,8 +127,15 @@ const categories = [...new Set(projects.map((project) => project.data.category))
         });
 
         timeline.querySelectorAll<SVGPathElement>('[data-duration-start]').forEach((duration) => {
-          const start = pathLength * progressFor(parseYear(duration.dataset.durationStart));
-          const end = pathLength * progressFor(parseYear(duration.dataset.durationEnd));
+          const startYear = parseYear(duration.dataset.durationStart);
+          const endYear = parseYear(duration.dataset.durationEnd);
+          if (!Number.isFinite(startYear) || !Number.isFinite(endYear)) {
+            duration.style.display = 'none';
+            return;
+          }
+          duration.style.removeProperty('display');
+          const start = pathLength * progressFor(startYear);
+          const end = pathLength * progressFor(endYear);
           duration.style.strokeDasharray = `${Math.max(0, end - start)} ${pathLength}`;
           duration.style.strokeDashoffset = `${-start}`;
         });
