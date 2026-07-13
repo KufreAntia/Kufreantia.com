@@ -49,14 +49,22 @@ collections:
           - { label: Introduction, name: introduction, widget: text }
           - { label: Timeline heading, name: timelineHeading, widget: string }
           - { label: Projects heading, name: projectsHeading, widget: string }
-          - label: Timeline milestones
+          - label: Timeline entries
             name: milestones
             widget: list
             fields:
-              - { label: Year, name: year, widget: string }
+              - label: Entry type
+                name: type
+                widget: select
+                options:
+                  - { label: Single milestone, value: milestone }
+                  - { label: Career chapter, value: chapter }
+                default: milestone
+              - { label: Start year, name: startYear, widget: string }
+              - { label: End year, name: endYear, widget: string, required: false, hint: Use Present for an ongoing chapter }
               - { label: Title, name: title, widget: string }
+              - { label: Organisation, name: organisation, widget: string, required: false }
               - { label: Summary, name: summary, widget: text }
-              - { label: Featured milestone, name: featured, widget: boolean, default: false }
       - name: cv
         label: Curriculum vitae page
         file: src/data/cv.json

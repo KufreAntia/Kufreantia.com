@@ -19,14 +19,18 @@ const categories = [...new Set(projects.map((project) => project.data.category))
       <div class="timeline-caption"><span>Journey / Milestones</span><span>Select + to explore</span></div>
       <svg class="timeline-curve" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
         <path data-timeline-path d="M 70 115 C 290 15, 760 20, 920 125 C 1040 220, 820 285, 525 300 C 230 315, 25 355, 90 430 C 185 525, 610 465, 930 410" />
+        {portfolio.milestones.filter((entry) => entry.type === 'chapter').map((entry) => (
+          <path class="timeline-duration" data-duration-start={entry.startYear} data-duration-end={entry.endYear} d="M 70 115 C 290 15, 760 20, 920 125 C 1040 220, 820 285, 525 300 C 230 315, 25 355, 90 430 C 185 525, 610 465, 930 410" />
+        ))}
       </svg>
       <div class="timeline-points">
-        {portfolio.milestones.map((milestone, index) => (
-          <div class="timeline-point" data-timeline-point>
-            <button type="button" aria-label={`Explore ${milestone.year}: ${milestone.title}`} aria-controls={`milestone-${index}`} aria-expanded="false" data-milestone-toggle>+</button>
-            <div class="milestone-label"><time>{milestone.year}</time><span>{milestone.title}</span></div>
+        {portfolio.milestones.map((entry, index) => (
+          <div class:list={['timeline-point', entry.type]} data-timeline-point data-start-year={entry.startYear} data-end-year={entry.endYear}>
+            {entry.type === 'chapter' && <><span class="duration-cap start" data-duration-cap="start"></span><span class="duration-cap end" data-duration-cap="end"></span></>}
+            <button type="button" aria-label={`Explore ${entry.startYear}${entry.endYear ? ` to ${entry.endYear}` : ''}: ${entry.title}`} aria-controls={`milestone-${index}`} aria-expanded="false" data-milestone-toggle>+</button>
+            <div class="milestone-label"><time>{entry.endYear ? `${entry.startYear} — ${entry.endYear}` : entry.startYear}</time><span>{entry.title}</span></div>
             <aside class="milestone-comment" id={`milestone-${index}`} role="tooltip">
-              <time>{milestone.year}</time><h3>{milestone.title}</h3><p>{milestone.summary}</p>
+              <time>{entry.endYear ? `${entry.startYear} — ${entry.endYear}` : entry.startYear}</time><h3>{entry.title}</h3>{entry.organisation && <strong>{entry.organisation}</strong>}<p>{entry.summary}</p>
             </aside>
           </div>
         ))}
@@ -64,14 +68,69 @@ const categories = [...new Set(projects.map((project) => project.data.category))
     const points = [...(timeline?.querySelectorAll<HTMLElement>('[data-timeline-point]') ?? [])];
 
     if (timeline && path && points.length) {
-      const pathLength = path.getTotalLength();
-      points.forEach((point, index) => {
-        const progress = points.length === 1 ? 0.5 : index / (points.length - 1);
-        const position = path.getPointAtLength(pathLength * progress);
-        point.style.left = `${position.x / 10}%`;
-        point.style.top = `${position.y / 5.2}%`;
-        point.classList.toggle('align-right', position.x > 640);
-      });
+      const currentYear = new Date().getFullYear();
+      const parseYear = (value: string | undefined) => {
+        if (!value) return Number.NaN;
+        return value.toLowerCase() === 'present' ? currentYear : Number(value);
+      };
+      const timelineYears = points.flatMap((point) => [parseYear(point.dataset.startYear), parseYear(point.dataset.endYear)]).filter(Number.isFinite);
+      const firstYear = Math.min(...timelineYears);
+      const lastYear = Math.max(...timelineYears, currentYear);
+      const progressFor = (year: number) => lastYear === firstYear ? 0.5 : (year - firstYear) / (lastYear - firstYear);
+
+      const placeTimeline = () => {
+        const pathLength = path.getTotalLength();
+        const positionFor = (year: number) => path.getPointAtLength(pathLength * progressFor(year));
+        const pointLayer = timeline.querySelector<HTMLElement>('.timeline-points');
+        const scaleX = (pointLayer?.clientWidth ?? 1000) / 1000;
+        const scaleY = (pointLayer?.clientHeight ?? 520) / 520;
+
+        points.forEach((point) => {
+          const startYear = parseYear(point.dataset.startYear);
+          const parsedEndYear = parseYear(point.dataset.endYear);
+          const endYear = Number.isFinite(parsedEndYear) ? parsedEndYear : startYear;
+          const position = positionFor((startYear + endYear) / 2);
+          point.style.left = `${position.x / 10}%`;
+          point.style.top = `${position.y / 5.2}%`;
+          const comment = point.querySelector<HTMLElement>('.milestone-comment');
+          const pointViewportX = (pointLayer?.getBoundingClientRect().left ?? 0) + position.x * scaleX;
+          const mobileCommentWidth = 230;
+          const mobileGap = 58;
+          const pageMargin = 16;
+          const canOpenRight = pointViewportX + mobileGap + mobileCommentWidth <= window.innerWidth - pageMargin;
+          const canOpenLeft = pointViewportX - mobileGap - mobileCommentWidth >= pageMargin;
+          const stackComment = window.innerWidth <= 680 && !canOpenRight && !canOpenLeft;
+          point.classList.toggle('stacked-comment', stackComment);
+          point.classList.toggle('align-right', window.innerWidth <= 680 ? !stackComment && canOpenLeft : position.x > 640);
+          if (comment && stackComment) {
+            const commentLeft = Math.min(Math.max(pointViewportX - mobileCommentWidth / 2, pageMargin), window.innerWidth - mobileCommentWidth - pageMargin);
+            comment.style.setProperty('--comment-left', `${commentLeft - pointViewportX}px`);
+            comment.style.setProperty('--comment-pointer', `${pointViewportX - commentLeft - 9}px`);
+          } else if (comment) {
+            comment.style.removeProperty('--comment-left');
+            comment.style.removeProperty('--comment-pointer');
+          }
+
+          if (point.classList.contains('chapter')) {
+            const startPosition = positionFor(startYear);
+            const endPosition = positionFor(endYear);
+            const startCap = point.querySelector<HTMLElement>('[data-duration-cap="start"]');
+            const endCap = point.querySelector<HTMLElement>('[data-duration-cap="end"]');
+            if (startCap) startCap.style.transform = `translate(${(startPosition.x - position.x) * scaleX}px, ${(startPosition.y - position.y) * scaleY}px)`;
+            if (endCap) endCap.style.transform = `translate(${(endPosition.x - position.x) * scaleX}px, ${(endPosition.y - position.y) * scaleY}px)`;
+          }
+        });
+
+        timeline.querySelectorAll<SVGPathElement>('[data-duration-start]').forEach((duration) => {
+          const start = pathLength * progressFor(parseYear(duration.dataset.durationStart));
+          const end = pathLength * progressFor(parseYear(duration.dataset.durationEnd));
+          duration.style.strokeDasharray = `${Math.max(0, end - start)} ${pathLength}`;
+          duration.style.strokeDashoffset = `${-start}`;
+        });
+      };
+
+      placeTimeline();
+      window.addEventListener('resize', placeTimeline);
       timeline.classList.add('ready');
     }
 

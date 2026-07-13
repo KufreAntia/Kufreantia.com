@@ -2,14 +2,14 @@
   "eyebrow": "Portfolio / Selected work",
   "title": "A journey through",
   "accent": "practice.",
-  "introduction": "Selected projects and milestones tracing the development of a practice focused on thoughtful, useful work.",
+  "introduction": "Selected projects and career chapters tracing the development of a practice focused on thoughtful, useful work.",
   "timelineHeading": "Journey and milestones",
   "projectsHeading": "Projects",
   "milestones": [
-    { "year": "2010", "title": "Starting point", "summary": "The beginning of the journey and the foundations of the work.", "featured": false },
-    { "year": "2014", "title": "Practice takes shape", "summary": "Skills, interests, and a professional direction begin to converge.", "featured": false },
-    { "year": "2017", "title": "Built environment", "summary": "A period of focused professional development and practical experience.", "featured": false },
-    { "year": "2021", "title": "Northumbria Construct", "summary": "A defining project bringing research, collaboration, and delivery together.", "featured": true },
-    { "year": "2026", "title": "Current chapter", "summary": "Building the next body of work, partnerships, and public contribution.", "featured": false }
+    { "type": "milestone", "startYear": "2010", "endYear": "", "title": "Starting point", "organisation": "", "summary": "The beginning of the journey and the foundations of the work." },
+    { "type": "chapter", "startYear": "2014", "endYear": "2017", "title": "Practice takes shape", "organisation": "", "summary": "Skills, interests, and a professional direction begin to converge." },
+    { "type": "chapter", "startYear": "2017", "endYear": "2021", "title": "Built environment", "organisation": "", "summary": "A period of focused professional development and practical experience." },
+    { "type": "chapter", "startYear": "2021", "endYear": "Present", "title": "Northumbria Construct", "organisation": "", "summary": "A defining project bringing research, collaboration, and delivery together." },
+    { "type": "milestone", "startYear": "2026", "endYear": "", "title": "Current chapter", "organisation": "", "summary": "Building the next body of work, partnerships, and public contribution." }
   ]
 }
