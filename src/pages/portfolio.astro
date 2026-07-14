@@ -25,7 +25,14 @@ const linkifyText = (value: string) => value.split(/(https?:\/\/[^\s]+)/gi)
     </div>
 
     <div class="hero-timeline" data-timeline>
-      <div class="timeline-caption"><span>Journey / Milestones</span><span>Select + to explore</span></div>
+      <div class="timeline-caption">
+        <span>Journey / Milestones</span>
+        <div class="timeline-key" aria-label="Timeline colour key">
+          <span class="range-key">Range</span>
+          <span class="milestone-key">Milestone</span>
+          <span class="timeline-instruction">Select + to explore</span>
+        </div>
+      </div>
       <svg class="timeline-curve" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
         <path data-timeline-path d="M 70 115 C 290 15, 760 20, 920 125 C 1040 220, 820 285, 525 300 C 230 315, 25 355, 90 430 C 185 525, 610 465, 930 410" />
         {portfolio.milestones.filter((entry) => entry.type === 'chapter').map((entry) => (
