@@ -93,7 +93,8 @@ const linkifyText = (value: string) => value.split(/(https?:\/\/[^\s]+)/gi)
       const placeTimeline = () => {
         const pathLength = path.getTotalLength();
         const positionForProgress = (progress: number) => path.getPointAtLength(pathLength * progress);
-        const positionForYear = (year: number) => positionForProgress(progressFor(year));
+        const boundedProgressFor = (year: number) => Math.min(1, Math.max(0, progressFor(year)));
+        const positionForYear = (year: number) => positionForProgress(boundedProgressFor(year));
         const pointLayer = timeline.querySelector<HTMLElement>('.timeline-points');
         const scaleX = (pointLayer?.clientWidth ?? 1000) / 1000;
         const scaleY = (pointLayer?.clientHeight ?? 520) / 520;
@@ -137,6 +138,7 @@ const linkifyText = (value: string) => value.split(/(https?:\/\/[^\s]+)/gi)
           point.hidden = false;
           const parsedEndYear = parseYear(point.dataset.endYear);
           const endYear = Number.isFinite(parsedEndYear) ? parsedEndYear : startYear;
+          const endBoundaryYear = point.dataset.endYear?.toLowerCase() === 'present' ? endYear : endYear + 1;
           const position = positionForProgress(layoutProgress);
           point.style.left = `${position.x / 10}%`;
           point.style.top = `${position.y / 5.2}%`;
@@ -163,7 +165,7 @@ const linkifyText = (value: string) => value.split(/(https?:\/\/[^\s]+)/gi)
           if (point.classList.contains('chapter')) {
             point.classList.toggle('has-duration', Number.isFinite(parsedEndYear));
             const startPosition = positionForYear(startYear);
-            const endPosition = positionForYear(endYear);
+            const endPosition = positionForYear(endBoundaryYear);
             const startCap = point.querySelector<HTMLElement>('[data-duration-cap="start"]');
             const endCap = point.querySelector<HTMLElement>('[data-duration-cap="end"]');
             if (startCap) startCap.style.transform = `translate(${(startPosition.x - position.x) * scaleX}px, ${(startPosition.y - position.y) * scaleY}px)`;
@@ -180,7 +182,8 @@ const linkifyText = (value: string) => value.split(/(https?:\/\/[^\s]+)/gi)
           }
           duration.style.removeProperty('display');
           const start = pathLength * progressFor(startYear);
-          const end = pathLength * progressFor(endYear);
+          const endBoundaryYear = duration.dataset.durationEnd?.toLowerCase() === 'present' ? endYear : endYear + 1;
+          const end = pathLength * boundedProgressFor(endBoundaryYear);
           duration.style.strokeDasharray = `${Math.max(0, end - start)} ${pathLength}`;
           duration.style.strokeDashoffset = `${-start}`;
         });
