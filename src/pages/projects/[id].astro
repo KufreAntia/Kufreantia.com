@@ -11,11 +11,16 @@ export const getStaticPaths = (async () => {
 const { project } = Astro.props;
 const data = project.data;
 const words = data.title.split(' ');
+const monogram = (data.title.match(/[A-Za-z0-9]+/g) ?? [])
+  .filter((word: string) => !['a', 'an', 'and', 'of', 'the'].includes(word.toLowerCase()))
+  .slice(0, 3)
+  .map((word: string) => word[0].toUpperCase())
+  .join('');
 ---
 <BaseLayout title={`${data.title} — Kufre Antia`} description={data.summary} page="project">
   <section class:list={['case-hero', `theme-${data.theme}`]}>
-    <div class="case-title"><a class="crumb" href="/portfolio/">← Portfolio / Project {String(data.order).padStart(2, '0')}</a><h1>{words[0]}<br />{words.slice(1).join(' ')}</h1><p>{data.intro}</p></div>
-    <div class="case-art"><div class="case-monogram">{words.map((word: string) => word[0]).join('')}</div></div>
+    <div class:list={['case-title', { 'long-title': data.title.length > 34 }]}><a class="crumb" href="/portfolio/">← Portfolio / Project {String(data.order).padStart(2, '0')}</a><h1>{words[0]}<br />{words.slice(1).join(' ')}</h1><p>{data.intro}</p></div>
+    <div class="case-art"><div class="case-monogram">{monogram}</div></div>
   </section>
   <section class="case-facts"><div><span>Project type</span><p>{data.projectType}</p></div><div><span>Role</span><p>{data.role}</p></div><div><span>Location</span><p>{data.location}</p></div><div><span>Status / year</span><p>{data.year}</p></div></section>
   <section class="case-section"><h2>01 / Overview</h2><div class="case-copy reveal"><h3>The project<br />at a glance.</h3><p>{data.overview}</p></div></section>

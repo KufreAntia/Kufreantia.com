@@ -7,6 +7,11 @@ import '../styles/portfolio.css';
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 const categories = [...new Set(projects.map((project) => project.data.category))];
 const isExternalUrl = (value: string) => /^https?:\/\//i.test(value.trim());
+const projectMonogram = (title: string) => (title.match(/[A-Za-z0-9]+/g) ?? [])
+  .filter((word) => !['a', 'an', 'and', 'of', 'the'].includes(word.toLowerCase()))
+  .slice(0, 3)
+  .map((word) => word[0].toUpperCase())
+  .join('');
 const linkifyText = (value: string) => value.split(/(https?:\/\/[^\s]+)/gi)
   .filter(Boolean)
   .map((text) => isExternalUrl(text) ? { text, href: text } : { text });
@@ -56,12 +61,12 @@ const linkifyText = (value: string) => value.split(/(https?:\/\/[^\s]+)/gi)
         {categories.map((category) => <button type="button" data-project-filter={category} aria-pressed="false">{category}</button>)}
       </div>}
     </header>
-    <div class="portfolio-grid">
+    <div class:list={['portfolio-grid', { 'is-pair': projects.length === 2 }]}>
       {projects.map((project, index) => (
         <a class:list={['portfolio-card', `theme-${project.data.theme}`]} href={`/projects/${project.id}/`} data-project-category={project.data.category}>
           <div class:list={['portfolio-card-visual', { 'has-image': Boolean(project.data.thumbnail) }]} style={project.data.thumbnail ? `background-image:url('${project.data.thumbnail}')` : undefined}>
             <span>{String(index + 1).padStart(2, '0')}</span>
-            {!project.data.thumbnail && <strong>{project.data.title.split(' ').map((word) => word[0]).join('')}</strong>}
+            {!project.data.thumbnail && <strong>{projectMonogram(project.data.title)}</strong>}
           </div>
           <div class="portfolio-card-copy">
             <div><span>{project.data.category}</span><span>{project.data.year}</span></div>
