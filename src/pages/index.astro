@@ -11,22 +11,22 @@ const featured = projects.sort((a, b) => a.data.order - b.data.order).find((proj
   <section class="home-hero">
     <div class="hero-meta"><span>{home.eyebrow}</span><span>London · <span data-clock>UK</span></span></div>
     <h1>{home.firstName}<br /><em>{home.lastName}.</em></h1>
-    <div class="hero-bottom"><p>{site.description}</p><a class="circle-link" href="/portfolio/" aria-label="View the portfolio">View<br />work ↘</a></div>
+    <div class="hero-bottom"><p>{home.heroPositioning}</p><a class="circle-link" href="/portfolio/" aria-label="View the portfolio">{home.ctaLabel}<br />↘</a></div>
     <div class="hero-mark" aria-hidden="true"><span>N</span><span>C</span></div>
   </section>
   {featured && <section class="home-feature section-pad">
     <div class="section-tag"><span>01</span> {home.featuredLabel}</div>
     <a class="feature-card" href={`/projects/${featured.id}/`}>
       <div class="feature-visual"><div class="construct-mark"><span>{featured.data.location.toUpperCase()}</span><strong>{featured.data.title.split(' ').slice(1).join(' ')}</strong></div><span class="feature-index">PROJECT / 01</span></div>
-      <div class="feature-copy"><p class="kicker">Dedicated case study</p><h2>{featured.data.title.split(' ')[0]}<br />{featured.data.title.split(' ').slice(1).join(' ')}</h2><p>{featured.data.summary}</p><span class="arrow-link">View project <b>↗</b></span></div>
+      <div class="feature-copy"><p class="kicker">Dedicated case study</p><h2>{featured.data.title}</h2><p>{featured.data.summary}</p><span class="arrow-link">View project <b>↗</b></span></div>
     </a>
   </section>}
   <section class="index-grid section-pad">
     <div class="section-tag"><span>02</span> Explore</div>
     <div class="page-index">
-      <a href="/portfolio/"><span>01</span><h3>Portfolio</h3><p>Selected projects and collaborations.</p><b>↗</b></a>
-      <a href="/cv/"><span>02</span><h3>Curriculum vitae</h3><p>Experience, capabilities and professional record.</p><b>↗</b></a>
-      <a href="/contact/"><span>03</span><h3>Contact</h3><p>Start a conversation about work and collaboration.</p><b>↗</b></a>
+      <a href="/portfolio/"><span>01</span><h3>Portfolio</h3><p>{home.portfolioCardDescription}</p><b>↗</b></a>
+      <a href="/cv/"><span>02</span><h3>Curriculum vitae</h3><p>{home.cvCardDescription}</p><b>↗</b></a>
+      <a href="/contact/"><span>03</span><h3>Contact</h3><p>{home.contactCardDescription}</p><b>↗</b></a>
     </div>
   </section>
 </BaseLayout>

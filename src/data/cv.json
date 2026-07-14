@@ -1,8 +1,33 @@
 {
-  "pageIntroduction": "A concise overview of experience, capabilities, and professional work.",
-  "lead": "A practice shaped by curiosity, clarity, and a commitment to meaningful work.",
-  "paragraphs": [
-    "Use this page to introduce your professional profile, current focus, and the experience most relevant to your work.",
-    "Add your career history, education, selected achievements, and specialist capabilities as the next stage of the site build."
+  "pageIntroduction": "An overview of my professional experience, qualifications and development across civil engineering, construction project management, BIM and project controls.",
+  "lead": "I am a Civil Engineer with experience in major infrastructure, building construction, project controls and site delivery. I have since developed further expertise in construction project management and BIM through postgraduate study and professional engagement in the United Kingdom.",
+  "profile": "My experience includes highway infrastructure, educational and hospitality buildings, technical office engineering, section engineering and project coordination. At Julius Berger Nigeria Plc, I progressed from Technical Office Engineer to Section Engineer on the Abuja-Kaduna-Zaria-Kano Dual Carriageway Reconstruction Project. I later completed an MSc in Construction Project Management with Building Information Modelling at Northumbria University with Distinction. My current interests include project controls, digital construction, practical industry-academia collaboration and the use of technology to support better project delivery.",
+  "capabilities": [
+    "Civil Engineering",
+    "Construction Project Management",
+    "Project Controls",
+    "Building Information Modelling (BIM)",
+    "Planning and Progress Monitoring",
+    "Technical Reporting",
+    "Quality Coordination",
+    "Stakeholder Management",
+    "Infrastructure Delivery",
+    "Building Design and Construction",
+    "Research and Data Analysis",
+    "Team Leadership"
+  ],
+  "memberships": [
+    "Association for Project Management (APM) - Member",
+    "Chartered Institute of Building (CIOB) - Member",
+    "Council for the Regulation of Engineering in Nigeria (COREN) - Registered Engineer",
+    "MSc Construction Project Management with BIM - Distinction",
+    "BEng Civil Engineering"
+  ],
+  "achievements": [
+    "Association for Project Management Student of the Year 2026",
+    "Northumbria University Vice-Chancellor's Outstanding Student Commendation for Leadership and Tenacity",
+    "Finalist in the APM Project Management Challenge",
+    "Founder of Northumbria Construct",
+    "Progressed from Technical Office Engineer to Section Engineer on the Abuja-Kaduna-Zaria-Kano highway project"
   ]
 }

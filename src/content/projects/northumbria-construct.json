@@ -1,8 +1,8 @@
 {
   "title": "Northumbria Construct",
   "summary": "A dedicated case study for the project’s story, development, contribution, and outcomes.",
-  "order": 1,
-  "featured": true,
+  "order": 2,
+  "featured": false,
   "projectType": "To be confirmed",
   "category": "Built environment",
   "thumbnail": "",

@@ -13,7 +13,21 @@ import cv from '../data/cv.json';
     <aside class="content-aside">Profile<br />{site.location}</aside>
     <article class="prose reveal">
       <p class="lead">{cv.lead}</p>
-      {cv.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      <p>{cv.profile}</p>
+      <div class="cv-details">
+        <section class="cv-detail">
+          <h2>Capabilities</h2>
+          <ul class="cv-chip-list">{cv.capabilities.map((capability) => <li>{capability}</li>)}</ul>
+        </section>
+        <section class="cv-detail">
+          <h2>Memberships and qualifications</h2>
+          <ul class="cv-record-list">{cv.memberships.map((membership) => <li>{membership}</li>)}</ul>
+        </section>
+        <section class="cv-detail">
+          <h2>Selected achievements</h2>
+          <ul class="cv-record-list">{cv.achievements.map((achievement) => <li>{achievement}</li>)}</ul>
+        </section>
+      </div>
       {site.cvFile && <p><a class="arrow-link" href={site.cvFile}>Download PDF <b>↗</b></a></p>}
       <button class="print-button" onclick="window.print()">Print / Save as PDF</button>
     </article>

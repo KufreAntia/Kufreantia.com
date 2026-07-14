@@ -1,7 +1,12 @@
 {
-  "eyebrow": "Independent portfolio",
+  "eyebrow": "Civil Engineer | Project Manager | BIM Engineer",
   "firstName": "Kufre",
-  "lastName": "Antia",
-  "featuredLabel": "Featured project",
-  "archiveIntroduction": "Explore selected work, professional experience, and ways to collaborate."
+  "lastName": "Usen Antia",
+  "heroPositioning": "I am a Civil Engineer, BIM Engineer and Construction Project Manager with experience in major infrastructure delivery, project controls and digital construction. My work also includes research, professional leadership and initiatives that help connect students with industry.",
+  "ctaLabel": "Explore My Work",
+  "featuredLabel": "Featured Project",
+  "portfolioCardDescription": "Explore selected work across infrastructure, building design and construction, project management, sustainability and professional engagement.",
+  "cvCardDescription": "View my professional experience, qualifications, technical capabilities and career progression.",
+  "contactCardDescription": "Get in touch to discuss professional opportunities, research collaboration, speaking or industry engagement.",
+  "archiveIntroduction": "Explore selected work across infrastructure, building design and construction, project management, sustainability and professional engagement."
 }

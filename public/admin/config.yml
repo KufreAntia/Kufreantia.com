@@ -36,7 +36,12 @@ collections:
           - { label: Eyebrow, name: eyebrow, widget: string }
           - { label: First name, name: firstName, widget: string }
           - { label: Last name, name: lastName, widget: string }
+          - { label: Hero positioning statement, name: heroPositioning, widget: text }
+          - { label: Main call-to-action label, name: ctaLabel, widget: string }
           - { label: Featured project label, name: featuredLabel, widget: string }
+          - { label: Portfolio card description, name: portfolioCardDescription, widget: text }
+          - { label: CV card description, name: cvCardDescription, widget: text }
+          - { label: Contact card description, name: contactCardDescription, widget: text }
           - { label: Archive introduction, name: archiveIntroduction, widget: text }
       - name: portfolio
         label: Portfolio page
@@ -72,10 +77,19 @@ collections:
         fields:
           - { label: Page introduction, name: pageIntroduction, widget: text }
           - { label: Lead statement, name: lead, widget: text }
-          - label: Profile paragraphs
-            name: paragraphs
+          - { label: Professional profile, name: profile, widget: text }
+          - label: Capabilities
+            name: capabilities
             widget: list
-            field: { label: Paragraph, name: paragraph, widget: text }
+            field: { label: Capability, name: capability, widget: string }
+          - label: Memberships and qualifications
+            name: memberships
+            widget: list
+            field: { label: Membership or qualification, name: membership, widget: string }
+          - label: Selected achievements
+            name: achievements
+            widget: list
+            field: { label: Achievement, name: achievement, widget: text }
       - name: contact
         label: Contact page
         file: src/data/contact.json

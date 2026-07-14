@@ -92,22 +92,55 @@ const linkifyText = (value: string) => value.split(/(https?:\/\/[^\s]+)/gi)
 
       const placeTimeline = () => {
         const pathLength = path.getTotalLength();
-        const positionFor = (year: number) => path.getPointAtLength(pathLength * progressFor(year));
+        const positionForProgress = (progress: number) => path.getPointAtLength(pathLength * progress);
+        const positionForYear = (year: number) => positionForProgress(progressFor(year));
         const pointLayer = timeline.querySelector<HTMLElement>('.timeline-points');
         const scaleX = (pointLayer?.clientWidth ?? 1000) / 1000;
         const scaleY = (pointLayer?.clientHeight ?? 520) / 520;
 
+        const minimumProgress = 0.025;
+        const maximumProgress = 0.975;
+        const minimumGap = window.innerWidth <= 680 ? 0.055 : 0.04;
+        const orderedPoints = points.map((point, index) => {
+          const startYear = parseYear(point.dataset.startYear);
+          const parsedEndYear = parseYear(point.dataset.endYear);
+          const endYear = Number.isFinite(parsedEndYear) ? parsedEndYear : startYear;
+          return { point, index, startYear, endYear, target: progressFor((startYear + endYear) / 2), layout: 0 };
+        }).filter((entry) => Number.isFinite(entry.startYear)).sort((a, b) => a.target - b.target || a.index - b.index);
+
+        let previous = minimumProgress - minimumGap;
+        orderedPoints.forEach((entry) => {
+          const target = Math.min(Math.max(entry.target, minimumProgress), maximumProgress);
+          entry.layout = Math.max(target, previous + minimumGap);
+          previous = entry.layout;
+        });
+        if (orderedPoints.length && orderedPoints[orderedPoints.length - 1].layout > maximumProgress) {
+          orderedPoints[orderedPoints.length - 1].layout = maximumProgress;
+          for (let index = orderedPoints.length - 2; index >= 0; index -= 1) {
+            orderedPoints[index].layout = Math.min(orderedPoints[index].layout, orderedPoints[index + 1].layout - minimumGap);
+          }
+        }
+        if (orderedPoints.length > 1 && orderedPoints[0].layout < minimumProgress) {
+          orderedPoints.forEach((entry, index) => {
+            entry.layout = minimumProgress + index * ((maximumProgress - minimumProgress) / (orderedPoints.length - 1));
+          });
+        }
+        const pointProgress = new Map(orderedPoints.map((entry) => [entry.point, entry.layout]));
+
         points.forEach((point) => {
           const startYear = parseYear(point.dataset.startYear);
-          if (!Number.isFinite(startYear)) {
+          const layoutProgress = pointProgress.get(point);
+          if (!Number.isFinite(startYear) || layoutProgress === undefined) {
             point.hidden = true;
             return;
           }
+          point.hidden = false;
           const parsedEndYear = parseYear(point.dataset.endYear);
           const endYear = Number.isFinite(parsedEndYear) ? parsedEndYear : startYear;
-          const position = positionFor((startYear + endYear) / 2);
+          const position = positionForProgress(layoutProgress);
           point.style.left = `${position.x / 10}%`;
           point.style.top = `${position.y / 5.2}%`;
+          point.dataset.layoutProgress = String(layoutProgress);
           const comment = point.querySelector<HTMLElement>('.milestone-comment');
           const pointViewportX = (pointLayer?.getBoundingClientRect().left ?? 0) + position.x * scaleX;
           const mobileCommentWidth = 230;
@@ -129,8 +162,8 @@ const linkifyText = (value: string) => value.split(/(https?:\/\/[^\s]+)/gi)
 
           if (point.classList.contains('chapter')) {
             point.classList.toggle('has-duration', Number.isFinite(parsedEndYear));
-            const startPosition = positionFor(startYear);
-            const endPosition = positionFor(endYear);
+            const startPosition = positionForYear(startYear);
+            const endPosition = positionForYear(endYear);
             const startCap = point.querySelector<HTMLElement>('[data-duration-cap="start"]');
             const endCap = point.querySelector<HTMLElement>('[data-duration-cap="end"]');
             if (startCap) startCap.style.transform = `translate(${(startPosition.x - position.x) * scaleX}px, ${(startPosition.y - position.y) * scaleY}px)`;
