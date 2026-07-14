@@ -2,9 +2,9 @@
   "eyebrow": "Portfolio / Selected work",
   "title": "A journey through",
   "accent": "practice.",
-  "introduction": "This portfolio presents selected work from my professional practice, postgraduate study and industry engagement. It includes infrastructure and building projects, project management initiatives and sustainability-led design work.",
+  "introduction": "Selected projects and career chapters tracing the development of a practice focused on thoughtful, useful work.",
   "timelineHeading": "Journey and milestones",
-  "projectsHeading": "Selected Projects",
+  "projectsHeading": "Projects",
   "milestones": [
     {
       "type": "chapter",
@@ -76,6 +76,14 @@
     },
     {
       "type": "chapter",
+      "startYear": "2022",
+      "endYear": "2023",
+      "title": "Career Break",
+      "organisation": "Root Hub",
+      "summary": "Developing technological skills including coding, programming and AI in preparation for postgraduate studies in Building Information Modelling."
+    },
+    {
+      "type": "chapter",
       "startYear": "2024",
       "endYear": "2026",
       "title": "MSc Construction Project Management with BIM",
@@ -105,14 +113,6 @@
       "title": "Bridge the Gap Initiative",
       "organisation": "Association for Project Management",
       "summary": "Led the delivery of the Bridge the gap project, emerging as finalist at the APM project management challenge."
-    },
-    {
-      "type": "chapter",
-      "startYear": "2022",
-      "endYear": "2023",
-      "title": "Career Break",
-      "organisation": "Root Hub",
-      "summary": "Developing technological skills including coding, programming and AI in preparation for postgraduate studies in Building Information Modelling."
     }
   ]
 }
