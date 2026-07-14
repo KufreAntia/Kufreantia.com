@@ -1,20 +1,13 @@
 {
-  "title": "Bridge the Gap - APM Project Management Challenge",
-  "summary": "An Association for Project Management challenge project focused on improving links between construction students and industry through research, stakeholder engagement and practical career resources.",
-  "order": 1,
-  "featured": true,
-  "projectType": "Project Management and Industry Engagement Initiative",
-  "category": "Leadership and industry engagement",
-  "thumbnail": "",
-  "role": "Project Manager",
-  "location": "North East England, United Kingdom",
-  "year": "2024-2025 | Completed",
-  "theme": "clay",
-  "intro": "Bridge the Gap was developed through the Association for Project Management Project Management Challenge to examine how students could gain clearer, more practical access to construction careers and industry experience.",
-  "overview": "As Project Manager, I led a team of six students through the planning and delivery of a project focused on the gap between academic learning and industry expectations. The work included student research, interviews with industry professionals, stakeholder analysis, a careers resource concept, podcast content, a website and a final presentation to the regional judging panel.",
-  "context": "Construction employers continue to report skills shortages, while many students have limited understanding of career pathways, professional institutions and the practical expectations of employers. The project therefore focused on identifying where the disconnect occurred and proposing accessible ways to improve engagement.",
-  "approach": "I coordinated the team, structured the delivery plan and supported stakeholder engagement using a hybrid approach that combined defined stage gates with short delivery sprints. We allocated responsibilities around team strengths, gathered evidence through surveys and interviews, and refined the outputs through regular reviews with our sponsor and mentor.",
   "outcomes": "The team reached the regional final of the APM Project Management Challenge. The work also contributed to the later establishment of Northumbria Construct, providing a route for continued industry engagement beyond the original project. The project strengthened my experience in team leadership, stakeholder management, benefits realisation and delivery within a fixed programme.",
+  "summary": "An Association for Project Management challenge project focused on improving links between construction students and industry through research, stakeholder engagement and practical career resources.",
+  "approach": "I coordinated the team, structured the delivery plan and supported stakeholder engagement using a hybrid approach that combined defined stage gates with short delivery sprints. We allocated responsibilities around team strengths, gathered evidence through surveys and interviews, and refined the outputs through regular reviews with our sponsor and mentor.",
+  "theme": "clay",
+  "thumbnail": "/uploads/northumbria-construct-logo-1280x720.jpg",
+  "intro": "Bridge the Gap was developed through the Association for Project Management Project Management Challenge to examine how students could gain clearer, more practical access to construction careers and industry experience.",
+  "featured": true,
+  "order": 1,
+  "context": "Construction employers continue to report skills shortages, while many students have limited understanding of career pathways, professional institutions and the practical expectations of employers. The project therefore focused on identifying where the disconnect occurred and proposing accessible ways to improve engagement.",
   "process": [
     {
       "title": "Research",
@@ -33,5 +26,12 @@
       "description": "Refine the outputs and present the final project to the regional judging panel."
     }
   ],
-  "gallery": []
+  "gallery": [],
+  "projectType": "Project Management and Industry Engagement Initiative",
+  "location": "North East England, United Kingdom",
+  "role": "Project Manager",
+  "title": "Bridge the Gap - APM Project Management Challenge",
+  "overview": "As Project Manager, I led a team of six students through the planning and delivery of a project focused on the gap between academic learning and industry expectations. The work included student research, interviews with industry professionals, stakeholder analysis, a careers resource concept, podcast content, a website and a final presentation to the regional judging panel.",
+  "year": "2024-2025 | Completed",
+  "category": "Leadership and industry engagement"
 }
