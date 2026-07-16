@@ -37,6 +37,9 @@ collections:
           - { label: First name, name: firstName, widget: string }
           - { label: Last name, name: lastName, widget: string }
           - { label: Hero positioning statement, name: heroPositioning, widget: text }
+          - { label: Hero portrait, name: heroImage, widget: image, required: false, hint: "Recommended: natural professional portrait, JPG/WebP, portrait 1600 × 2000 px, under 1.5 MB." }
+          - { label: Hero video, name: heroVideo, widget: string, required: false, hint: "Optional: YouTube/Vimeo URL or muted MP4/WebM, portrait 1080 × 1350, ideally under 12 MB." }
+          - { label: Hero media alternative text, name: heroMediaAlt, widget: string, required: false, hint: "Describe the image or video for visitors using assistive technology." }
           - { label: Main call-to-action label, name: ctaLabel, widget: string }
           - { label: Featured project label, name: featuredLabel, widget: string }
           - { label: Portfolio card description, name: portfolioCardDescription, widget: text }
@@ -70,6 +73,9 @@ collections:
               - { label: Title, name: title, widget: string }
               - { label: Organisation, name: organisation, widget: string, required: false }
               - { label: Summary, name: summary, widget: text }
+              - { label: Supporting image, name: image, widget: image, required: false, hint: "Recommended: role, project, institution or event image; JPG/WebP, 1200 × 800 px, under 1 MB." }
+              - { label: Supporting video, name: videoUrl, widget: string, required: false, hint: "Optional: YouTube/Vimeo URL or short MP4/WebM. Keep timeline videos concise." }
+              - { label: Media alternative text, name: mediaAlt, widget: string, required: false }
       - name: cv
         label: Curriculum vitae page
         file: src/data/cv.json
@@ -78,6 +84,9 @@ collections:
           - { label: Page introduction, name: pageIntroduction, widget: text }
           - { label: Lead statement, name: lead, widget: text }
           - { label: Professional profile, name: profile, widget: text }
+          - { label: Profile image, name: profileImage, widget: image, required: false, hint: "Recommended: professional portrait or engineering project image, JPG/WebP, 1600 × 1000 px, under 1.5 MB." }
+          - { label: Profile video, name: profileVideo, widget: string, required: false, hint: "Optional: short professional introduction via YouTube/Vimeo, or MP4/WebM under 20 MB." }
+          - { label: Profile media alternative text, name: profileMediaAlt, widget: string, required: false }
           - label: Capabilities
             name: capabilities
             widget: list
@@ -98,6 +107,9 @@ collections:
           - { label: Page introduction, name: pageIntroduction, widget: text }
           - { label: Main heading, name: heading, widget: string }
           - { label: Contact message, name: body, widget: text }
+          - { label: Contact image, name: contactImage, widget: image, required: false, hint: "Recommended: approachable workplace, event or portrait photograph, JPG/WebP, 1600 × 1000 px, under 1.5 MB." }
+          - { label: Contact video, name: contactVideo, widget: string, required: false, hint: "Optional: brief welcome video via YouTube/Vimeo or MP4/WebM under 12 MB." }
+          - { label: Contact media alternative text, name: contactMediaAlt, widget: string, required: false }
 
   - name: projects
     label: Projects
@@ -116,7 +128,10 @@ collections:
       - { label: Feature on homepage, name: featured, widget: boolean, default: false }
       - { label: Project type, name: projectType, widget: string }
       - { label: Portfolio category, name: category, widget: string, default: Selected work }
-      - { label: Card image, name: thumbnail, widget: image, required: false }
+      - { label: Card image, name: thumbnail, widget: image, required: false, hint: "Recommended: strongest project overview image, JPG/WebP, 1600 × 1000 px, under 1.5 MB." }
+      - { label: Case-study hero image, name: heroImage, widget: image, required: false, hint: "Recommended: wide project photograph or approved visual, JPG/WebP, 1920 × 1080 px, under 2 MB." }
+      - { label: Case-study hero video, name: heroVideo, widget: string, required: false, hint: "Optional: YouTube/Vimeo URL or MP4/WebM, 1920 × 1080. Use a short edited project film, walkthrough or presentation." }
+      - { label: Project media alternative text, name: mediaAlt, widget: string, required: false }
       - { label: Your role, name: role, widget: string }
       - { label: Location, name: location, widget: string }
       - { label: Year or status, name: year, widget: string }
@@ -142,7 +157,9 @@ collections:
         widget: list
         required: false
         fields:
-          - { label: Image, name: image, widget: image }
+          - { label: Image, name: image, widget: image, required: false, hint: "Recommended: JPG/WebP, 1600 × 1200 px, under 1.5 MB." }
+          - { label: Video URL or file, name: videoUrl, widget: string, required: false, hint: "YouTube/Vimeo URL or MP4/WebM. Use either an image or a video for each gallery item." }
+          - { label: Video poster image, name: poster, widget: image, required: false, hint: "Recommended for direct video files: JPG/WebP, 1600 × 900 px." }
           - { label: Caption, name: caption, widget: string }
 
   - name: research
@@ -157,6 +174,9 @@ collections:
       - { label: Title, name: title, widget: string }
       - { label: Summary, name: summary, widget: text }
       - { label: Status, name: status, widget: string }
+      - { label: Research image, name: image, widget: image, required: false, hint: "Recommended: diagram, fieldwork, model or presentation image; JPG/WebP, 1600 × 1000 px, under 1.5 MB." }
+      - { label: Research video, name: videoUrl, widget: string, required: false, hint: "Optional: YouTube/Vimeo explainer, presentation or research demonstration; use a concise edited recording." }
+      - { label: Media alternative text, name: mediaAlt, widget: string, required: false }
       - { label: Display order, name: order, widget: number, value_type: int, min: 1 }
 
   - name: publications
@@ -173,10 +193,10 @@ collections:
       - { label: Year, name: year, widget: string }
       - { label: Type, name: type, widget: string }
       - { label: Short summary, name: summary, widget: text, required: false }
-      - { label: Image or thumbnail, name: image, widget: image, required: false, hint: "Use the recommended dimensions shown in the media item." }
+      - { label: Cover or article image, name: image, widget: image, required: false, hint: "Journal cover: JPG/WebP, 1200 × 1600 px. Article header: 1600 × 900 px. Keep under 1.5 MB." }
+      - { label: Related video, name: videoUrl, widget: string, required: false, hint: "Optional: YouTube/Vimeo author discussion, presentation or abstract video." }
+      - { label: Media alternative text, name: mediaAlt, widget: string, required: false }
       - { label: Link, name: url, widget: string, required: false }
-      - { label: Recommended media file, name: mediaRecommendation, widget: text, required: false, hint: "Internal preparation note displayed while this page remains hidden." }
-      - { label: Placeholder, name: placeholder, widget: boolean, default: false, required: false, hint: "Turn this off once real content and media have been added." }
       - { label: Display order, name: order, widget: number, value_type: int, min: 1 }
 
   - name: speaking
@@ -193,6 +213,9 @@ collections:
       - { label: Year, name: year, widget: string }
       - { label: Type, name: type, widget: string }
       - { label: Location, name: location, widget: string }
+      - { label: Event image, name: image, widget: image, required: false, hint: "Recommended: stage, panel or audience photograph; JPG/WebP, 1600 × 900 px, under 1.5 MB." }
+      - { label: Recording, name: videoUrl, widget: string, required: false, hint: "Recommended: official YouTube/Vimeo recording or an edited MP4/WebM. Avoid untrimmed phone recordings." }
+      - { label: Media alternative text, name: mediaAlt, widget: string, required: false }
       - { label: Link, name: url, widget: string, required: false }
       - { label: Display order, name: order, widget: number, value_type: int, min: 1 }
 
@@ -209,6 +232,9 @@ collections:
       - { label: Awarding organisation, name: organisation, widget: string }
       - { label: Year, name: year, widget: string }
       - { label: Category, name: category, widget: string }
+      - { label: Award image, name: image, widget: image, required: false, hint: "Recommended: ceremony photograph, official award image or certificate detail; JPG/WebP, 1600 × 1200 px, under 1.5 MB. Avoid publishing sensitive certificate numbers." }
+      - { label: Award video, name: videoUrl, widget: string, required: false, hint: "Optional: official announcement or acceptance clip via YouTube/Vimeo or a short edited MP4/WebM." }
+      - { label: Media alternative text, name: mediaAlt, widget: string, required: false }
       - { label: Display order, name: order, widget: number, value_type: int, min: 1 }
 
   - name: media
@@ -224,7 +250,13 @@ collections:
       - { label: Outlet, name: outlet, widget: string }
       - { label: Year, name: year, widget: string }
       - { label: Type, name: type, widget: string }
+      - { label: Short summary, name: summary, widget: text, required: false }
+      - { label: Image or thumbnail, name: image, widget: image, required: false, hint: "Editorial: 1600 × 1000. Video: 1920 × 1080 thumbnail. Audio: 1200 × 1200 cover. JPG/WebP under 1.5 MB." }
+      - { label: Video recording, name: videoUrl, widget: string, required: false, hint: "YouTube/Vimeo URL or direct MP4/WebM file. This is embedded on the page." }
+      - { label: Media alternative text, name: mediaAlt, widget: string, required: false }
       - { label: Link, name: url, widget: string, required: false }
+      - { label: Recommended media file, name: mediaRecommendation, widget: text, required: false, hint: "Internal preparation note displayed while this page remains hidden." }
+      - { label: Placeholder, name: placeholder, widget: boolean, default: false, required: false, hint: "Turn this off once real content and media have been added." }
       - { label: Display order, name: order, widget: number, value_type: int, min: 1 }
 
   - name: gallery
@@ -238,6 +270,9 @@ collections:
     fields:
       - { label: Title, name: title, widget: string }
       - { label: Project, name: project, widget: string }
-      - { label: Image, name: image, widget: image, required: false }
+      - { label: Image, name: image, widget: image, required: false, hint: "Recommended: JPG/WebP, 1600 × 1200 px, under 1.5 MB." }
+      - { label: Video URL or file, name: videoUrl, widget: string, required: false, hint: "YouTube/Vimeo URL or MP4/WebM, preferably 1920 × 1080." }
+      - { label: Video poster image, name: poster, widget: image, required: false, hint: "Recommended for direct video files: JPG/WebP, 1600 × 900 px." }
       - { label: Alternative text, name: alt, widget: string }
+      - { label: Recommended media file, name: mediaRecommendation, widget: text, required: false }
       - { label: Display order, name: order, widget: number, value_type: int, min: 1 }

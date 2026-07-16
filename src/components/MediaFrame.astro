@@ -1,0 +1,51 @@
+---
+interface Props {
+  image?: string;
+  videoUrl?: string;
+  poster?: string;
+  alt?: string;
+  label?: string;
+  recommendation?: string;
+  placeholder?: boolean;
+  aspect?: 'landscape' | 'portrait' | 'square';
+  className?: string;
+}
+
+const {
+  image = '',
+  videoUrl = '',
+  poster = '',
+  alt = '',
+  label = 'Media',
+  recommendation = '',
+  placeholder = false,
+  aspect = 'landscape',
+  className = '',
+} = Astro.props;
+
+const youtubeId = videoUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([^?&/]+)/)?.[1];
+const vimeoId = videoUrl.match(/vimeo\.com\/(?:video\/)?(\d+)/)?.[1];
+const embedUrl = youtubeId
+  ? `https://www.youtube-nocookie.com/embed/${youtubeId}`
+  : vimeoId
+    ? `https://player.vimeo.com/video/${vimeoId}`
+    : '';
+const hasMedia = Boolean(image || videoUrl);
+---
+{(hasMedia || placeholder) && <div class:list={['media-frame', `aspect-${aspect}`, className, { 'is-placeholder': !hasMedia }]}>
+  {videoUrl && embedUrl && <iframe src={embedUrl} title={alt || label} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>}
+  {videoUrl && !embedUrl && <video controls preload="metadata" poster={poster || image || undefined}><source src={videoUrl} />Your browser does not support embedded video.</video>}
+  {!videoUrl && image && <img src={image} alt={alt || label} loading="lazy" />}
+  {!hasMedia && <div class="media-placeholder-copy"><span>{label}</span><strong>Media placeholder</strong>{recommendation && <p>{recommendation}</p>}</div>}
+</div>}
+
+<style>
+  .media-frame{position:relative;width:100%;overflow:hidden;background:var(--ink);color:var(--paper)}
+  .aspect-landscape{aspect-ratio:16/9}.aspect-portrait{aspect-ratio:4/5}.aspect-square{aspect-ratio:1}
+  .media-frame img,.media-frame video,.media-frame iframe{display:block;width:100%;height:100%;border:0;object-fit:cover}
+  .is-placeholder{display:grid;place-items:center;min-height:260px;border:1px dashed var(--line);background:var(--white);color:var(--ink)}
+  .media-placeholder-copy{max-width:420px;padding:28px;text-align:center}
+  .media-placeholder-copy span{display:block;color:var(--clay);font:500 9px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+  .media-placeholder-copy strong{display:block;margin:18px 0 10px;font:300 clamp(28px,4vw,48px)/1 var(--serif)}
+  .media-placeholder-copy p{margin:0;color:var(--muted);font-size:11px;line-height:1.7}
+</style>

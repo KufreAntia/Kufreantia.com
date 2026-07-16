@@ -2,6 +2,7 @@
 import type { GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import MediaFrame from '../../components/MediaFrame.astro';
 
 export const getStaticPaths = (async () => {
   const projects = await getCollection('projects');
@@ -20,12 +21,16 @@ const monogram = (data.title.match(/[A-Za-z0-9]+/g) ?? [])
 <BaseLayout title={`${data.title} — Kufre Antia`} description={data.summary} page="project">
   <section class:list={['case-hero', `theme-${data.theme}`]}>
     <div class:list={['case-title', { 'long-title': data.title.length > 34 }]}><a class="crumb" href="/portfolio/">← Portfolio / Project {String(data.order).padStart(2, '0')}</a><h1>{words[0]}<br />{words.slice(1).join(' ')}</h1><p>{data.intro}</p></div>
-    <div class="case-art"><div class="case-monogram">{monogram}</div></div>
+    <div class:list={['case-art', { 'has-media': Boolean(data.heroImage || data.heroVideo) }]}>
+      {(data.heroImage || data.heroVideo)
+        ? <MediaFrame className="case-hero-media" image={data.heroImage} videoUrl={data.heroVideo} alt={data.mediaAlt || data.title} />
+        : <div class="case-monogram">{monogram}</div>}
+    </div>
   </section>
   <section class="case-facts"><div><span>Project type</span><p>{data.projectType}</p></div><div><span>Role</span><p>{data.role}</p></div><div><span>Location</span><p>{data.location}</p></div><div><span>Status / year</span><p>{data.year}</p></div></section>
   <section class="case-section"><h2>01 / Overview</h2><div class="case-copy reveal"><h3>The project<br />at a glance.</h3><p>{data.overview}</p></div></section>
   <section class="case-section"><h2>02 / Context</h2><div class="case-copy reveal"><h3>The opportunity<br />behind the work.</h3><p>{data.context}</p></div></section>
   <section class="case-section"><h2>03 / Approach</h2><div class="case-copy reveal"><h3>From question<br />to construction.</h3><p>{data.approach}</p>{data.process.length > 0 && <div class="case-process">{data.process.map((step: { title: string; description: string }, index: number) => <article class="process-card"><span>{String(index + 1).padStart(2, '0')} / Process</span><h4>{step.title}</h4><p>{step.description}</p></article>)}</div>}</div></section>
-  <section class="case-section"><h2>04 / Outcomes</h2><div class="case-copy reveal"><h3>What the work<br />made possible.</h3><p>{data.outcomes}</p>{data.gallery.length > 0 && <div class="case-gallery">{data.gallery.map((item: { image: string; caption: string }) => <figure><img src={item.image} alt={item.caption} /><figcaption>{item.caption}</figcaption></figure>)}</div>}</div></section>
+  <section class="case-section"><h2>04 / Outcomes</h2><div class="case-copy reveal"><h3>What the work<br />made possible.</h3><p>{data.outcomes}</p>{data.gallery.length > 0 && <div class="case-gallery">{data.gallery.map((item: { image?: string; videoUrl?: string; poster?: string; caption: string }) => <figure><MediaFrame image={item.image} videoUrl={item.videoUrl} poster={item.poster} alt={item.caption} /><figcaption>{item.caption}</figcaption></figure>)}</div>}</div></section>
   <nav class="project-nav" aria-label="Project navigation"><a href="/portfolio/"><span>Back to</span><h3>All projects ←</h3></a><a href="/contact/"><span>Start a</span><h3>Conversation →</h3></a></nav>
 </BaseLayout>

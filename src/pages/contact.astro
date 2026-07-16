@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
+import MediaFrame from '../components/MediaFrame.astro';
 import contact from '../data/contact.json';
 import site from '../data/site.json';
 ---
@@ -9,6 +10,7 @@ import site from '../data/site.json';
   <section class="section-pad content-grid">
     <aside class="content-aside">Based in<br />{site.location}</aside>
     <article class="prose reveal">
+      {(contact.contactImage || contact.contactVideo) && <MediaFrame className="page-supporting-media" image={contact.contactImage} videoUrl={contact.contactVideo} alt={contact.contactMediaAlt} aspect="landscape" />}
       <h2>{contact.heading}</h2>
       <p class="lead">{contact.body}</p>
       <p><a class="arrow-link" href={`mailto:${site.email}`}>{site.email} <b>↗</b></a></p>

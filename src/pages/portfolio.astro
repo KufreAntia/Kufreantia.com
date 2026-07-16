@@ -1,11 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import MediaFrame from '../components/MediaFrame.astro';
 import portfolio from '../data/portfolio.json';
 import '../styles/portfolio.css';
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 const categories = [...new Set(projects.map((project) => project.data.category))];
+const milestones = portfolio.milestones as Array<(typeof portfolio.milestones)[number] & { image?: string; videoUrl?: string; mediaAlt?: string }>;
 const isExternalUrl = (value: string) => /^https?:\/\//i.test(value.trim());
 const projectMonogram = (title: string) => (title.match(/[A-Za-z0-9]+/g) ?? [])
   .filter((word) => !['a', 'an', 'and', 'of', 'the'].includes(word.toLowerCase()))
@@ -35,18 +37,19 @@ const linkifyText = (value: string) => value.split(/(https?:\/\/[^\s]+)/gi)
       </div>
       <svg class="timeline-curve" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
         <path data-timeline-path d="M 70 115 C 290 15, 760 20, 920 125 C 1040 220, 820 285, 525 300 C 230 315, 25 355, 90 430 C 185 525, 610 465, 930 410" />
-        {portfolio.milestones.filter((entry) => entry.type === 'chapter').map((entry) => (
+        {milestones.filter((entry) => entry.type === 'chapter').map((entry) => (
           <path class="timeline-duration" data-duration-start={entry.startYear} data-duration-end={entry.endYear} d="M 70 115 C 290 15, 760 20, 920 125 C 1040 220, 820 285, 525 300 C 230 315, 25 355, 90 430 C 185 525, 610 465, 930 410" />
         ))}
       </svg>
       <div class="timeline-points">
-        {portfolio.milestones.map((entry, index) => (
+        {milestones.map((entry, index) => (
           <div class:list={['timeline-point', entry.type]} data-timeline-point data-start-year={entry.startYear} data-end-year={entry.endYear}>
             {entry.type === 'chapter' && <><span class="duration-cap start" data-duration-cap="start"></span><span class="duration-cap end" data-duration-cap="end"></span></>}
             <button type="button" aria-label={`Explore ${entry.startYear}${entry.endYear ? ` to ${entry.endYear}` : ''}: ${entry.title}`} aria-controls={`milestone-${index}`} aria-expanded="false" data-milestone-toggle>+</button>
             <div class="milestone-label"><time>{entry.endYear ? `${entry.startYear} — ${entry.endYear}` : entry.startYear}</time><span>{entry.title}</span></div>
             <aside class="milestone-comment" id={`milestone-${index}`} aria-label={`Details for ${entry.title}`}>
               <time>{entry.endYear ? `${entry.startYear} — ${entry.endYear}` : entry.startYear}</time><h3>{entry.title}</h3>
+              {(entry.image || entry.videoUrl) && <MediaFrame className="milestone-media" image={entry.image} videoUrl={entry.videoUrl} alt={entry.mediaAlt || entry.title} />}
               {entry.organisation && (isExternalUrl(entry.organisation)
                 ? <a class="milestone-link" href={entry.organisation} target="_blank" rel="noreferrer">{entry.organisation} ↗</a>
                 : <strong>{entry.organisation}</strong>)}
@@ -223,7 +226,9 @@ const linkifyText = (value: string) => value.split(/(https?:\/\/[^\s]+)/gi)
         button.setAttribute('aria-expanded', String(willOpen));
       });
     });
-    document.addEventListener('click', () => closeMilestones());
+    document.addEventListener('click', (event) => {
+      if (!(event.target as Element).closest('[data-timeline-point].open')) closeMilestones();
+    });
     document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeMilestones(); });
 
     const filterButtons = document.querySelectorAll<HTMLButtonElement>('[data-project-filter]');

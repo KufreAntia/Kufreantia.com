@@ -7,5 +7,5 @@ const entries = (await getCollection('publications')).sort((a, b) => a.data.orde
 ---
 <BaseLayout title="Publications — Kufre Antia" description="Articles, essays, papers, and published contributions." page="publications" noindex>
   <PageHero number="05" label="Writing" title="Publica" accent="tions." intro="Articles, essays, papers, and published contributions in one focused archive." />
-  <section class="section-pad"><CollectionList items={entries.map((entry) => ({ eyebrow: entry.data.year, title: entry.data.title, summary: entry.data.publisher, meta: entry.data.type, href: entry.data.url || undefined }))} /></section>
+  <section class="section-pad"><CollectionList items={entries.map((entry) => ({ eyebrow: entry.data.year, title: entry.data.title, summary: entry.data.summary || entry.data.publisher, meta: `${entry.data.type} · ${entry.data.publisher}`, href: entry.data.url || undefined, image: entry.data.image, videoUrl: entry.data.videoUrl, mediaAlt: entry.data.mediaAlt }))} /></section>
 </BaseLayout>

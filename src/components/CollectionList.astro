@@ -1,15 +1,20 @@
 ---
-interface Item { eyebrow: string; title: string; summary: string; meta: string; href?: string }
+import MediaFrame from './MediaFrame.astro';
+interface Item { eyebrow: string; title: string; summary: string; meta: string; href?: string; image?: string; videoUrl?: string; mediaAlt?: string }
 interface Props { items: Item[] }
 const { items } = Astro.props;
 ---
 <div class="listing">
   {items.map((item) => {
-    const Tag = item.href ? 'a' : 'article';
-    return <Tag class="listing-item" href={item.href}>
+    const hasMedia = Boolean(item.image || item.videoUrl);
+    const Tag = item.href && !hasMedia ? 'a' : 'article';
+    return <Tag class:list={['listing-item', { 'has-media': hasMedia }]} href={item.href && !hasMedia ? item.href : undefined}>
       <span>{item.eyebrow}</span>
-      <div><h2>{item.title}</h2><p>{item.summary}</p></div>
-      <div class="meta">{item.meta}</div><b>{item.href ? '↗' : '—'}</b>
+      <div class="listing-main">
+        {hasMedia && <MediaFrame image={item.image} videoUrl={item.videoUrl} alt={item.mediaAlt || item.title} label={item.title} />}
+        <h2>{item.href && hasMedia ? <a href={item.href}>{item.title}</a> : item.title}</h2><p>{item.summary}</p>
+      </div>
+      <div class="meta">{item.meta}</div><b>{item.href ? <a href={item.href} aria-label={`Open ${item.title}`}>↗</a> : '—'}</b>
     </Tag>;
   })}
 </div>

@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
+import MediaFrame from '../components/MediaFrame.astro';
 import '../styles/media.css';
 const entries = (await getCollection('media')).sort((a, b) => a.data.order - b.data.order);
 const mediaMark = (type: string) => type.split(/\s+/).map((word) => word[0]).join('').slice(0, 2).toUpperCase();
@@ -16,9 +17,10 @@ const mediaMark = (type: string) => type.split(/\s+/).map((word) => word[0]).joi
     <div class="media-grid">
       {entries.map((entry, index) => (
         <article class:list={['media-card', { 'is-placeholder': entry.data.placeholder }]}>
-          <div class:list={['media-visual', { 'has-image': Boolean(entry.data.image) }]} style={entry.data.image ? `background-image:url('${entry.data.image}')` : undefined}>
+          <div class:list={['media-visual', { 'has-image': Boolean(entry.data.image || entry.data.videoUrl) }]}>
             <span>{String(index + 1).padStart(2, '0')} / {entry.data.type}</span>
-            {!entry.data.image && <strong>{mediaMark(entry.data.type)}</strong>}
+            {(entry.data.image || entry.data.videoUrl) && <MediaFrame image={entry.data.image} videoUrl={entry.data.videoUrl} alt={entry.data.mediaAlt || entry.data.title} />}
+            {!entry.data.image && !entry.data.videoUrl && <strong>{mediaMark(entry.data.type)}</strong>}
             {entry.data.placeholder && <b>Placeholder</b>}
           </div>
           <div class="media-card-copy">

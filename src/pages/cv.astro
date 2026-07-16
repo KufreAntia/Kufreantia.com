@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import MediaFrame from '../components/MediaFrame.astro';
 import site from '../data/site.json';
 import cv from '../data/cv.json';
 ---
@@ -12,6 +13,7 @@ import cv from '../data/cv.json';
   <section class="section-pad content-grid">
     <aside class="content-aside">Profile<br />{site.location}</aside>
     <article class="prose reveal">
+      {(cv.profileImage || cv.profileVideo) && <MediaFrame className="page-supporting-media" image={cv.profileImage} videoUrl={cv.profileVideo} alt={cv.profileMediaAlt} aspect="landscape" />}
       <p class="lead">{cv.lead}</p>
       <p>{cv.profile}</p>
       <div class="cv-details">

@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import MediaFrame from '../components/MediaFrame.astro';
 import home from '../data/home.json';
 import site from '../data/site.json';
 
@@ -12,12 +13,19 @@ const featured = projects.sort((a, b) => a.data.order - b.data.order).find((proj
     <div class="hero-meta"><span>{home.eyebrow}</span><span>London · <span data-clock>UK</span></span></div>
     <h1>{home.firstName}<br /><em>{home.lastName}.</em></h1>
     <div class="hero-bottom"><p>{home.heroPositioning}</p><a class="circle-link" href="/portfolio/" aria-label="View the portfolio">{home.ctaLabel}<br />↘</a></div>
-    <div class="hero-mark" aria-hidden="true"><span>N</span><span>C</span></div>
+    {(home.heroImage || home.heroVideo)
+      ? <MediaFrame className="home-hero-media" image={home.heroImage} videoUrl={home.heroVideo} alt={home.heroMediaAlt} aspect="portrait" />
+      : <div class="hero-mark" aria-hidden="true"><span>N</span><span>C</span></div>}
   </section>
   {featured && <section class="home-feature section-pad">
     <div class="section-tag"><span>01</span> {home.featuredLabel}</div>
     <a class="feature-card" href={`/projects/${featured.id}/`}>
-      <div class="feature-visual"><div class="construct-mark"><span>{featured.data.location.toUpperCase()}</span><strong>{featured.data.title.split(' ').slice(1).join(' ')}</strong></div><span class="feature-index">PROJECT / 01</span></div>
+      <div class:list={['feature-visual', { 'has-media': Boolean(featured.data.heroImage || featured.data.heroVideo || featured.data.thumbnail) }]}>
+        {(featured.data.heroImage || featured.data.heroVideo || featured.data.thumbnail)
+          ? <MediaFrame className="feature-media" image={featured.data.heroImage || featured.data.thumbnail} videoUrl={featured.data.heroVideo} alt={featured.data.mediaAlt || featured.data.title} />
+          : <div class="construct-mark"><span>{featured.data.location.toUpperCase()}</span><strong>{featured.data.title.split(' ').slice(1).join(' ')}</strong></div>}
+        <span class="feature-index">PROJECT / 01</span>
+      </div>
       <div class="feature-copy"><p class="kicker">Dedicated case study</p><h2>{featured.data.title}</h2><p>{featured.data.summary}</p><span class="arrow-link">View project <b>↗</b></span></div>
     </a>
   </section>}
