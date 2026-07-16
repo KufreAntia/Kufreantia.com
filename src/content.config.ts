@@ -48,7 +48,18 @@ const awards = defineCollection({
 
 const media = defineCollection({
   loader: glob({ pattern: '**/*.json', base: './src/content/media' }),
-  schema: z.object({ title: z.string(), outlet: z.string(), year: z.string(), type: z.string(), url: z.string().optional(), order: z.number() }),
+  schema: z.object({
+    title: z.string(),
+    outlet: z.string(),
+    year: z.string(),
+    type: z.string(),
+    summary: z.string().default(''),
+    image: z.string().optional(),
+    url: z.string().optional(),
+    mediaRecommendation: z.string().default(''),
+    placeholder: z.boolean().default(false),
+    order: z.number(),
+  }),
 });
 
 const gallery = defineCollection({

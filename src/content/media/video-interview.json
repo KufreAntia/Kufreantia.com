@@ -1,0 +1,12 @@
+{
+  "title": "Video interview, panel or recorded talk",
+  "outlet": "Confirmed broadcaster, institution or event",
+  "year": "To be confirmed",
+  "type": "Video",
+  "summary": "Use for a recorded interview, conference panel, university discussion, presentation or project-related video appearance.",
+  "image": "",
+  "url": "",
+  "mediaRecommendation": "YouTube or Vimeo source link plus a 16:9 thumbnail. JPG or WebP, 1920 × 1080 px, under 1.5 MB. Choose a frame showing the speaker clearly and avoid screenshots containing browser controls.",
+  "placeholder": true,
+  "order": 2
+}

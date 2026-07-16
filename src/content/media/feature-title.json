@@ -1,1 +1,12 @@
-{"title":"Feature or interview title","outlet":"Publication or programme","year":"2026","type":"Interview","url":"","order":1}
+{
+  "title": "Professional profile or editorial interview",
+  "outlet": "Confirmed publication or programme",
+  "year": "To be confirmed",
+  "type": "Editorial profile",
+  "summary": "Use for an in-depth profile, written interview or professional feature covering engineering, project management, BIM or leadership.",
+  "image": "",
+  "url": "",
+  "mediaRecommendation": "Landscape editorial portrait or event photograph. JPG or WebP, 1600 × 1000 px, under 1.5 MB. Use an image with clear subject separation and space for cropping.",
+  "placeholder": true,
+  "order": 1
+}

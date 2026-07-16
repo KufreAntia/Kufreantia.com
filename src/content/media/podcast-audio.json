@@ -1,0 +1,12 @@
+{
+  "title": "Podcast or audio conversation",
+  "outlet": "Confirmed podcast or radio programme",
+  "year": "To be confirmed",
+  "type": "Audio",
+  "summary": "Use for podcast interviews, radio contributions or audio conversations about construction, careers, leadership or professional development.",
+  "image": "",
+  "url": "",
+  "mediaRecommendation": "Spotify, Apple Podcasts or programme link plus square cover artwork. JPG or WebP, 1200 × 1200 px, under 1 MB. Use the official episode or programme artwork where permission allows.",
+  "placeholder": true,
+  "order": 3
+}

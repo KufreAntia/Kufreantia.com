@@ -172,7 +172,11 @@ collections:
       - { label: Publisher, name: publisher, widget: string }
       - { label: Year, name: year, widget: string }
       - { label: Type, name: type, widget: string }
+      - { label: Short summary, name: summary, widget: text, required: false }
+      - { label: Image or thumbnail, name: image, widget: image, required: false, hint: "Use the recommended dimensions shown in the media item." }
       - { label: Link, name: url, widget: string, required: false }
+      - { label: Recommended media file, name: mediaRecommendation, widget: text, required: false, hint: "Internal preparation note displayed while this page remains hidden." }
+      - { label: Placeholder, name: placeholder, widget: boolean, default: false, required: false, hint: "Turn this off once real content and media have been added." }
       - { label: Display order, name: order, widget: number, value_type: int, min: 1 }
 
   - name: speaking

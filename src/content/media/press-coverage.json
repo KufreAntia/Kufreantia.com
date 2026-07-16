@@ -1,0 +1,12 @@
+{
+  "title": "News coverage or professional announcement",
+  "outlet": "Confirmed newspaper, university or professional body",
+  "year": "To be confirmed",
+  "type": "Press coverage",
+  "summary": "Use for verified news coverage, award announcements, project features or articles published by a university or professional institution.",
+  "image": "",
+  "url": "",
+  "mediaRecommendation": "Official article header, publication image or approved event photograph. JPG or WebP, 1600 × 900 px, under 1.5 MB. Do not use a low-resolution screenshot of the full webpage.",
+  "placeholder": true,
+  "order": 4
+}
