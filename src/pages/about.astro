@@ -13,7 +13,7 @@ import site from '../data/site.json';
     <div>
       <p class="section-label">Professional profile</p>
       {(cv.profileImage || cv.profileVideo)
-        ? <MediaFrame image={cv.profileImage} videoUrl={cv.profileVideo} alt={cv.profileMediaAlt} aspect="portrait" />
+        ? <MediaFrame className="about-architectural-media" image={cv.profileImage} videoUrl={cv.profileVideo} alt={cv.profileMediaAlt} aspect="natural" fit="contain" />
         : <MediaFrame placeholder label="Professional portrait" recommendation="Recommended: a natural construction-site, industry-event or university portrait; vertical 4:5, at least 1600 px high." aspect="portrait" />}
     </div>
     <div class="narrative reveal"><p class="large-intro">{cv.lead}</p><p>{cv.profile}</p></div>

@@ -1,5 +1,9 @@
 {
   "intro": "Selected contributions to professional practice, student development and industry engagement, followed by recent recognition and career milestones.",
+  "speakingImage": "/uploads/06-ciob-speaking.webp",
+  "speakingImageAlt": "Kufre Antia speaking at a Chartered Institute of Building event",
+  "recognitionImage": "/uploads/07-apm-recognition.webp",
+  "recognitionImageAlt": "Kufre Antia holding the Association for Project Management Student of the Year award",
   "selectedContributions": [
     { "type": "Professional institution", "title": "CIOB North East Regional Hub", "role": "Committee member", "summary": "Contributing to regional professional activity and discussions on building safety, digital construction and the Golden Thread." },
     { "type": "Project leadership", "title": "Bridge the Gap — APM Project Management Challenge", "role": "Project Manager", "summary": "Led a six-person student team through research, stakeholder engagement and delivery of career-focused resources; the project reached the regional final." },

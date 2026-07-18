@@ -1,6 +1,10 @@
 {
   "intro": "Selected professional experience and initiatives spanning engineering practice, industry–academia engagement and emerging digital project tools.",
   "engineeringIntro": "My engineering practice includes highway infrastructure, building construction, technical office engineering, section delivery, project controls and UK site operations.",
+  "engineeringImage": "/uploads/03-engineering-practice.webp",
+  "engineeringImageAlt": "Kufre Antia wearing PPE on an active construction site",
+  "professionalPracticeImage": "/uploads/04-professional-practice.webp",
+  "professionalPracticeImageAlt": "Kufre Antia participating in a collaborative digital construction session at Northumbria University's Live Projects Hub",
   "roles": [
     {
       "period": "2026–Present",
@@ -30,7 +34,9 @@
   "northumbriaConstruct": {
     "summary": "I founded Northumbria Construct as an industry–academia initiative to help connect students and emerging professionals with universities, professional institutions and the construction industry.",
     "purpose": "Its activities are designed to create practical routes into professional knowledge and networks through debates, seminars, site visits, webinars and collaborative projects.",
-    "externalUrl": "https://www.northumbriaconstruct.com/"
+    "externalUrl": "https://www.northumbriaconstruct.com/",
+    "image": "/uploads/05-northumbria-construct.webp",
+    "imageAlt": "Northumbria Construct participants following an industry engagement event"
   },
   "initiatives": [
     { "title": "Bridge the Gap", "status": "APM Challenge · Regional finalist", "summary": "A student-led project exploring the disconnect between construction education and industry expectations through research, interviews, stakeholder engagement and practical career resources.", "url": "https://www.northumbriaconstruct.com/projects.html#bridge-the-gap" },

@@ -11,12 +11,15 @@ import site from '../data/site.json';
 
   <section class="five-section" id="selected-contributions">
     <div class="section-heading"><p class="section-label">Selected Contributions</p><h2>Leadership, research<br />and engagement.</h2></div>
-    <MediaFrame placeholder label="Contributions media" recommendation="Recommended: one wide image from a panel, debate, seminar or project presentation; 16:9, at least 1920 × 1080 px. A short captioned highlight video may be used instead." aspect="landscape" />
+    <MediaFrame className="contributions-speaking-media" image={contributions.speakingImage} alt={contributions.speakingImageAlt} aspect="landscape" />
     <div class="contribution-grid">{contributions.selectedContributions.map((item, index) => <article class="contribution-card reveal"><span>0{index + 1} · {item.type}</span><h3>{item.title}</h3><strong>{item.role}</strong><p>{item.summary}</p></article>)}</div>
   </section>
 
   <section class="five-section recognition-section" id="recent-milestones">
     <div class="section-heading"><p class="section-label">Recent Milestones</p><h2>Recognition,<br />in context.</h2><p>Selected awards and milestones are presented as a record of development, professional contribution and academic work.</p></div>
-    <div class="recognition-list">{contributions.recentMilestones.map((item) => <article><span>{item.year}</span><h3>{item.title}</h3><p>{item.organisation}</p></article>)}</div>
+    <div class="recognition-layout">
+      <MediaFrame className="recognition-award-media" image={contributions.recognitionImage} alt={contributions.recognitionImageAlt} aspect="portrait" />
+      <div class="recognition-list">{contributions.recentMilestones.map((item) => <article><span>{item.year}</span><h3>{item.title}</h3><p>{item.organisation}</p></article>)}</div>
+    </div>
   </section>
 </BaseLayout>

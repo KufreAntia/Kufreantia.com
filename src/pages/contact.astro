@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
-import MediaFrame from '../components/MediaFrame.astro';
 import contact from '../data/contact.json';
 import site from '../data/site.json';
 ---
@@ -9,9 +8,6 @@ import site from '../data/site.json';
   <PageHero number="04" label="Contact" title="Start a" accent="conversation." intro={contact.pageIntroduction} />
   <section class="five-section contact-layout">
     <div class="contact-intro">
-      {(contact.contactImage || contact.contactVideo)
-        ? <MediaFrame image={contact.contactImage} videoUrl={contact.contactVideo} alt={contact.contactMediaAlt} aspect="portrait" />
-        : <MediaFrame placeholder label="Contact portrait" recommendation="Recommended: an approachable professional portrait in a work or university setting; vertical 4:5, at least 1600 px high." aspect="portrait" />}
       <h2>{contact.heading}</h2><p>{contact.body}</p>
       <div class="contact-links"><a href={`mailto:${site.email}`}>{site.email} ↗</a>{site.linkedin && <a href={site.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>}<a href={site.cvFile} download>Download CV ↓</a></div>
     </div>

@@ -49,6 +49,8 @@ collections:
               - { label: Link, name: href, widget: string }
           - { label: Featured experience title, name: featuredTitle, widget: string }
           - { label: Featured experience summary, name: featuredSummary, widget: text }
+          - { label: Featured project image, name: featuredImage, widget: image }
+          - { label: Featured project image alternative text, name: featuredMediaAlt, widget: string }
           - { label: Hero portrait, name: heroImage, widget: image, required: false, hint: "Natural professional portrait; vertical 4:5, at least 1600 px high." }
           - { label: Hero video, name: heroVideo, widget: string, required: false, hint: "Optional YouTube, Vimeo or MP4 URL." }
           - { label: Hero media alternative text, name: heroMediaAlt, widget: string }
@@ -92,6 +94,10 @@ collections:
         fields:
           - { label: Page introduction, name: intro, widget: text }
           - { label: Engineering introduction, name: engineeringIntro, widget: text }
+          - { label: Engineering practice image, name: engineeringImage, widget: image }
+          - { label: Engineering practice image alternative text, name: engineeringImageAlt, widget: string }
+          - { label: Professional practice image, name: professionalPracticeImage, widget: image }
+          - { label: Professional practice image alternative text, name: professionalPracticeImageAlt, widget: string }
           - label: Engineering roles
             name: roles
             widget: list
@@ -109,6 +115,8 @@ collections:
               - { label: Summary, name: summary, widget: text }
               - { label: Purpose, name: purpose, widget: text }
               - { label: External website, name: externalUrl, widget: string }
+              - { label: Representative image, name: image, widget: image }
+              - { label: Representative image alternative text, name: imageAlt, widget: string }
           - label: Northumbria Construct projects and initiatives
             name: initiatives
             widget: list
@@ -159,6 +167,10 @@ collections:
         format: json
         fields:
           - { label: Page introduction, name: intro, widget: text }
+          - { label: Speaking image, name: speakingImage, widget: image }
+          - { label: Speaking image alternative text, name: speakingImageAlt, widget: string }
+          - { label: Recognition image, name: recognitionImage, widget: image }
+          - { label: Recognition image alternative text, name: recognitionImageAlt, widget: string }
           - label: Selected contributions
             name: selectedContributions
             widget: list
@@ -183,6 +195,3 @@ collections:
           - { label: Page introduction, name: pageIntroduction, widget: text }
           - { label: Heading, name: heading, widget: string }
           - { label: Invitation, name: body, widget: text }
-          - { label: Contact portrait, name: contactImage, widget: image, required: false, hint: "Approachable professional portrait; vertical 4:5, at least 1600 px high." }
-          - { label: Contact video, name: contactVideo, widget: string, required: false }
-          - { label: Contact media alternative text, name: contactMediaAlt, widget: string }

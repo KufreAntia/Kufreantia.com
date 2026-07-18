@@ -14,6 +14,10 @@ import site from '../data/site.json';
 
   <section class="five-section" id="engineering-practice">
     <div class="engineering-intro"><p class="section-label">Engineering Practice</p><p>{experience.engineeringIntro}</p></div>
+    <div class="engineering-media-grid">
+      <MediaFrame image={experience.engineeringImage} alt={experience.engineeringImageAlt} aspect="natural" fit="contain" />
+      <MediaFrame image={experience.professionalPracticeImage} alt={experience.professionalPracticeImageAlt} aspect="natural" fit="contain" />
+    </div>
     <ExperienceTimeline />
     <div class="role-list">
       {experience.roles.map((role, index) => <article class="role-card reveal">
@@ -30,7 +34,7 @@ import site from '../data/site.json';
       <div><p class="section-label">Northumbria Construct · Overview</p><h2>Connecting learning<br />with industry.</h2></div>
       <div><p>{experience.northumbriaConstruct.summary}</p><p>{experience.northumbriaConstruct.purpose}</p><a class="text-link" href={experience.northumbriaConstruct.externalUrl} target="_blank" rel="noreferrer">Visit Northumbria Construct ↗</a></div>
     </div>
-    <MediaFrame className="construct-logo-media" image="/uploads/northumbria-construct-logo-1280x720.jpg" alt="Northumbria Construct identity" aspect="landscape" fit="contain" />
+    <MediaFrame className="construct-photo-media" image={experience.northumbriaConstruct.image} alt={experience.northumbriaConstruct.imageAlt} aspect="landscape" />
 
     <div class="subsection-heading" id="projects-initiatives"><p class="section-label">Projects & Initiatives</p><h3>Practical routes to participation.</h3></div>
     <div class="initiative-grid">{experience.initiatives.map((item, index) => <a class="initiative-card reveal" href={item.url} target="_blank" rel="noreferrer"><span>0{index + 1} · {item.status}</span><h4>{item.title}</h4><p>{item.summary}</p><b>Explore on Northumbria Construct ↗</b></a>)}</div>

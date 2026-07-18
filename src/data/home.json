@@ -10,9 +10,11 @@
     { "title": "Northumbria Construct", "summary": "Projects, events, site visits and shared learning connecting students, professionals, academia and industry.", "href": "/experience/#northumbria-construct" },
     { "title": "NorCon Projects", "summary": "An emerging lightweight Project Operating System for project governance, document intelligence, controls, change and reporting.", "href": "/experience/#norcon-projects" }
   ],
-  "featuredTitle": "Abuja–Kaduna–Zaria–Kano Dual Carriageway Reconstruction",
-  "featuredSummary": "Progression from Technical Office Engineer to Section Engineer on a major highway reconstruction programme, supporting project controls, technical coordination and section delivery.",
-  "heroImage": "",
+  "featuredTitle": "Bridge the Gap — APM Project Management Challenge",
+  "featuredSummary": "A student-led project exploring practical ways to strengthen the connection between construction education and industry through research, stakeholder engagement and career-focused resources.",
+  "featuredImage": "/uploads/02-bridge-the-gap-feature.webp",
+  "featuredMediaAlt": "Bridge the Gap project team at the APM Project Management Challenge regional final",
+  "heroImage": "/uploads/01-homepage-main-portrait.webp",
   "heroVideo": "",
-  "heroMediaAlt": "Professional portrait of Kufre Antia"
+  "heroMediaAlt": "Formal portrait of Kufre Antia"
 }
