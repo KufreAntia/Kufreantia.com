@@ -116,6 +116,7 @@ collections:
               - { label: Title, name: title, widget: string }
               - { label: Status, name: status, widget: string }
               - { label: Summary, name: summary, widget: text }
+              - { label: Northumbria Construct URL, name: url, widget: string }
           - label: NorCon Projects
             name: norcon
             widget: object
@@ -123,6 +124,7 @@ collections:
               - { label: Status, name: status, widget: string }
               - { label: Summary, name: summary, widget: text }
               - { label: Purpose, name: purpose, widget: text }
+              - { label: Product page URL, name: externalUrl, widget: string }
               - { label: Product principles, name: principles, widget: list, field: { label: Principle, name: principle, widget: string } }
 
       - name: experience_timeline

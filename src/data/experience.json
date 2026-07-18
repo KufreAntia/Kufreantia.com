@@ -33,15 +33,16 @@
     "externalUrl": "https://www.northumbriaconstruct.com/"
   },
   "initiatives": [
-    { "title": "Bridge the Gap", "status": "APM Challenge · Regional finalist", "summary": "A student-led project exploring the disconnect between construction education and industry expectations through research, interviews, stakeholder engagement and practical career resources." },
-    { "title": "Oxford-Style Debate", "status": "Professional engagement", "summary": "A structured debate format bringing students and industry contributors together to examine current construction questions from different perspectives." },
-    { "title": "Site Visits, Seminars & Webinars", "status": "Continuing programme", "summary": "Practical learning and knowledge-sharing activities intended to improve access to projects, practitioners and professional institutions." },
-    { "title": "Ibom Hub", "status": "Developing initiative", "summary": "An emerging strand intended to extend industry–academia engagement through locally relevant professional connections and learning opportunities." }
+    { "title": "Bridge the Gap", "status": "APM Challenge · Regional finalist", "summary": "A student-led project exploring the disconnect between construction education and industry expectations through research, interviews, stakeholder engagement and practical career resources.", "url": "https://www.northumbriaconstruct.com/projects.html#bridge-the-gap" },
+    { "title": "Oxford-Style Debate", "status": "Professional engagement", "summary": "A structured debate format bringing students and industry contributors together to examine current construction questions from different perspectives.", "url": "https://www.northumbriaconstruct.com/projects.html#oxford-style-debate" },
+    { "title": "Site Visits, Seminars & Webinars", "status": "Continuing programme", "summary": "Practical learning and knowledge-sharing activities intended to improve access to projects, practitioners and professional institutions.", "url": "https://www.northumbriaconstruct.com/news-insights.html" },
+    { "title": "Ibom Hub", "status": "Developing initiative", "summary": "An emerging strand intended to extend industry–academia engagement through locally relevant professional connections and learning opportunities.", "url": "https://www.northumbriaconstruct.com/projects.html" }
   ],
   "norcon": {
     "status": "In development",
     "summary": "NorCon Projects is an emerging lightweight Project Operating System being developed to address fragmented project information, controls and collaboration through a clearer working structure.",
     "purpose": "The product direction is intended for small project teams and emerging project professionals. It focuses on accessible governance, document and reporting workflows, with an emphasis on clarity rather than unnecessary complexity.",
+    "externalUrl": "https://www.northumbriaconstruct.com/innovation-lab.html",
     "principles": ["Structured project set-up, governance and permissions", "Document ingestion, intelligence and version control", "Change control, benefits and sustainability tracking", "Project reporting and operating workflows"]
   }
 }

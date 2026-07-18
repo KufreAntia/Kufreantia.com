@@ -8,6 +8,7 @@ interface Props {
   recommendation?: string;
   placeholder?: boolean;
   aspect?: 'landscape' | 'portrait' | 'square';
+  fit?: 'cover' | 'contain';
   className?: string;
 }
 
@@ -20,6 +21,7 @@ const {
   recommendation = '',
   placeholder = false,
   aspect = 'landscape',
+  fit = 'cover',
   className = '',
 } = Astro.props;
 
@@ -35,7 +37,7 @@ const hasMedia = Boolean(image || videoUrl);
 {(hasMedia || placeholder) && <div class:list={['media-frame', `aspect-${aspect}`, className, { 'is-placeholder': !hasMedia }]}>
   {videoUrl && embedUrl && <iframe src={embedUrl} title={alt || label} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>}
   {videoUrl && !embedUrl && <video controls preload="metadata" poster={poster || image || undefined}><source src={videoUrl} />Your browser does not support embedded video.</video>}
-  {!videoUrl && image && <img src={image} alt={alt || label} loading="lazy" />}
+  {!videoUrl && image && <img src={image} alt={alt || label} loading="lazy" style={`object-fit:${fit}`} />}
   {!hasMedia && <div class="media-placeholder-copy"><span>{label}</span><strong>Media placeholder</strong>{recommendation && <p>{recommendation}</p>}</div>}
 </div>}
 

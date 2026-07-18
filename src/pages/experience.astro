@@ -30,14 +30,14 @@ import site from '../data/site.json';
       <div><p class="section-label">Northumbria Construct · Overview</p><h2>Connecting learning<br />with industry.</h2></div>
       <div><p>{experience.northumbriaConstruct.summary}</p><p>{experience.northumbriaConstruct.purpose}</p><a class="text-link" href={experience.northumbriaConstruct.externalUrl} target="_blank" rel="noreferrer">Visit Northumbria Construct ↗</a></div>
     </div>
-    <MediaFrame image="/uploads/northumbria-construct-logo-1280x720.jpg" alt="Northumbria Construct identity" aspect="landscape" />
+    <MediaFrame className="construct-logo-media" image="/uploads/northumbria-construct-logo-1280x720.jpg" alt="Northumbria Construct identity" aspect="landscape" fit="contain" />
 
     <div class="subsection-heading" id="projects-initiatives"><p class="section-label">Projects & Initiatives</p><h3>Practical routes to participation.</h3></div>
-    <div class="initiative-grid">{experience.initiatives.map((item, index) => <article class="initiative-card reveal"><span>0{index + 1} · {item.status}</span><h4>{item.title}</h4><p>{item.summary}</p></article>)}</div>
+    <div class="initiative-grid">{experience.initiatives.map((item, index) => <a class="initiative-card reveal" href={item.url} target="_blank" rel="noreferrer"><span>0{index + 1} · {item.status}</span><h4>{item.title}</h4><p>{item.summary}</p><b>Explore on Northumbria Construct ↗</b></a>)}</div>
 
     <div class="norcon-section" id="norcon-projects">
       <div class="norcon-status"><span class="status-dot"></span>{experience.norcon.status}</div>
-      <div class="norcon-grid"><div><p class="section-label">NorCon Projects</p><h2>A lightweight project<br />operating system.</h2></div><div><p class="large-copy">{experience.norcon.summary}</p><p>{experience.norcon.purpose}</p></div></div>
+      <div class="norcon-grid"><div><p class="section-label">NorCon Projects</p><h2>A lightweight project<br />operating system.</h2></div><div><p class="large-copy">{experience.norcon.summary}</p><p>{experience.norcon.purpose}</p><a class="text-link" href={experience.norcon.externalUrl} target="_blank" rel="noreferrer">Explore NorCon Projects ↗</a></div></div>
       <ol class="principle-grid">{experience.norcon.principles.map((item, index) => <li><span>0{index + 1}</span>{item}</li>)}</ol>
     </div>
   </section>
