@@ -1,0 +1,47 @@
+{
+  "intro": "Selected professional experience and initiatives spanning engineering practice, industry–academia engagement and emerging digital project tools.",
+  "engineeringIntro": "My engineering practice includes highway infrastructure, building construction, technical office engineering, section delivery, project controls and UK site operations.",
+  "roles": [
+    {
+      "period": "2026–Present",
+      "role": "Site Engineer — UK Practice Development",
+      "organisation": "Various contractors through agency placements",
+      "context": "Site engineering support on residential and hospitality projects in the United Kingdom.",
+      "responsibilities": ["Setting out and quality checks", "Technical coordination and progress records", "Safe and accurate site delivery"],
+      "tools": ["AutoCAD", "Surveying and setting-out equipment", "Technical drawings"]
+    },
+    {
+      "period": "2019–2023",
+      "role": "Technical Office Engineer → Section Engineer",
+      "organisation": "Julius Berger Nigeria Plc",
+      "context": "Abuja–Kaduna–Zaria–Kano Dual Carriageway Reconstruction Project.",
+      "responsibilities": ["Project controls, reporting and technical coordination", "Planning and monitoring section delivery", "Quality, subcontractor and stakeholder coordination"],
+      "tools": ["Primavera P6", "Microsoft Project", "AutoCAD", "Progress and cost reporting"]
+    },
+    {
+      "period": "2016–2019",
+      "role": "Civil Construction Engineer",
+      "organisation": "Xantias Construction Limited",
+      "context": "Building design, construction and site engineering across educational, hospitality and residential projects.",
+      "responsibilities": ["Site supervision and technical coordination", "Drawing, specification and quality compliance", "Measurement, reporting and programme support"],
+      "tools": ["AutoCAD", "Microsoft Project", "Quantity take-off", "Site records"]
+    }
+  ],
+  "northumbriaConstruct": {
+    "summary": "I founded Northumbria Construct as an industry–academia initiative to help connect students and emerging professionals with universities, professional institutions and the construction industry.",
+    "purpose": "Its activities are designed to create practical routes into professional knowledge and networks through debates, seminars, site visits, webinars and collaborative projects.",
+    "externalUrl": "https://www.northumbriaconstruct.com/"
+  },
+  "initiatives": [
+    { "title": "Bridge the Gap", "status": "APM Challenge · Regional finalist", "summary": "A student-led project exploring the disconnect between construction education and industry expectations through research, interviews, stakeholder engagement and practical career resources." },
+    { "title": "Oxford-Style Debate", "status": "Professional engagement", "summary": "A structured debate format bringing students and industry contributors together to examine current construction questions from different perspectives." },
+    { "title": "Site Visits, Seminars & Webinars", "status": "Continuing programme", "summary": "Practical learning and knowledge-sharing activities intended to improve access to projects, practitioners and professional institutions." },
+    { "title": "Ibom Hub", "status": "Developing initiative", "summary": "An emerging strand intended to extend industry–academia engagement through locally relevant professional connections and learning opportunities." }
+  ],
+  "norcon": {
+    "status": "In development",
+    "summary": "NorCon Projects is an emerging lightweight Project Operating System being developed to address fragmented project information, controls and collaboration through a clearer working structure.",
+    "purpose": "The product direction is intended for small project teams and emerging project professionals. It focuses on accessible governance, document and reporting workflows, with an emphasis on clarity rather than unnecessary complexity.",
+    "principles": ["Structured project set-up, governance and permissions", "Document ingestion, intelligence and version control", "Change control, benefits and sustainability tracking", "Project reporting and operating workflows"]
+  }
+}

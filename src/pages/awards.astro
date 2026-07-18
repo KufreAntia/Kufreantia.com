@@ -1,6 +1,3 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro'; import PageHero from '../components/PageHero.astro'; import CollectionList from '../components/CollectionList.astro';
-const entries=(await getCollection('awards')).sort((a,b)=>a.data.order-b.data.order);
+return Astro.redirect('/contributions-recognition/#recent-milestones', 301);
 ---
-<BaseLayout title="Awards — Kufre Antia" description="Awards, fellowships, honours, and recognition." page="awards"><PageHero number="08" label="Recognition" title="Awa" accent="rds." intro="Awards, fellowships, honours, and selected recognition."/><section class="section-pad"><CollectionList items={entries.map(entry=>({eyebrow:entry.data.year,title:entry.data.title,summary:entry.data.organisation,meta:entry.data.category,image:entry.data.image,videoUrl:entry.data.videoUrl,mediaAlt:entry.data.mediaAlt}))}/></section></BaseLayout>

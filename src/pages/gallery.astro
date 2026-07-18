@@ -1,16 +1,3 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import PageHero from '../components/PageHero.astro';
-import MediaFrame from '../components/MediaFrame.astro';
-const entries = (await getCollection('gallery')).sort((a, b) => a.data.order - b.data.order);
+return Astro.redirect('/experience/#projects-initiatives', 301);
 ---
-<BaseLayout title="Project Gallery — Kufre Antia" description="Visual project archive." page="gallery" noindex>
-  <PageHero number="06" label="Visual archive" title="Gal" accent="lery." intro="Documentation from projects, events, research, and work in progress." />
-  <section class="section-pad gallery-page-grid">
-    {entries.map((entry) => <figure class:list={['gallery-tile', { 'has-image': Boolean(entry.data.image || entry.data.videoUrl) }]}>
-      <MediaFrame image={entry.data.image} videoUrl={entry.data.videoUrl} poster={entry.data.poster} alt={entry.data.alt} label={`${entry.data.title} / ${entry.data.project}`} recommendation={entry.data.mediaRecommendation} placeholder={!entry.data.image && !entry.data.videoUrl} />
-      <figcaption>{entry.data.title} / {entry.data.project}</figcaption>
-    </figure>)}
-  </section>
-</BaseLayout>

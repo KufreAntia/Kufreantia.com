@@ -1,14 +1,17 @@
 {
-  "lastName": "Antia",
-  "portfolioCardDescription": "Explore selected work across infrastructure, building design and construction, project management, sustainability and professional engagement.",
-  "ctaLabel": "Explore My Work",
-  "featuredLabel": "Featured Project",
-  "eyebrow": "Civil Engineer | Project Manager | BIM Engineer",
-  "contactCardDescription": "Get in touch to discuss professional opportunities, research collaboration, speaking or industry engagement.",
-  "cvCardDescription": "View my professional experience, qualifications, technical capabilities and career progression.",
-  "firstName": "Kufre",
-  "archiveIntroduction": "Explore selected work across infrastructure, building design and construction, project management, sustainability and professional engagement.",
-  "heroPositioning": "I am a Civil Engineer, BIM Engineer and Construction Project Manager with experience in major infrastructure delivery, project controls and digital construction. My work also includes research, professional leadership and initiatives that help connect students with industry.",
+  "eyebrow": "Civil Engineer · Project Manager · BIM Engineer",
+  "headline": "Building bridges between engineering, people and innovation.",
+  "supportingCopy": "I work across civil engineering, construction project management and digital delivery, combining practical project experience with initiatives that connect students, academia and industry.",
+  "professionalIntro": "My professional journey combines civil engineering and construction delivery with BIM, digital construction and industry engagement. It also informs Northumbria Construct, which connects learning with practice, and NorCon Projects, an emerging platform for more structured project delivery.",
+  "primaryCtaLabel": "Explore My Experience",
+  "secondaryCtaLabel": "Download CV",
+  "areas": [
+    { "title": "Engineering Practice", "summary": "Infrastructure, site delivery, project controls and building construction experience.", "href": "/experience/#engineering-practice" },
+    { "title": "Northumbria Construct", "summary": "Projects, events, site visits and shared learning connecting students, professionals, academia and industry.", "href": "/experience/#northumbria-construct" },
+    { "title": "NorCon Projects", "summary": "An emerging lightweight Project Operating System for project governance, document intelligence, controls, change and reporting.", "href": "/experience/#norcon-projects" }
+  ],
+  "featuredTitle": "Abuja–Kaduna–Zaria–Kano Dual Carriageway Reconstruction",
+  "featuredSummary": "Progression from Technical Office Engineer to Section Engineer on a major highway reconstruction programme, supporting project controls, technical coordination and section delivery.",
   "heroImage": "",
   "heroVideo": "",
   "heroMediaAlt": "Professional portrait of Kufre Antia"

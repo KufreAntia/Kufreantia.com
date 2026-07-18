@@ -6,15 +6,31 @@ import contact from '../data/contact.json';
 import site from '../data/site.json';
 ---
 <BaseLayout title={`Contact — ${site.name}`} description={contact.pageIntroduction} page="contact">
-  <PageHero number="03" label="Contact" title="Say" accent="hello." intro={contact.pageIntroduction} />
-  <section class="section-pad content-grid">
-    <aside class="content-aside">Based in<br />{site.location}</aside>
-    <article class="prose reveal">
-      {(contact.contactImage || contact.contactVideo) && <MediaFrame className="page-supporting-media" image={contact.contactImage} videoUrl={contact.contactVideo} alt={contact.contactMediaAlt} aspect="landscape" />}
-      <h2>{contact.heading}</h2>
-      <p class="lead">{contact.body}</p>
-      <p><a class="arrow-link" href={`mailto:${site.email}`}>{site.email} <b>↗</b></a></p>
-      {site.linkedin && <p><a class="arrow-link" href={site.linkedin}>Connect on LinkedIn <b>↗</b></a></p>}
-    </article>
+  <PageHero number="04" label="Contact" title="Start a" accent="conversation." intro={contact.pageIntroduction} />
+  <section class="five-section contact-layout">
+    <div class="contact-intro">
+      {(contact.contactImage || contact.contactVideo)
+        ? <MediaFrame image={contact.contactImage} videoUrl={contact.contactVideo} alt={contact.contactMediaAlt} aspect="portrait" />
+        : <MediaFrame placeholder label="Contact portrait" recommendation="Recommended: an approachable professional portrait in a work or university setting; vertical 4:5, at least 1600 px high." aspect="portrait" />}
+      <h2>{contact.heading}</h2><p>{contact.body}</p>
+      <div class="contact-links"><a href={`mailto:${site.email}`}>{site.email} ↗</a>{site.linkedin && <a href={site.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>}<a href={site.cvFile} download>Download CV ↓</a></div>
+    </div>
+    <form class="contact-form" id="contact-form">
+      <label><span>Name</span><input name="name" type="text" autocomplete="name" required /></label>
+      <label><span>Email</span><input name="email" type="email" autocomplete="email" required /></label>
+      <label><span>Topic</span><select name="topic"><option>Professional opportunity</option><option>Research collaboration</option><option>Speaking or industry engagement</option><option>Northumbria Construct</option><option>Other</option></select></label>
+      <label><span>Message</span><textarea name="message" rows="7" required></textarea></label>
+      <button class="button button-dark" type="submit">Prepare email ↗</button>
+      <p class="form-note">This opens your email application with the details completed. No information is stored by this website.</p>
+    </form>
   </section>
+  <script is:inline define:vars={{ email: site.email }}>
+    document.querySelector('#contact-form')?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      const subject = `${data.get('topic')} — website enquiry from ${data.get('name')}`;
+      const body = `Name: ${data.get('name')}\nEmail: ${data.get('email')}\n\n${data.get('message')}`;
+      window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+  </script>
 </BaseLayout>

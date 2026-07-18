@@ -1,0 +1,19 @@
+{
+  "intro": "Selected contributions to professional practice, student development and industry engagement, followed by recent recognition and career milestones.",
+  "selectedContributions": [
+    { "type": "Professional institution", "title": "CIOB North East Regional Hub", "role": "Committee member", "summary": "Contributing to regional professional activity and discussions on building safety, digital construction and the Golden Thread." },
+    { "type": "Project leadership", "title": "Bridge the Gap — APM Project Management Challenge", "role": "Project Manager", "summary": "Led a six-person student team through research, stakeholder engagement and delivery of career-focused resources; the project reached the regional final." },
+    { "type": "Industry–academia engagement", "title": "Northumbria Construct", "role": "Founder and Training & Development Lead", "summary": "Developing seminars, debates, site visits and collaborative activities that connect students with professional institutions and industry." },
+    { "type": "Research", "title": "AI–BIM Integration for Lean Waste Elimination in Project Controls", "role": "MSc dissertation", "summary": "Postgraduate research examining how AI and BIM integration could support leaner information and project-control processes." },
+    { "type": "Student representation", "title": "Construction Project Management programme", "role": "Programme Representative", "summary": "Supported communication between students and the university and contributed to a constructive postgraduate learning environment." }
+  ],
+  "recentMilestones": [
+    { "year": "2026", "title": "Student of the Year", "organisation": "Association for Project Management" },
+    { "year": "2026", "title": "MSc Construction Project Management with BIM — Distinction", "organisation": "Northumbria University" },
+    { "year": "2025", "title": "Vice-Chancellor’s Outstanding Student Commendation", "organisation": "Northumbria University" },
+    { "year": "2025", "title": "Project Management Challenge — North East regional finalist", "organisation": "Association for Project Management" },
+    { "year": "2025", "title": "Award of Recognition", "organisation": "Nigerian Institution of Civil Engineers" },
+    { "year": "2024–25", "title": "Most Improved Stand / Unit", "organisation": "Sodexo Live" },
+    { "year": "2017", "title": "Civil Engineering Alumni of the Year", "organisation": "University of Uyo" }
+  ]
+}

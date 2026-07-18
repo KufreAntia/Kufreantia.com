@@ -4,10 +4,9 @@ interface Props { activePage?: string }
 const { activePage = '' } = Astro.props;
 const nav = [
   ['home', '/', 'Home'],
-  ['portfolio', '/portfolio/', 'Portfolio'],
-  ['cv', '/cv/', 'CV'],
-  ['speaking', '/speaking/', 'Speaking'],
-  ['awards', '/awards/', 'Awards'],
+  ['about', '/about/', 'About'],
+  ['experience', '/experience/', 'Experience'],
+  ['contributions', '/contributions-recognition/', 'Contributions & Recognition'],
   ['contact', '/contact/', 'Contact'],
 ];
 ---
@@ -17,7 +16,7 @@ const nav = [
     {nav.map(([key, href, label]) => <a href={href} class:list={{ active: activePage === key }} aria-current={activePage === key ? 'page' : undefined}>{label}</a>)}
   </nav>
   <div class="header-tools">
-    <a class="cv-button" href="/contact/">Contact ↗</a>
+    <a class="cv-button" href={site.cvFile} download>Download CV ↓</a>
     <button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span><span></span><i class="sr-only">Menu</i></button>
   </div>
 </header>

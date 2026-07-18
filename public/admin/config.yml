@@ -12,267 +12,149 @@ media_folder: public/uploads
 public_folder: /uploads
 
 collections:
-  - name: settings
-    label: Site settings
+  - name: pages
+    label: Website pages
     files:
       - name: site
-        label: Contact, social links & CV
+        label: Site details & CV
         file: src/data/site.json
         format: json
         fields:
           - { label: Full name, name: name, widget: string }
           - { label: Initials, name: shortName, widget: string }
-          - { label: Site description, name: description, widget: text }
+          - { label: Search description, name: description, widget: text }
           - { label: Email, name: email, widget: string }
           - { label: Location, name: location, widget: string }
           - { label: LinkedIn URL, name: linkedin, widget: string, required: false }
           - { label: X / Twitter URL, name: twitter, widget: string, required: false }
-          - { label: Downloadable CV, name: cvFile, widget: file, required: false }
+          - { label: Downloadable CV, name: cvFile, widget: file }
+
       - name: home
-        label: Homepage
+        label: 1. Home
         file: src/data/home.json
         format: json
         fields:
-          - { label: Eyebrow, name: eyebrow, widget: string }
-          - { label: First name, name: firstName, widget: string }
-          - { label: Last name, name: lastName, widget: string }
-          - { label: Hero positioning statement, name: heroPositioning, widget: text }
-          - { label: Hero portrait, name: heroImage, widget: image, required: false, hint: "Recommended: natural professional portrait, JPG/WebP, portrait 1600 × 2000 px, under 1.5 MB." }
-          - { label: Hero video, name: heroVideo, widget: string, required: false, hint: "Optional: YouTube/Vimeo URL or muted MP4/WebM, portrait 1080 × 1350, ideally under 12 MB." }
-          - { label: Hero media alternative text, name: heroMediaAlt, widget: string, required: false, hint: "Describe the image or video for visitors using assistive technology." }
-          - { label: Main call-to-action label, name: ctaLabel, widget: string }
-          - { label: Featured project label, name: featuredLabel, widget: string }
-          - { label: Portfolio card description, name: portfolioCardDescription, widget: text }
-          - { label: CV card description, name: cvCardDescription, widget: text }
-          - { label: Contact card description, name: contactCardDescription, widget: text }
-          - { label: Archive introduction, name: archiveIntroduction, widget: text }
-      - name: portfolio
-        label: Portfolio page
-        file: src/data/portfolio.json
-        format: json
-        fields:
-          - { label: Eyebrow, name: eyebrow, widget: string }
-          - { label: Main title, name: title, widget: string }
-          - { label: Accent title, name: accent, widget: string }
-          - { label: Introduction, name: introduction, widget: text }
-          - { label: Timeline heading, name: timelineHeading, widget: string }
-          - { label: Projects heading, name: projectsHeading, widget: string }
-          - label: Timeline entries
-            name: milestones
+          - { label: Professional label, name: eyebrow, widget: string }
+          - { label: Main headline, name: headline, widget: string }
+          - { label: Supporting copy, name: supportingCopy, widget: text }
+          - { label: Professional introduction, name: professionalIntro, widget: text }
+          - { label: Primary button, name: primaryCtaLabel, widget: string }
+          - { label: Secondary button, name: secondaryCtaLabel, widget: string }
+          - label: What I build cards
+            name: areas
             widget: list
             fields:
-              - label: Entry type
-                name: type
-                widget: select
-                options:
-                  - { label: Single milestone, value: milestone }
-                  - { label: Career chapter, value: chapter }
-                default: milestone
-              - { label: Start year, name: startYear, widget: string }
-              - { label: End year, name: endYear, widget: string, required: false, hint: Use Present for an ongoing chapter }
               - { label: Title, name: title, widget: string }
-              - { label: Organisation, name: organisation, widget: string, required: false }
               - { label: Summary, name: summary, widget: text }
-              - { label: Supporting image, name: image, widget: image, required: false, hint: "Recommended: role, project, institution or event image; JPG/WebP, 1200 × 800 px, under 1 MB." }
-              - { label: Supporting video, name: videoUrl, widget: string, required: false, hint: "Optional: YouTube/Vimeo URL or short MP4/WebM. Keep timeline videos concise." }
-              - { label: Media alternative text, name: mediaAlt, widget: string, required: false }
-      - name: cv
-        label: Curriculum vitae page
+              - { label: Link, name: href, widget: string }
+          - { label: Featured experience title, name: featuredTitle, widget: string }
+          - { label: Featured experience summary, name: featuredSummary, widget: text }
+          - { label: Hero portrait, name: heroImage, widget: image, required: false, hint: "Natural professional portrait; vertical 4:5, at least 1600 px high." }
+          - { label: Hero video, name: heroVideo, widget: string, required: false, hint: "Optional YouTube, Vimeo or MP4 URL." }
+          - { label: Hero media alternative text, name: heroMediaAlt, widget: string }
+
+      - name: about
+        label: 2. About
+        file: src/data/about.json
+        format: json
+        fields:
+          - { label: Page introduction, name: intro, widget: text }
+          - { label: Journey paragraphs, name: journey, widget: list, field: { label: Paragraph, name: paragraph, widget: text } }
+          - { label: Approach and philosophy, name: philosophy, widget: text }
+          - label: Education
+            name: education
+            widget: list
+            fields:
+              - { label: Qualification, name: qualification, widget: string }
+              - { label: Institution, name: institution, widget: string }
+              - { label: Result, name: result, widget: string }
+              - { label: Year, name: year, widget: string }
+
+      - name: cv_profile
+        label: About — profile, skills & memberships
         file: src/data/cv.json
         format: json
         fields:
           - { label: Page introduction, name: pageIntroduction, widget: text }
-          - { label: Lead statement, name: lead, widget: text }
-          - { label: Professional profile, name: profile, widget: text }
-          - { label: Profile image, name: profileImage, widget: image, required: false, hint: "Recommended: professional portrait or engineering project image, JPG/WebP, 1600 × 1000 px, under 1.5 MB." }
-          - { label: Profile video, name: profileVideo, widget: string, required: false, hint: "Optional: short professional introduction via YouTube/Vimeo, or MP4/WebM under 20 MB." }
-          - { label: Profile media alternative text, name: profileMediaAlt, widget: string, required: false }
-          - label: Capabilities
-            name: capabilities
+          - { label: Lead profile, name: lead, widget: text }
+          - { label: Full profile, name: profile, widget: text }
+          - { label: Capabilities, name: capabilities, widget: list, field: { label: Capability, name: capability, widget: string } }
+          - { label: Memberships and qualifications, name: memberships, widget: list, field: { label: Item, name: item, widget: string } }
+          - { label: Selected achievements, name: achievements, widget: list, field: { label: Achievement, name: achievement, widget: string } }
+          - { label: Profile image, name: profileImage, widget: image, required: false, hint: "Professional portrait; vertical 4:5, at least 1600 px high." }
+          - { label: Profile video, name: profileVideo, widget: string, required: false }
+          - { label: Profile media alternative text, name: profileMediaAlt, widget: string }
+
+      - name: experience
+        label: 3. Experience
+        file: src/data/experience.json
+        format: json
+        fields:
+          - { label: Page introduction, name: intro, widget: text }
+          - { label: Engineering introduction, name: engineeringIntro, widget: text }
+          - label: Engineering roles
+            name: roles
             widget: list
-            field: { label: Capability, name: capability, widget: string }
-          - label: Memberships and qualifications
-            name: memberships
+            fields:
+              - { label: Period, name: period, widget: string }
+              - { label: Role, name: role, widget: string }
+              - { label: Organisation, name: organisation, widget: string }
+              - { label: Context, name: context, widget: text }
+              - { label: Responsibilities and contribution, name: responsibilities, widget: list, field: { label: Item, name: item, widget: string } }
+              - { label: Tools and methods, name: tools, widget: list, field: { label: Item, name: item, widget: string } }
+          - label: Northumbria Construct
+            name: northumbriaConstruct
+            widget: object
+            fields:
+              - { label: Summary, name: summary, widget: text }
+              - { label: Purpose, name: purpose, widget: text }
+              - { label: External website, name: externalUrl, widget: string }
+          - label: Northumbria Construct projects and initiatives
+            name: initiatives
             widget: list
-            field: { label: Membership or qualification, name: membership, widget: string }
-          - label: Selected achievements
-            name: achievements
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Status, name: status, widget: string }
+              - { label: Summary, name: summary, widget: text }
+          - label: NorCon Projects
+            name: norcon
+            widget: object
+            fields:
+              - { label: Status, name: status, widget: string }
+              - { label: Summary, name: summary, widget: text }
+              - { label: Purpose, name: purpose, widget: text }
+              - { label: Product principles, name: principles, widget: list, field: { label: Principle, name: principle, widget: string } }
+
+      - name: contributions
+        label: 4. Contributions & Recognition
+        file: src/data/contributions.json
+        format: json
+        fields:
+          - { label: Page introduction, name: intro, widget: text }
+          - label: Selected contributions
+            name: selectedContributions
             widget: list
-            field: { label: Achievement, name: achievement, widget: text }
+            fields:
+              - { label: Type, name: type, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Role or context, name: role, widget: string }
+              - { label: Summary, name: summary, widget: text }
+          - label: Recent milestones
+            name: recentMilestones
+            widget: list
+            fields:
+              - { label: Year, name: year, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Organisation, name: organisation, widget: string }
+
       - name: contact
-        label: Contact page
+        label: 5. Contact
         file: src/data/contact.json
         format: json
         fields:
           - { label: Page introduction, name: pageIntroduction, widget: text }
-          - { label: Main heading, name: heading, widget: string }
-          - { label: Contact message, name: body, widget: text }
-          - { label: Contact image, name: contactImage, widget: image, required: false, hint: "Recommended: approachable workplace, event or portrait photograph, JPG/WebP, 1600 × 1000 px, under 1.5 MB." }
-          - { label: Contact video, name: contactVideo, widget: string, required: false, hint: "Optional: brief welcome video via YouTube/Vimeo or MP4/WebM under 12 MB." }
-          - { label: Contact media alternative text, name: contactMediaAlt, widget: string, required: false }
-
-  - name: projects
-    label: Projects
-    label_singular: Project
-    folder: src/content/projects
-    create: true
-    extension: json
-    format: json
-    slug: "{{slug}}"
-    summary: "{{order}} — {{title}}"
-    sortable_fields: [order, title, year]
-    fields:
-      - { label: Title, name: title, widget: string }
-      - { label: Summary, name: summary, widget: text }
-      - { label: Display order, name: order, widget: number, value_type: int, min: 1 }
-      - { label: Feature on homepage, name: featured, widget: boolean, default: false }
-      - { label: Project type, name: projectType, widget: string }
-      - { label: Portfolio category, name: category, widget: string, default: Selected work }
-      - { label: Card image, name: thumbnail, widget: image, required: false, hint: "Recommended: strongest project overview image, JPG/WebP, 1600 × 1000 px, under 1.5 MB." }
-      - { label: Case-study hero image, name: heroImage, widget: image, required: false, hint: "Recommended: wide project photograph or approved visual, JPG/WebP, 1920 × 1080 px, under 2 MB." }
-      - { label: Case-study hero video, name: heroVideo, widget: string, required: false, hint: "Optional: YouTube/Vimeo URL or MP4/WebM, 1920 × 1080. Use a short edited project film, walkthrough or presentation." }
-      - { label: Project media alternative text, name: mediaAlt, widget: string, required: false }
-      - { label: Your role, name: role, widget: string }
-      - { label: Location, name: location, widget: string }
-      - { label: Year or status, name: year, widget: string }
-      - label: Colour theme
-        name: theme
-        widget: select
-        options: [blue, clay, dark]
-        default: blue
-      - { label: Hero introduction, name: intro, widget: text }
-      - { label: Overview, name: overview, widget: text }
-      - { label: Context, name: context, widget: text }
-      - { label: Approach, name: approach, widget: text }
-      - { label: Outcomes, name: outcomes, widget: text }
-      - label: Process steps
-        name: process
-        widget: list
-        required: false
-        fields:
-          - { label: Title, name: title, widget: string }
-          - { label: Description, name: description, widget: text }
-      - label: Project gallery
-        name: gallery
-        widget: list
-        required: false
-        fields:
-          - { label: Image, name: image, widget: image, required: false, hint: "Recommended: JPG/WebP, 1600 × 1200 px, under 1.5 MB." }
-          - { label: Video URL or file, name: videoUrl, widget: string, required: false, hint: "YouTube/Vimeo URL or MP4/WebM. Use either an image or a video for each gallery item." }
-          - { label: Video poster image, name: poster, widget: image, required: false, hint: "Recommended for direct video files: JPG/WebP, 1600 × 900 px." }
-          - { label: Caption, name: caption, widget: string }
-
-  - name: research
-    label: Research
-    label_singular: Research area
-    folder: src/content/research
-    create: true
-    extension: json
-    format: json
-    slug: "{{slug}}"
-    fields:
-      - { label: Title, name: title, widget: string }
-      - { label: Summary, name: summary, widget: text }
-      - { label: Status, name: status, widget: string }
-      - { label: Research image, name: image, widget: image, required: false, hint: "Recommended: diagram, fieldwork, model or presentation image; JPG/WebP, 1600 × 1000 px, under 1.5 MB." }
-      - { label: Research video, name: videoUrl, widget: string, required: false, hint: "Optional: YouTube/Vimeo explainer, presentation or research demonstration; use a concise edited recording." }
-      - { label: Media alternative text, name: mediaAlt, widget: string, required: false }
-      - { label: Display order, name: order, widget: number, value_type: int, min: 1 }
-
-  - name: publications
-    label: Publications
-    label_singular: Publication
-    folder: src/content/publications
-    create: true
-    extension: json
-    format: json
-    slug: "{{slug}}"
-    fields:
-      - { label: Title, name: title, widget: string }
-      - { label: Publisher, name: publisher, widget: string }
-      - { label: Year, name: year, widget: string }
-      - { label: Type, name: type, widget: string }
-      - { label: Short summary, name: summary, widget: text, required: false }
-      - { label: Cover or article image, name: image, widget: image, required: false, hint: "Journal cover: JPG/WebP, 1200 × 1600 px. Article header: 1600 × 900 px. Keep under 1.5 MB." }
-      - { label: Related video, name: videoUrl, widget: string, required: false, hint: "Optional: YouTube/Vimeo author discussion, presentation or abstract video." }
-      - { label: Media alternative text, name: mediaAlt, widget: string, required: false }
-      - { label: Link, name: url, widget: string, required: false }
-      - { label: Display order, name: order, widget: number, value_type: int, min: 1 }
-
-  - name: speaking
-    label: Speaking
-    label_singular: Speaking engagement
-    folder: src/content/speaking
-    create: true
-    extension: json
-    format: json
-    slug: "{{slug}}"
-    fields:
-      - { label: Title, name: title, widget: string }
-      - { label: Venue or programme, name: venue, widget: string }
-      - { label: Year, name: year, widget: string }
-      - { label: Type, name: type, widget: string }
-      - { label: Location, name: location, widget: string }
-      - { label: Event image, name: image, widget: image, required: false, hint: "Recommended: stage, panel or audience photograph; JPG/WebP, 1600 × 900 px, under 1.5 MB." }
-      - { label: Recording, name: videoUrl, widget: string, required: false, hint: "Recommended: official YouTube/Vimeo recording or an edited MP4/WebM. Avoid untrimmed phone recordings." }
-      - { label: Media alternative text, name: mediaAlt, widget: string, required: false }
-      - { label: Link, name: url, widget: string, required: false }
-      - { label: Display order, name: order, widget: number, value_type: int, min: 1 }
-
-  - name: awards
-    label: Awards
-    label_singular: Award
-    folder: src/content/awards
-    create: true
-    extension: json
-    format: json
-    slug: "{{slug}}"
-    fields:
-      - { label: Title, name: title, widget: string }
-      - { label: Awarding organisation, name: organisation, widget: string }
-      - { label: Year, name: year, widget: string }
-      - { label: Category, name: category, widget: string }
-      - { label: Award image, name: image, widget: image, required: false, hint: "Recommended: ceremony photograph, official award image or certificate detail; JPG/WebP, 1600 × 1200 px, under 1.5 MB. Avoid publishing sensitive certificate numbers." }
-      - { label: Award video, name: videoUrl, widget: string, required: false, hint: "Optional: official announcement or acceptance clip via YouTube/Vimeo or a short edited MP4/WebM." }
-      - { label: Media alternative text, name: mediaAlt, widget: string, required: false }
-      - { label: Display order, name: order, widget: number, value_type: int, min: 1 }
-
-  - name: media
-    label: Media
-    label_singular: Media appearance
-    folder: src/content/media
-    create: true
-    extension: json
-    format: json
-    slug: "{{slug}}"
-    fields:
-      - { label: Title, name: title, widget: string }
-      - { label: Outlet, name: outlet, widget: string }
-      - { label: Year, name: year, widget: string }
-      - { label: Type, name: type, widget: string }
-      - { label: Short summary, name: summary, widget: text, required: false }
-      - { label: Image or thumbnail, name: image, widget: image, required: false, hint: "Editorial: 1600 × 1000. Video: 1920 × 1080 thumbnail. Audio: 1200 × 1200 cover. JPG/WebP under 1.5 MB." }
-      - { label: Video recording, name: videoUrl, widget: string, required: false, hint: "YouTube/Vimeo URL or direct MP4/WebM file. This is embedded on the page." }
-      - { label: Media alternative text, name: mediaAlt, widget: string, required: false }
-      - { label: Link, name: url, widget: string, required: false }
-      - { label: Recommended media file, name: mediaRecommendation, widget: text, required: false, hint: "Internal preparation note displayed while this page remains hidden." }
-      - { label: Placeholder, name: placeholder, widget: boolean, default: false, required: false, hint: "Turn this off once real content and media have been added." }
-      - { label: Display order, name: order, widget: number, value_type: int, min: 1 }
-
-  - name: gallery
-    label: Gallery
-    label_singular: Gallery image
-    folder: src/content/gallery
-    create: true
-    extension: json
-    format: json
-    slug: "{{slug}}"
-    fields:
-      - { label: Title, name: title, widget: string }
-      - { label: Project, name: project, widget: string }
-      - { label: Image, name: image, widget: image, required: false, hint: "Recommended: JPG/WebP, 1600 × 1200 px, under 1.5 MB." }
-      - { label: Video URL or file, name: videoUrl, widget: string, required: false, hint: "YouTube/Vimeo URL or MP4/WebM, preferably 1920 × 1080." }
-      - { label: Video poster image, name: poster, widget: image, required: false, hint: "Recommended for direct video files: JPG/WebP, 1600 × 900 px." }
-      - { label: Alternative text, name: alt, widget: string }
-      - { label: Recommended media file, name: mediaRecommendation, widget: text, required: false }
-      - { label: Display order, name: order, widget: number, value_type: int, min: 1 }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Invitation, name: body, widget: text }
+          - { label: Contact portrait, name: contactImage, widget: image, required: false, hint: "Approachable professional portrait; vertical 4:5, at least 1600 px high." }
+          - { label: Contact video, name: contactVideo, widget: string, required: false }
+          - { label: Contact media alternative text, name: contactMediaAlt, widget: string }
