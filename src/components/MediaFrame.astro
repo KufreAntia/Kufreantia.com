@@ -9,6 +9,7 @@ interface Props {
   placeholder?: boolean;
   aspect?: 'landscape' | 'portrait' | 'square' | 'natural';
   fit?: 'cover' | 'contain';
+  priority?: boolean;
   className?: string;
 }
 
@@ -22,6 +23,7 @@ const {
   placeholder = false,
   aspect = 'landscape',
   fit = 'cover',
+  priority = false,
   className = '',
 } = Astro.props;
 
@@ -33,11 +35,23 @@ const embedUrl = youtubeId
     ? `https://player.vimeo.com/video/${vimeoId}`
     : '';
 const hasMedia = Boolean(image || videoUrl);
+const localImageDimensions: Record<string, { width: number; height: number }> = {
+  '/uploads/01-homepage-main-portrait.webp': { width: 1135, height: 1280 },
+  '/uploads/02-bridge-the-gap-feature.webp': { width: 1280, height: 960 },
+  '/uploads/03-engineering-practice.webp': { width: 1440, height: 1920 },
+  '/uploads/04-professional-practice.webp': { width: 1600, height: 1200 },
+  '/uploads/05-northumbria-construct.webp': { width: 1280, height: 960 },
+  '/uploads/06-ciob-speaking.webp': { width: 2400, height: 1601 },
+  '/uploads/07-apm-recognition.webp': { width: 960, height: 1280 },
+  '/uploads/08-about-architectural-portrait.webp': { width: 1800, height: 2400 },
+  '/uploads/northumbria-construct-logo-1280x720.jpg': { width: 1669, height: 1533 },
+};
+const imageDimensions = localImageDimensions[image];
 ---
 {(hasMedia || placeholder) && <div class:list={['media-frame', `aspect-${aspect}`, className, { 'is-placeholder': !hasMedia }]}>
   {videoUrl && embedUrl && <iframe src={embedUrl} title={alt || label} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>}
   {videoUrl && !embedUrl && <video controls preload="metadata" poster={poster || image || undefined}><source src={videoUrl} />Your browser does not support embedded video.</video>}
-  {!videoUrl && image && <img src={image} alt={alt || label} loading="lazy" style={`object-fit:${fit}`} />}
+  {!videoUrl && image && <img src={image} alt={alt || label} width={imageDimensions?.width} height={imageDimensions?.height} loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : undefined} decoding="async" style={`object-fit:${fit}`} />}
   {!hasMedia && <div class="media-placeholder-copy"><span>{label}</span><strong>Media placeholder</strong>{recommendation && <p>{recommendation}</p>}</div>}
 </div>}
 

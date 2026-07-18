@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import site from '../data/site.json';
+---
+<BaseLayout title={`Page not found — ${site.name}`} description="The requested page could not be found." noindex bodyClass="error-page-body">
+  <section class="error-page">
+    <p class="section-label">404 · Page not found</p>
+    <h1>This route does not<br />lead anywhere.</h1>
+    <p>The page may have moved, or the address may be incomplete. Use one of the links below to continue.</p>
+    <div class="button-row">
+      <a class="button button-lime" href="/">Return home ↗</a>
+      <a class="button button-ghost" href="/contact/">Contact me ↗</a>
+    </div>
+  </section>
+</BaseLayout>

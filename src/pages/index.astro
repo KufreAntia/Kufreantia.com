@@ -5,7 +5,7 @@ import home from '../data/home.json';
 import contributions from '../data/contributions.json';
 import site from '../data/site.json';
 ---
-<BaseLayout title={`${site.name} — Civil Engineer, Project Manager and BIM Engineer`} description={home.supportingCopy} page="home">
+<BaseLayout title={`${site.name} — Civil Engineer, Project Manager and BIM Engineer`} description="Civil engineer, project manager and BIM engineer working across infrastructure, construction delivery, digital practice and industry engagement." page="home">
   <section class="five-hero five-home-hero">
     <div class="five-hero-meta"><span>{home.eyebrow}</span><span>Newcastle · United Kingdom</span></div>
     <div class="five-hero-copy">
@@ -18,7 +18,7 @@ import site from '../data/site.json';
       <a class="hero-contact-link" href="/contact/">Contact me ↗</a>
     </div>
     {(home.heroImage || home.heroVideo)
-      ? <MediaFrame className="five-hero-media" image={home.heroImage} videoUrl={home.heroVideo} alt={home.heroMediaAlt} aspect="portrait" />
+      ? <MediaFrame className="five-hero-media" image={home.heroImage} videoUrl={home.heroVideo} alt={home.heroMediaAlt} aspect="portrait" priority />
       : <div class="five-hero-graphic" aria-hidden="true"><span>KA</span></div>}
   </section>
 

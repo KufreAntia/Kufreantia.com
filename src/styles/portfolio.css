@@ -14,3 +14,6 @@
 @media(max-width:680px){.timeline-key{gap:8px}.timeline-instruction{display:none}}
 .milestone-comment .milestone-media{margin:12px 0;max-height:150px;aspect-ratio:16/9}.milestone-comment .milestone-media img,.milestone-comment .milestone-media video,.milestone-comment .milestone-media iframe{max-height:150px}
 @media(max-width:680px){.timeline-point .milestone-comment,.timeline-point.align-right .milestone-comment,.timeline-point.stacked-comment .milestone-comment{overflow-y:auto}.milestone-comment .milestone-media{max-height:110px}}
+.milestone-comment p{font-size:16px}
+.timeline-point.open>button{position:relative;z-index:2}
+@media(max-width:680px){.milestone-comment p{max-height:120px;font-size:16px}}

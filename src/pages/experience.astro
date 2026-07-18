@@ -6,13 +6,14 @@ import ExperienceTimeline from '../components/ExperienceTimeline.astro';
 import experience from '../data/experience.json';
 import site from '../data/site.json';
 ---
-<BaseLayout title={`Experience — ${site.name}`} description={experience.intro} page="experience">
+<BaseLayout title={`Experience — ${site.name}`} description={experience.intro} page="experience" socialImage="/uploads/03-engineering-practice.webp">
   <PageHero number="02" label="Experience" title="Ideas into" accent="practice." intro={experience.intro} />
   <nav class="anchor-nav" aria-label="Experience sections">
     <a href="#engineering-practice">Engineering Practice</a><a href="#northumbria-construct">Northumbria Construct</a>
   </nav>
 
   <section class="five-section" id="engineering-practice">
+    <h2 class="sr-only">Engineering practice</h2>
     <div class="engineering-intro"><p class="section-label">Engineering Practice</p><p>{experience.engineeringIntro}</p></div>
     <div class="engineering-media-grid">
       <MediaFrame image={experience.engineeringImage} alt={experience.engineeringImageAlt} aspect="natural" fit="contain" />

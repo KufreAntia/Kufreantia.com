@@ -10,9 +10,20 @@ interface Props {
   page?: string;
   bodyClass?: string;
   noindex?: boolean;
+  socialImage?: string;
 }
 
-const { title, description = 'Portfolio of Kufre Antia', page = '', bodyClass = '', noindex = false } = Astro.props;
+const {
+  title,
+  description = 'Portfolio of Kufre Antia',
+  page = '',
+  bodyClass = '',
+  noindex = false,
+  socialImage = '/uploads/01-homepage-main-portrait.webp',
+} = Astro.props;
+const siteUrl = Astro.site ?? new URL('https://www.kufreusenantia.com');
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl);
+const socialImageUrl = new URL(socialImage, siteUrl);
 ---
 <!doctype html>
 <html lang="en">
@@ -20,7 +31,19 @@ const { title, description = 'Portfolio of Kufre Antia', page = '', bodyClass = 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    {!noindex && <link rel="canonical" href={canonicalUrl} />}
+    {!noindex && <meta property="og:title" content={title} />}
+    {!noindex && <meta property="og:description" content={description} />}
+    {!noindex && <meta property="og:url" content={canonicalUrl} />}
+    {!noindex && <meta property="og:image" content={socialImageUrl} />}
+    {!noindex && <meta property="og:image:alt" content="Kufre Antia — civil engineer, project manager and BIM engineer" />}
+    {!noindex && <meta property="og:type" content="website" />}
+    {!noindex && <meta property="og:site_name" content="Kufre Antia" />}
+    {!noindex && <meta name="twitter:card" content="summary_large_image" />}
+    {!noindex && <meta name="twitter:title" content={title} />}
+    {!noindex && <meta name="twitter:description" content={description} />}
+    {!noindex && <meta name="twitter:image" content={socialImageUrl} />}
     <meta name="theme-color" content="#0c0e0b" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -31,15 +54,23 @@ const { title, description = 'Portfolio of Kufre Antia', page = '', bodyClass = 
   <body class={bodyClass} data-page={page}>
     <a class="skip-link" href="#main">Skip to content</a>
     <Header activePage={page} />
-    <main id="main"><slot /></main>
+    <main id="main" tabindex="-1"><slot /></main>
     <Footer />
     <script>
       const menu = document.querySelector('.menu-button');
       const nav = document.querySelector('.primary-nav');
-      menu?.addEventListener('click', () => {
-        const open = nav?.classList.toggle('open') ?? false;
-        menu.setAttribute('aria-expanded', String(open));
+      const setMenuState = (open: boolean) => {
+        nav?.classList.toggle('open', open);
+        menu?.setAttribute('aria-expanded', String(open));
+        menu?.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
         document.body.classList.toggle('menu-open', open);
+      };
+      menu?.addEventListener('click', () => {
+        setMenuState(menu.getAttribute('aria-expanded') !== 'true');
+      });
+      nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenuState(false)));
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') setMenuState(false);
       });
       const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
         if (entry.isIntersecting) {

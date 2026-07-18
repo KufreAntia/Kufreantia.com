@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import site from '../data/site.json';
+---
+<BaseLayout
+  title={`Privacy — ${site.name}`}
+  description="How this website handles enquiries, technical data, cookies and privacy rights."
+  page="privacy"
+>
+  <PageHero number="05" label="Privacy" title="Clear about" accent="your information." intro="A plain-English explanation of what this website collects, why it is used and the choices available to you." />
+
+  <section class="five-section legal-content">
+    <p class="legal-updated">Last updated: 18 July 2026</p>
+
+    <h2>Who is responsible</h2>
+    <p>Kufre Antia is responsible for personal information handled through this website. Privacy enquiries can be sent to <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+
+    <h2>Information collected</h2>
+    <p>The public website does not operate a submission database. The contact form prepares an email in your own email application; it does not send information to, or store information on, this website.</p>
+    <p>If you choose to send an email, the information you provide may include your name, email address, organisation, professional interests and the contents of your message. Vercel, the hosting provider, may also process routine technical information such as IP address, browser type, requested pages, timestamps and security logs.</p>
+
+    <h2>Why information is used</h2>
+    <p>Enquiry information is used to respond to professional opportunities, project discussions, research collaboration, speaking enquiries and industry engagement. The usual lawful bases are legitimate interests in managing professional correspondence and, where relevant, taking steps at your request before entering into an agreement. Consent is used where it is specifically requested.</p>
+
+    <h2>Where information is stored and shared</h2>
+    <p>Email correspondence is stored by the email services used by the sender and recipient. The website is hosted by Vercel. Google Fonts supplies the website typefaces, and GitHub supports the private content-management sign-in used by the website owner. Personal information is not sold.</p>
+    <p>These providers may process information outside the United Kingdom. Where this occurs, the provider is responsible for using an appropriate legal safeguard for the transfer.</p>
+
+    <h2>Retention</h2>
+    <p>Professional enquiry correspondence is normally retained for up to 24 months after the last meaningful contact, unless it is needed for an ongoing relationship, contractual record, legal obligation or dispute. Hosting and security logs are retained according to the hosting provider’s operational schedules.</p>
+
+    <h2>Your rights</h2>
+    <p>Depending on the circumstances, you may ask for access to your information, correction, deletion, restriction, objection or transfer. You may also withdraw consent where consent is the lawful basis. Contact the address above to make a request.</p>
+    <p>If a concern is not resolved, you may complain to the <a href="https://ico.org.uk/make-a-complaint/" target="_blank" rel="noreferrer">UK Information Commissioner’s Office</a>.</p>
+
+    <h2>Cookies and external services</h2>
+    <p>The public website does not currently use advertising, behavioural tracking or analytics cookies, so it does not display a cookie-consent banner. The private administration area uses a short-lived, essential security cookie during GitHub sign-in. Google Fonts requires a network request to Google to display the selected typefaces, but this website does not use that request for advertising.</p>
+    <p>Links to LinkedIn, Northumbria Construct and other external websites are governed by those services’ own privacy notices.</p>
+
+    <h2>Changes to this notice</h2>
+    <p>This notice will be updated if the website begins collecting information in a different way or introduces analytics, registration, newsletter or hosted form services.</p>
+  </section>
+</BaseLayout>

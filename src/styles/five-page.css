@@ -37,3 +37,12 @@
 .five-home-hero>.five-hero-media{position:absolute!important;right:4vw!important;bottom:0!important;width:min(38vw,540px)!important;height:86%!important;aspect-ratio:auto!important}
 .five-home-hero .hero-contact-link{right:auto;left:0}
 @media(max-width:760px){.five-home-hero>.five-hero-media{right:-18vw!important;width:72vw!important;height:58%!important}}
+
+/* Production accessibility and legal pages */
+.section-label{color:#72520f}.contribution-card>span,.role-main>p:first-child,.record-grid strong{color:#72520f}
+.five-hero-copy p,.page-intro,.section-heading>p:last-child:not(:first-child),.area-card p,.feature-experience-copy>p:not(.section-label),.narrative>p:not(.large-intro),.journey-grid p,.record-grid p,.clean-list li,.role-context,.role-card li,.construct-intro>div:last-child>p,.initiative-card p,.norcon-grid>div:last-child>p:last-child,.contribution-card p,.contact-intro>p,.form-note{font-size:16px}
+.contact-form input,.contact-form select,.contact-form textarea{font-size:16px}.form-note a,.legal-content a{text-decoration:underline;text-underline-offset:4px}.anchor-nav a{display:inline-flex;min-height:44px;align-items:center}.menu-button{min-width:44px;min-height:44px}
+.legal-content{max-width:900px;margin-inline:auto}.legal-updated{margin:0 0 70px;color:var(--muted);font:500 12px var(--mono);letter-spacing:.06em;text-transform:uppercase}.legal-content h2{margin:65px 0 18px;font:300 clamp(34px,4vw,54px)/1 var(--serif)}.legal-content p{margin:0 0 20px;color:var(--muted);font-size:16px;line-height:1.85}.legal-content a{color:#553d08;font-weight:600}
+.error-page-body{background:#090b08}.error-page{min-height:calc(100svh - 82px);padding:clamp(80px,12vw,150px) 5vw;background:#090b08;color:var(--paper)}.error-page h1{max-width:1050px;margin:35px 0;font:300 clamp(62px,9vw,132px)/.84 var(--serif);letter-spacing:-.055em}.error-page>p:not(.section-label){max-width:620px;color:#bebfb8;font-size:16px;line-height:1.8}.error-page .button-row{margin-top:42px}
+@media(max-width:1050px){.primary-nav{overflow-y:auto}}
+@media(max-width:760px){.legal-content{padding-top:70px}.legal-updated{margin-bottom:50px}.error-page{min-height:calc(100svh - 70px);padding-inline:6vw}.error-page h1{font-size:clamp(52px,15vw,70px)}}

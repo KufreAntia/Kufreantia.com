@@ -9,8 +9,9 @@ import site from '../data/site.json';
     <a href="/experience/">Experience ↗</a>
     <a href="/contributions-recognition/">Contributions &amp; Recognition ↗</a>
     <a href="/contact/">Contact ↗</a>
+    <a href="/privacy/">Privacy ↗</a>
     <a href={site.cvFile} download>Download CV ↓</a>
-    {site.linkedin && <a href={site.linkedin}>LinkedIn ↗</a>}
+    {site.linkedin && <a href={site.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>}
   </nav>
   <div class="footer-bottom"><span>© {new Date().getFullYear()} {site.name}</span><span>{site.location}</span></div>
 </footer>

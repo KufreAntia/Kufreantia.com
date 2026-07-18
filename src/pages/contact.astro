@@ -11,13 +11,14 @@ import site from '../data/site.json';
       <h2>{contact.heading}</h2><p>{contact.body}</p>
       <div class="contact-links"><a href={`mailto:${site.email}`}>{site.email} ↗</a>{site.linkedin && <a href={site.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>}<a href={site.cvFile} download>Download CV ↓</a></div>
     </div>
-    <form class="contact-form" id="contact-form">
+    <form class="contact-form" id="contact-form" aria-describedby="form-note">
       <label><span>Name</span><input name="name" type="text" autocomplete="name" required /></label>
       <label><span>Email</span><input name="email" type="email" autocomplete="email" required /></label>
       <label><span>Topic</span><select name="topic"><option>Professional opportunity</option><option>Research collaboration</option><option>Speaking or industry engagement</option><option>Northumbria Construct</option><option>Other</option></select></label>
       <label><span>Message</span><textarea name="message" rows="7" required></textarea></label>
       <button class="button button-dark" type="submit">Prepare email ↗</button>
-      <p class="form-note">This opens your email application with the details completed. No information is stored by this website.</p>
+      <p class="form-note" id="form-note">This does not submit information to the website. It opens your email application with the details completed. Read the <a href="/privacy/">privacy notice</a>.</p>
+      <noscript><p class="form-note">JavaScript is required to prepare the message. You can instead email <a href={`mailto:${site.email}`}>{site.email}</a> directly.</p></noscript>
     </form>
   </section>
   <script is:inline define:vars={{ email: site.email }}>
