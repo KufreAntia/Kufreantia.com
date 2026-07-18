@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import MediaFrame from '../components/MediaFrame.astro';
+import ExperienceTimeline from '../components/ExperienceTimeline.astro';
 import experience from '../data/experience.json';
 import site from '../data/site.json';
 ---
@@ -12,7 +13,8 @@ import site from '../data/site.json';
   </nav>
 
   <section class="five-section" id="engineering-practice">
-    <div class="section-heading"><p class="section-label">Engineering Practice</p><h2>Technical work,<br />grounded in delivery.</h2><p>{experience.engineeringIntro}</p></div>
+    <div class="engineering-intro"><p class="section-label">Engineering Practice</p><p>{experience.engineeringIntro}</p></div>
+    <ExperienceTimeline />
     <div class="role-list">
       {experience.roles.map((role, index) => <article class="role-card reveal">
         <div class="role-meta"><span>0{index + 1}</span><strong>{role.period}</strong></div>

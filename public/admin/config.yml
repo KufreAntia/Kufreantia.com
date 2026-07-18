@@ -125,6 +125,32 @@ collections:
               - { label: Purpose, name: purpose, widget: text }
               - { label: Product principles, name: principles, widget: list, field: { label: Principle, name: principle, widget: string } }
 
+      - name: experience_timeline
+        label: 3. Experience — S-curve timeline
+        file: src/data/portfolio.json
+        format: json
+        fields:
+          - { label: Legacy eyebrow, name: eyebrow, widget: hidden, default: "Portfolio / Selected work" }
+          - { label: Legacy title, name: title, widget: hidden, default: "A journey through" }
+          - { label: Legacy accent, name: accent, widget: hidden, default: "practice." }
+          - { label: Legacy introduction, name: introduction, widget: hidden, default: "Selected projects and career chapters." }
+          - { label: Timeline heading, name: timelineHeading, widget: string }
+          - { label: Legacy projects heading, name: projectsHeading, widget: hidden, default: "Projects" }
+          - label: Timeline entries
+            name: milestones
+            widget: list
+            summary: "{{fields.startYear}} — {{fields.endYear}} | {{fields.title}}"
+            fields:
+              - { label: Entry type, name: type, widget: select, options: [chapter, milestone], hint: "Chapter creates a lime duration range; milestone creates a clay point." }
+              - { label: Start year, name: startYear, widget: string }
+              - { label: End year, name: endYear, widget: string, required: false, hint: "Use Present for an ongoing chapter." }
+              - { label: Title, name: title, widget: string }
+              - { label: Organisation or URL, name: organisation, widget: string, required: false }
+              - { label: Summary, name: summary, widget: text }
+              - { label: Image, name: image, widget: image, required: false }
+              - { label: Video URL, name: videoUrl, widget: string, required: false }
+              - { label: Media alternative text, name: mediaAlt, widget: string, required: false }
+
       - name: contributions
         label: 4. Contributions & Recognition
         file: src/data/contributions.json

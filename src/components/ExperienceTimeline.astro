@@ -1,0 +1,186 @@
+---
+import MediaFrame from './MediaFrame.astro';
+import portfolio from '../data/portfolio.json';
+import '../styles/portfolio.css';
+import '../styles/experience-timeline.css';
+
+const milestones = portfolio.milestones as Array<(typeof portfolio.milestones)[number] & { image?: string; videoUrl?: string; mediaAlt?: string }>;
+const isExternalUrl = (value: string) => /^https?:\/\//i.test(value.trim());
+const linkifyText = (value: string) => value.split(/(https?:\/\/[^\s]+)/gi)
+  .filter(Boolean)
+  .map((text) => isExternalUrl(text) ? { text, href: text } : { text });
+---
+<div class="engineering-timeline-shell">
+  <div class="hero-timeline" data-timeline>
+    <div class="timeline-caption">
+      <span>Journey / Milestones</span>
+      <div class="timeline-key" aria-label="Timeline colour key">
+        <span class="range-key">Range</span>
+        <span class="milestone-key">Milestone</span>
+        <span class="timeline-instruction">Select + to explore</span>
+      </div>
+    </div>
+    <svg class="timeline-curve" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
+      <path data-timeline-path d="M 70 115 C 290 15, 760 20, 920 125 C 1040 220, 820 285, 525 300 C 230 315, 25 355, 90 430 C 185 525, 610 465, 930 410" />
+      {milestones.filter((entry) => entry.type === 'chapter').map((entry) => (
+        <path class="timeline-duration" data-duration-start={entry.startYear} data-duration-end={entry.endYear} d="M 70 115 C 290 15, 760 20, 920 125 C 1040 220, 820 285, 525 300 C 230 315, 25 355, 90 430 C 185 525, 610 465, 930 410" />
+      ))}
+    </svg>
+    <div class="timeline-points">
+      {milestones.map((entry, index) => (
+        <div class:list={['timeline-point', entry.type]} data-timeline-point data-start-year={entry.startYear} data-end-year={entry.endYear}>
+          {entry.type === 'chapter' && <><span class="duration-cap start" data-duration-cap="start"></span><span class="duration-cap end" data-duration-cap="end"></span></>}
+          <button type="button" aria-label={`Explore ${entry.startYear}${entry.endYear ? ` to ${entry.endYear}` : ''}: ${entry.title}`} aria-controls={`milestone-${index}`} aria-expanded="false" data-milestone-toggle>+</button>
+          <div class="milestone-label"><time>{entry.endYear ? `${entry.startYear} — ${entry.endYear}` : entry.startYear}</time><span>{entry.title}</span></div>
+          <aside class="milestone-comment" id={`milestone-${index}`} aria-label={`Details for ${entry.title}`}>
+            <time>{entry.endYear ? `${entry.startYear} — ${entry.endYear}` : entry.startYear}</time><h3>{entry.title}</h3>
+            {(entry.image || entry.videoUrl) && <MediaFrame className="milestone-media" image={entry.image} videoUrl={entry.videoUrl} alt={entry.mediaAlt || entry.title} />}
+            {entry.organisation && (isExternalUrl(entry.organisation)
+              ? <a class="milestone-link" href={entry.organisation} target="_blank" rel="noreferrer">{entry.organisation} ↗</a>
+              : <strong>{entry.organisation}</strong>)}
+            <p>{linkifyText(entry.summary).map((part) => part.href
+              ? <a href={part.href} target="_blank" rel="noreferrer">{part.text}</a>
+              : part.text)}</p>
+          </aside>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<script>
+  const timeline = document.querySelector<HTMLElement>('[data-timeline]');
+  const path = timeline?.querySelector<SVGPathElement>('[data-timeline-path]');
+  const points = [...(timeline?.querySelectorAll<HTMLElement>('[data-timeline-point]') ?? [])];
+
+  if (timeline && path && points.length) {
+    const currentYear = new Date().getFullYear();
+    const parseYear = (value: string | undefined) => {
+      if (!value) return Number.NaN;
+      if (value.toLowerCase() === 'present') return currentYear;
+      const year = value.match(/\b(?:19|20)\d{2}\b/)?.[0];
+      return year ? Number(year) : Number.NaN;
+    };
+    const timelineYears = points.flatMap((point) => [parseYear(point.dataset.startYear), parseYear(point.dataset.endYear)]).filter(Number.isFinite);
+    const firstYear = timelineYears.length ? Math.min(...timelineYears) : currentYear;
+    const lastYear = timelineYears.length ? Math.max(...timelineYears, currentYear) : currentYear;
+    const progressFor = (year: number) => lastYear === firstYear ? 0.5 : (year - firstYear) / (lastYear - firstYear);
+
+    const placeTimeline = () => {
+      const pathLength = path.getTotalLength();
+      if (!Number.isFinite(pathLength) || pathLength <= 0) return;
+      const positionForProgress = (progress: number) => path.getPointAtLength(pathLength * progress);
+      const boundedProgressFor = (year: number) => Math.min(1, Math.max(0, progressFor(year)));
+      const positionForYear = (year: number) => positionForProgress(boundedProgressFor(year));
+      const pointLayer = timeline.querySelector<HTMLElement>('.timeline-points');
+      const scaleX = (pointLayer?.clientWidth ?? 1000) / 1000;
+      const scaleY = (pointLayer?.clientHeight ?? 520) / 520;
+      const minimumProgress = 0.025;
+      const maximumProgress = 0.975;
+      const minimumGap = window.innerWidth <= 680 ? 0.055 : 0.04;
+      const orderedPoints = points.map((point, index) => {
+        const startYear = parseYear(point.dataset.startYear);
+        const parsedEndYear = parseYear(point.dataset.endYear);
+        const endYear = Number.isFinite(parsedEndYear) ? parsedEndYear : startYear;
+        return { point, index, startYear, endYear, target: progressFor((startYear + endYear) / 2), layout: 0 };
+      }).filter((entry) => Number.isFinite(entry.startYear)).sort((a, b) => a.target - b.target || a.index - b.index);
+
+      let previous = minimumProgress - minimumGap;
+      orderedPoints.forEach((entry) => {
+        const target = Math.min(Math.max(entry.target, minimumProgress), maximumProgress);
+        entry.layout = Math.max(target, previous + minimumGap);
+        previous = entry.layout;
+      });
+      if (orderedPoints.length && orderedPoints[orderedPoints.length - 1].layout > maximumProgress) {
+        orderedPoints[orderedPoints.length - 1].layout = maximumProgress;
+        for (let index = orderedPoints.length - 2; index >= 0; index -= 1) {
+          orderedPoints[index].layout = Math.min(orderedPoints[index].layout, orderedPoints[index + 1].layout - minimumGap);
+        }
+      }
+      if (orderedPoints.length > 1 && orderedPoints[0].layout < minimumProgress) {
+        orderedPoints.forEach((entry, index) => {
+          entry.layout = minimumProgress + index * ((maximumProgress - minimumProgress) / (orderedPoints.length - 1));
+        });
+      }
+      const pointProgress = new Map(orderedPoints.map((entry) => [entry.point, entry.layout]));
+
+      points.forEach((point) => {
+        const startYear = parseYear(point.dataset.startYear);
+        const layoutProgress = pointProgress.get(point);
+        if (!Number.isFinite(startYear) || layoutProgress === undefined) { point.hidden = true; return; }
+        point.hidden = false;
+        const parsedEndYear = parseYear(point.dataset.endYear);
+        const endYear = Number.isFinite(parsedEndYear) ? parsedEndYear : startYear;
+        const endBoundaryYear = point.dataset.endYear?.toLowerCase() === 'present' ? endYear : endYear + 1;
+        const position = positionForProgress(layoutProgress);
+        point.style.left = `${position.x / 10}%`;
+        point.style.top = `${position.y / 5.2}%`;
+        const comment = point.querySelector<HTMLElement>('.milestone-comment');
+        const pointViewportX = (pointLayer?.getBoundingClientRect().left ?? 0) + position.x * scaleX;
+        const mobileCommentWidth = 230;
+        const mobileGap = 58;
+        const pageMargin = 16;
+        const canOpenRight = pointViewportX + mobileGap + mobileCommentWidth <= window.innerWidth - pageMargin;
+        const canOpenLeft = pointViewportX - mobileGap - mobileCommentWidth >= pageMargin;
+        const stackComment = window.innerWidth <= 680 && !canOpenRight && !canOpenLeft;
+        point.classList.toggle('stacked-comment', stackComment);
+        point.classList.toggle('align-right', window.innerWidth <= 680 ? !stackComment && canOpenLeft : position.x > 640);
+        if (comment && stackComment) {
+          const commentLeft = Math.min(Math.max(pointViewportX - mobileCommentWidth / 2, pageMargin), window.innerWidth - mobileCommentWidth - pageMargin);
+          comment.style.setProperty('--comment-left', `${commentLeft - pointViewportX}px`);
+          comment.style.setProperty('--comment-pointer', `${pointViewportX - commentLeft - 9}px`);
+        } else if (comment) {
+          comment.style.removeProperty('--comment-left');
+          comment.style.removeProperty('--comment-pointer');
+        }
+        if (point.classList.contains('chapter')) {
+          point.classList.toggle('has-duration', Number.isFinite(parsedEndYear));
+          const startPosition = positionForYear(startYear);
+          const endPosition = positionForYear(endBoundaryYear);
+          const startCap = point.querySelector<HTMLElement>('[data-duration-cap="start"]');
+          const endCap = point.querySelector<HTMLElement>('[data-duration-cap="end"]');
+          if (startCap) startCap.style.transform = `translate(${(startPosition.x - position.x) * scaleX}px, ${(startPosition.y - position.y) * scaleY}px)`;
+          if (endCap) endCap.style.transform = `translate(${(endPosition.x - position.x) * scaleX}px, ${(endPosition.y - position.y) * scaleY}px)`;
+        }
+      });
+
+      timeline.querySelectorAll<SVGPathElement>('[data-duration-start]').forEach((duration) => {
+        const startYear = parseYear(duration.dataset.durationStart);
+        const endYear = parseYear(duration.dataset.durationEnd);
+        if (!Number.isFinite(startYear) || !Number.isFinite(endYear)) { duration.style.display = 'none'; return; }
+        duration.style.removeProperty('display');
+        const start = pathLength * progressFor(startYear);
+        const endBoundaryYear = duration.dataset.durationEnd?.toLowerCase() === 'present' ? endYear : endYear + 1;
+        const end = pathLength * boundedProgressFor(endBoundaryYear);
+        duration.style.strokeDasharray = `${Math.max(0, end - start)} ${pathLength}`;
+        duration.style.strokeDashoffset = `${-start}`;
+      });
+    };
+
+    placeTimeline();
+    window.addEventListener('resize', placeTimeline);
+    timeline.classList.add('ready');
+  }
+
+  const milestoneButtons = document.querySelectorAll<HTMLButtonElement>('[data-milestone-toggle]');
+  const closeMilestones = (except?: HTMLElement) => points.forEach((point) => {
+    if (point === except) return;
+    point.classList.remove('open');
+    point.querySelector<HTMLButtonElement>('[data-milestone-toggle]')?.setAttribute('aria-expanded', 'false');
+  });
+  milestoneButtons.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const point = button.closest<HTMLElement>('[data-timeline-point]');
+      if (!point) return;
+      const willOpen = !point.classList.contains('open');
+      closeMilestones(point);
+      point.classList.toggle('open', willOpen);
+      button.setAttribute('aria-expanded', String(willOpen));
+    });
+  });
+  document.addEventListener('click', (event) => {
+    if (!(event.target as Element).closest('[data-timeline-point].open')) closeMilestones();
+  });
+  document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeMilestones(); });
+</script>
