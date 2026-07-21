@@ -46,3 +46,11 @@
 .error-page-body{background:#090b08}.error-page{min-height:calc(100svh - 82px);padding:clamp(80px,12vw,150px) 5vw;background:#090b08;color:var(--paper)}.error-page h1{max-width:1050px;margin:35px 0;font:300 clamp(62px,9vw,132px)/.84 var(--serif);letter-spacing:-.055em}.error-page>p:not(.section-label){max-width:620px;color:#bebfb8;font-size:16px;line-height:1.8}.error-page .button-row{margin-top:42px}
 @media(max-width:1050px){.primary-nav{overflow-y:auto}}
 @media(max-width:760px){.legal-content{padding-top:70px}.legal-updated{margin-bottom:50px}.error-page{min-height:calc(100svh - 70px);padding-inline:6vw}.error-page h1{font-size:clamp(52px,15vw,70px)}}
+
+/* Cinematic letterbox band hero (homepage) */
+.home-band-hero{min-height:auto;padding-top:0}
+.home-band-hero .home-hero-band.media-frame{width:auto;margin:0 -5vw clamp(40px,5vw,64px);border-bottom:1px solid rgba(210,173,88,.32);background:#090b08}
+.home-band-hero .five-hero-meta{margin-bottom:clamp(22px,3.5vh,40px)}
+.home-band-hero .five-hero-copy{min-height:auto;justify-content:flex-start;padding-top:0}
+.home-band-hero .hero-contact-link{position:static;left:auto;align-self:flex-start;margin-top:24px}
+@media(max-width:760px){.home-band-hero{padding-top:0}.home-band-hero .home-hero-band.media-frame{margin-inline:-6vw}}
