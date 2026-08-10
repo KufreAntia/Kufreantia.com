@@ -44,10 +44,21 @@ import site from '../data/site.json';
     </div>
   </section>
 
-  <section class="five-section">
+  <section class="five-section" id="recent-recognition">
     <div class="section-heading"><p class="section-label">Recent recognition</p><h2>Selected milestones.</h2></div>
     <div class="milestone-list">
       {contributions.recentMilestones.slice(0, 3).map((item) => <a href="/contributions-recognition/#recent-milestones" class="milestone-row"><span>{item.year}</span><strong>{item.title}</strong><em>{item.organisation}</em><b>↗</b></a>)}
+      <a
+        class="featured-media-row"
+        href="https://constructionmanagement.co.uk/ciob-tomorrows-leaders-representative-named-apm-student-of-the-year/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Read the Construction Management feature: CIOB Tomorrow’s Leaders representative named APM Student of the Year (opens in a new tab)"
+      >
+        <span class="featured-media-meta"><small>Featured in</small><em>Construction Management</em></span>
+        <strong>CIOB Tomorrow’s Leaders representative named APM Student of the Year</strong>
+        <b>Read the feature ↗</b>
+      </a>
     </div>
   </section>
 

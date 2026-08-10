@@ -19,7 +19,7 @@ import site from '../data/site.json';
     <div class="section-heading"><p class="section-label">Recent Milestones</p><h2>Recognition,<br />in context.</h2><p>Selected awards and milestones are presented as a record of development, professional contribution and academic work.</p></div>
     <div class="recognition-layout">
       <MediaFrame className="recognition-award-media" image={contributions.recognitionImage} alt={contributions.recognitionImageAlt} aspect="portrait" />
-      <div class="recognition-list">{contributions.recentMilestones.map((item) => <article><span>{item.year}</span><h3>{item.title}</h3><p>{item.organisation}</p></article>)}</div>
+      <div class="recognition-list">{contributions.recentMilestones.map((item, index) => <article id={index === 0 ? 'student-of-the-year' : undefined}><span>{item.year}</span><h3>{item.title}</h3><p>{item.organisation}</p>{index === 0 && <aside class="milestone-citation" aria-label="Media coverage supporting this milestone"><span>Media coverage · 30 July 2026</span><h4>Featured by Construction Management</h4><p>Construction Management explored my professional development, work through CIOB Tomorrow’s Leaders and the development of Northumbria Construct.</p><a href="https://constructionmanagement.co.uk/ciob-tomorrows-leaders-representative-named-apm-student-of-the-year/" target="_blank" rel="noopener noreferrer" aria-label="Read the original Construction Management article (opens in a new tab)">Read the original article ↗</a></aside>}</article>)}</div>
     </div>
   </section>
 </BaseLayout>
