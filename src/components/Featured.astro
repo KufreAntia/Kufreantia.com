@@ -1,0 +1,188 @@
+---
+import featuredData from '../data/featured.json';
+
+type FeaturedItem = (typeof featuredData)[number];
+const timestamp = (item: FeaturedItem) => item.sortDate ? Date.parse(`${item.sortDate}T00:00:00Z`) : Number.NEGATIVE_INFINITY;
+const featured = [...featuredData].sort((a, b) => {
+  const dateDifference = timestamp(b) - timestamp(a);
+  return dateDifference || a.title.localeCompare(b.title);
+});
+const defaultItem = [...featured].sort((a, b) =>
+  (a.heroPriority ?? Number.MAX_SAFE_INTEGER) - (b.heroPriority ?? Number.MAX_SAFE_INTEGER)
+)[0] ?? featured[0];
+---
+
+<section class="featured-section" id="featured" aria-labelledby="featured-heading" data-featured>
+  <div class="featured-heading">
+    <p class="section-label">Selected coverage and recognition</p>
+    <h2 id="featured-heading">Featured</h2>
+  </div>
+
+  <div class="featured-layout">
+    <div class="featured-master" aria-live="polite">
+      {featured.map((item) => (
+        <article
+          class="featured-panel"
+          data-feature-panel={item.id}
+          hidden={item.id !== defaultItem?.id}
+          aria-labelledby={`featured-title-${item.id}`}
+        >
+          <div class:list={['featured-media', { 'has-media': item.mediaSrc || item.poster }]} data-media-shell>
+            {item.mediaType === 'video' && item.mediaSrc ? (
+              <video controls playsinline preload="none" poster={item.poster ?? undefined} aria-label={item.mediaAlt}>
+                <source src={item.mediaSrc} type="video/mp4" />
+                {'captions' in item && item.captions && <track kind="captions" src={item.captions} srclang="en" label="English" default />}
+                Your browser does not support this video.
+              </video>
+            ) : item.mediaSrc ? (
+              <img src={item.mediaSrc} alt={item.mediaAlt} loading={item.id === defaultItem?.id ? 'eager' : 'lazy'} decoding="async" />
+            ) : null}
+            <div class="featured-fallback" aria-hidden={Boolean(item.mediaSrc || item.poster)}>
+              <span>{item.category}</span><strong>{item.source}</strong>
+            </div>
+          </div>
+          <div class="featured-copy">
+            <div class="featured-meta">
+              <span>{item.source}</span>
+              {item.date && <time datetime={item.sortDate ?? undefined}>{item.date}</time>}
+            </div>
+            <h3 id={`featured-title-${item.id}`}>{item.title}</h3>
+            <p>{item.description}</p>
+            {item.externalUrl && item.ctaLabel && (
+              <a href={item.externalUrl} target="_blank" rel="noopener noreferrer">
+                {item.ctaLabel}<span class="sr-only"> (opens in a new tab)</span>
+              </a>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="featured-feed-wrap">
+      <p class="featured-feed-label">Featured</p>
+      <div class="featured-feed" role="tablist" aria-label="Choose a featured story">
+        {featured.map((item) => (
+          <button
+            type="button"
+            class:list={['featured-feed-item', { active: item.id === defaultItem?.id }]}
+            role="tab"
+            id={`featured-tab-${item.id}`}
+            aria-selected={item.id === defaultItem?.id ? 'true' : 'false'}
+            aria-controls={`featured-title-${item.id}`}
+            tabindex={item.id === defaultItem?.id ? 0 : -1}
+            data-feature-select={item.id}
+          >
+            <span class="featured-thumb" data-media-shell>
+              {item.thumbnail && <img src={item.thumbnail} alt="" loading="lazy" decoding="async" />}
+              <span class="featured-thumb-fallback" aria-hidden="true">{item.source.slice(0, 1)}</span>
+            </span>
+            <span class="featured-feed-copy">
+              <span class="featured-feed-meta"><span>{item.source}</span>{item.date && <time datetime={item.sortDate ?? undefined}>{item.date}</time>}</span>
+              <strong>{item.title}</strong>
+            </span>
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-featured]');
+  if (root) {
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>('[data-feature-select]')];
+    const panels = [...root.querySelectorAll<HTMLElement>('[data-feature-panel]')];
+
+    const selectFeature = (id: string, moveFocus = false) => {
+      tabs.forEach((tab) => {
+        const selected = tab.dataset.featureSelect === id;
+        tab.classList.toggle('active', selected);
+        tab.setAttribute('aria-selected', String(selected));
+        tab.tabIndex = selected ? 0 : -1;
+        if (selected) {
+          tab.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+          if (moveFocus) tab.focus();
+        }
+      });
+      panels.forEach((panel) => {
+        const selected = panel.dataset.featurePanel === id;
+        panel.hidden = !selected;
+        if (!selected) panel.querySelector('video')?.pause();
+      });
+    };
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => selectFeature(tab.dataset.featureSelect ?? ''));
+      tab.addEventListener('keydown', (event) => {
+        if (!['ArrowDown', 'ArrowUp', 'ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        const horizontal = matchMedia('(max-width: 760px)').matches;
+        const previousKey = horizontal ? 'ArrowLeft' : 'ArrowUp';
+        const nextKey = horizontal ? 'ArrowRight' : 'ArrowDown';
+        let nextIndex = index;
+        if (event.key === previousKey) nextIndex = (index - 1 + tabs.length) % tabs.length;
+        if (event.key === nextKey) nextIndex = (index + 1) % tabs.length;
+        if (event.key === 'Home') nextIndex = 0;
+        if (event.key === 'End') nextIndex = tabs.length - 1;
+        selectFeature(tabs[nextIndex].dataset.featureSelect ?? '', true);
+      });
+    });
+
+    root.querySelectorAll<HTMLImageElement>('[data-media-shell] img').forEach((image) => {
+      image.addEventListener('error', () => {
+        image.hidden = true;
+        image.closest<HTMLElement>('[data-media-shell]')?.classList.add('media-failed');
+      });
+    });
+  }
+</script>
+
+<style>
+  .featured-section{padding:110px 5vw;border-block:1px solid var(--line)}
+  .featured-heading{display:grid;grid-template-columns:.45fr 1.55fr;align-items:end;margin-bottom:60px}
+  .featured-heading h2{margin:0;font:300 clamp(58px,8vw,112px)/.82 var(--serif);letter-spacing:-.05em}
+  .featured-layout{display:grid;grid-template-columns:minmax(0,2.65fr) minmax(260px,1fr);min-height:690px;background:var(--white)}
+  .featured-master{min-width:0;border-right:1px solid var(--line)}
+  .featured-panel{height:100%;animation:featured-fade .32s ease}
+  .featured-panel[hidden]{display:none}
+  .featured-media{position:relative;display:grid;place-items:center;aspect-ratio:16/9;overflow:hidden;background:var(--blue);color:var(--paper)}
+  .featured-media img,.featured-media video{position:relative;z-index:1;display:block;width:100%;height:100%;object-fit:cover}
+  .featured-fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;text-align:center;background:var(--blue)}
+  .featured-fallback span{color:var(--lime);font:500 9px var(--mono);letter-spacing:.1em;text-transform:uppercase}
+  .featured-fallback strong{max-width:520px;margin-top:18px;font:300 clamp(34px,5vw,68px)/.95 var(--serif)}
+  .featured-media.has-media:not(.media-failed) .featured-fallback{display:none}
+  .featured-copy{padding:36px 40px 42px}
+  .featured-meta,.featured-feed-meta{display:flex;justify-content:space-between;gap:16px;color:var(--muted);font:500 9px/1.5 var(--mono);letter-spacing:.05em;text-transform:uppercase}
+  .featured-meta>span{color:#72520f}
+  .featured-copy h3{max-width:900px;margin:22px 0 16px;font:300 clamp(36px,4vw,60px)/.96 var(--serif);letter-spacing:-.035em;overflow-wrap:anywhere}
+  .featured-copy>p{max-width:760px;margin:0;color:var(--muted);font-size:16px;line-height:1.75}
+  .featured-copy>a{display:inline-block;margin-top:28px;padding-bottom:4px;border-bottom:1px solid;font:500 10px var(--mono);text-transform:uppercase}
+  .featured-feed-wrap{display:flex;min-width:0;max-height:690px;flex-direction:column}
+  .featured-feed-label{flex:none;margin:0;padding:26px 25px 19px;border-bottom:1px solid var(--line);font:500 10px var(--mono);letter-spacing:.1em;text-transform:uppercase}
+  .featured-feed{min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--clay) transparent}
+  .featured-feed-item{position:relative;display:grid;width:100%;grid-template-columns:78px minmax(0,1fr);gap:16px;align-items:start;padding:20px 24px;border:0;border-bottom:1px solid var(--line);background:transparent;color:inherit;text-align:left;cursor:pointer}
+  .featured-feed-item:before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--gold);opacity:0;transition:opacity .2s}
+  .featured-feed-item:hover{background:var(--paper)}
+  .featured-feed-item.active{background:rgba(210,173,88,.12)}
+  .featured-feed-item.active:before{opacity:1}
+  .featured-thumb{position:relative;display:grid;place-items:center;width:78px;aspect-ratio:4/3;overflow:hidden;background:var(--ink);color:var(--lime)}
+  .featured-thumb img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover}
+  .featured-thumb-fallback{font:300 34px var(--serif)}
+  .featured-feed-copy{min-width:0}
+  .featured-feed-meta{display:block;margin-bottom:9px}
+  .featured-feed-meta>span,.featured-feed-meta time{display:block}
+  .featured-feed-meta time{margin-top:3px}
+  .featured-feed-copy strong{display:block;font:300 20px/1.05 var(--serif);overflow-wrap:anywhere}
+  @keyframes featured-fade{from{opacity:0}to{opacity:1}}
+  @media(max-width:900px){.featured-layout{grid-template-columns:minmax(0,2fr) minmax(240px,1fr)}.featured-copy{padding-inline:30px}.featured-feed-item{grid-template-columns:1fr}.featured-thumb{width:100%}}
+  @media(max-width:760px){
+    .featured-section{padding:78px 0}.featured-heading{grid-template-columns:1fr;gap:16px;padding-inline:6vw;margin-bottom:40px}.featured-heading h2{font-size:clamp(58px,18vw,82px)}
+    .featured-layout{display:flex;min-height:0;flex-direction:column;background:transparent}.featured-master{border:0}.featured-panel{height:auto;background:var(--white)}
+    .featured-media{aspect-ratio:16/10}.featured-copy{padding:28px 6vw 34px}.featured-copy h3{font-size:clamp(34px,10vw,46px)}.featured-copy>p{font-size:16px}
+    .featured-feed-wrap{width:100%;max-width:100%;max-height:none;margin-top:38px;overflow-x:clip}.featured-feed-label{padding:0 6vw 18px;border:0}.featured-feed{display:flex;width:100%;gap:12px;padding:0 6vw 12px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;scroll-padding-inline:6vw}
+    .featured-feed-item{flex:0 0 min(78vw,300px);grid-template-columns:82px minmax(0,1fr);padding:16px;scroll-snap-align:start;border:1px solid var(--line);background:var(--white)}
+    .featured-feed-item:before{inset:0 0 auto;width:auto;height:3px}.featured-thumb{width:82px}.featured-feed-copy strong{font-size:18px}
+  }
+  @media(max-width:370px){.featured-feed-item{flex-basis:84vw;grid-template-columns:68px minmax(0,1fr)}.featured-thumb{width:68px}.featured-copy h3{font-size:32px}.featured-meta{flex-direction:column;gap:4px}}
+  @media(prefers-reduced-motion:reduce){.featured-panel{animation:none}.featured-feed-item:before{transition:none}}
+</style>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import MediaFrame from '../components/MediaFrame.astro';
+import Featured from '../components/Featured.astro';
 import home from '../data/home.json';
 import contributions from '../data/contributions.json';
 import site from '../data/site.json';
@@ -22,6 +23,8 @@ import site from '../data/site.json';
     </div>
   </section>
 
+  <Featured />
+
   <section class="five-section intro-band reveal">
     <p class="section-label">Professional profile</p>
     <p class="large-intro">{home.professionalIntro}</p>
@@ -31,16 +34,6 @@ import site from '../data/site.json';
     <div class="section-heading"><p class="section-label">What I build</p><h2>Practice, connections<br />and useful systems.</h2></div>
     <div class="three-card-grid">
       {home.areas.map((area, index) => <a class="area-card reveal" href={area.href}><span>0{index + 1}</span><h3>{area.title}</h3><p>{area.summary}</p><b>Explore ↗</b></a>)}
-    </div>
-  </section>
-
-  <section class="five-section feature-experience" id="featured-project">
-    <MediaFrame className="feature-experience-media" image={home.featuredImage} alt={home.featuredMediaAlt} aspect="natural" fit="contain" />
-    <div class="feature-experience-copy reveal">
-      <p class="section-label">Featured project</p>
-      <h2>{home.featuredTitle}</h2>
-      <p>{home.featuredSummary}</p>
-      <a class="text-link" href="https://www.northumbriaconstruct.com/projects.html#bridge-the-gap" target="_blank" rel="noreferrer">View project ↗</a>
     </div>
   </section>
 
