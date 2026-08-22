@@ -116,10 +116,11 @@
     },
     {
       "type": "chapter",
-      "startYear": "2026",
+      "startYear": " 2026",
       "title": "Construction Engineer",
       "organisation": "Multiple Contractors via Agency",
-      "summary": "Supported on-site construction tasks across multiple projects, ensuring safe and efficient execution."
+      "summary": "Supported on-site construction tasks across multiple projects, ensuring safe and efficient execution.",
+      "endYear": "Present"
     }
   ]
 }
