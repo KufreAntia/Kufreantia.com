@@ -1,16 +1,28 @@
 {
+  "heroVideo": "",
+  "heroImage": "/uploads/09-ciob-conference-header.jpg",
+  "professionalIntro": "My professional journey combines civil engineering and construction delivery with BIM, digital construction and industry engagement. It also informs Northumbria Construct, which connects learning with practice, and NorCon Projects, an emerging platform for more structured project delivery.",
+  "areas": [
+    {
+      "title": "Engineering Practice",
+      "summary": "Infrastructure, site delivery, project controls and building construction experience.",
+      "href": "/experience/#engineering-practice"
+    },
+    {
+      "title": "Northumbria Construct",
+      "summary": "Projects, events, site visits and shared learning connecting students, professionals, academia and industry.",
+      "href": "/experience/#northumbria-construct"
+    },
+    {
+      "title": "NorCon Projects",
+      "summary": "An emerging lightweight Project Management SaaS for project governance, document intelligence, controls, change and reporting.",
+      "href": "/experience/#norcon-projects"
+    }
+  ],
+  "primaryCtaLabel": "Explore My Experience",
+  "supportingCopy": "I work across civil engineering, construction project management and digital delivery, combining practical project experience with initiatives that connect students, academia and industry.",
   "eyebrow": "Civil Engineer · Project Manager · BIM Engineer",
   "headline": "Building bridges between engineering, people and innovation.",
-  "supportingCopy": "I work across civil engineering, construction project management and digital delivery, combining practical project experience with initiatives that connect students, academia and industry.",
-  "professionalIntro": "My professional journey combines civil engineering and construction delivery with BIM, digital construction and industry engagement. It also informs Northumbria Construct, which connects learning with practice, and NorCon Projects, an emerging platform for more structured project delivery.",
-  "primaryCtaLabel": "Explore My Experience",
   "secondaryCtaLabel": "Download CV",
-  "areas": [
-    { "title": "Engineering Practice", "summary": "Infrastructure, site delivery, project controls and building construction experience.", "href": "/experience/#engineering-practice" },
-    { "title": "Northumbria Construct", "summary": "Projects, events, site visits and shared learning connecting students, professionals, academia and industry.", "href": "/experience/#northumbria-construct" },
-    { "title": "NorCon Projects", "summary": "An emerging lightweight Project Operating System for project governance, document intelligence, controls, change and reporting.", "href": "/experience/#norcon-projects" }
-  ],
-  "heroImage": "/uploads/09-ciob-conference-header.jpg",
-  "heroVideo": "",
   "heroMediaAlt": "Kufre Antia speaking at a CIOB conference, addressing a seated audience beneath the CIOB logo"
 }
