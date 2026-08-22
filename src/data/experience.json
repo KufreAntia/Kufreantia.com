@@ -33,7 +33,7 @@
     "status": "In development",
     "summary": "NorCon Projects is an emerging lightweight Project Management SaaS being developed to address communication, collaboration and ownership for student and small project teams.",
     "purpose": "The product direction is intended for small project teams and emerging project professionals. It focuses on accessible governance, document and reporting workflows, with an emphasis on clarity rather than unnecessary complexity.",
-    "externalUrl": "https://www.northumbriaconstruct.com/innovation-lab.html",
+    "externalUrl": "https://norcon-intelligence-iota.vercel.app/",
     "principles": [
       "Structured project set-up, governance and permissions",
       "Document ingestion, intelligence and version control",
