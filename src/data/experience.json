@@ -1,5 +1,5 @@
 {
-  "intro": "Selected professional experience and initiatives spanning engineering practice, industry–academia engagement and emerging digital project tools.",
+  "intro": "Selected engineering and academic experience alongside industry–academia initiatives and emerging digital project tools.",
   "engineeringIntro": "My engineering practice includes highway infrastructure, building construction, technical office engineering, section delivery, project controls and UK site operations.",
   "engineeringImage": "/uploads/03-engineering-practice.webp",
   "engineeringImageAlt": "Kufre Antia wearing PPE on an active construction site",
@@ -44,6 +44,25 @@
     { "title": "Site Visits, Seminars & Webinars", "status": "Continuing programme", "summary": "Practical learning and knowledge-sharing activities intended to improve access to projects, practitioners and professional institutions.", "url": "https://www.northumbriaconstruct.com/news-insights.html" },
     { "title": "Ibom Hub", "status": "Developing initiative", "summary": "An emerging strand intended to extend industry–academia engagement through locally relevant professional connections and learning opportunities.", "url": "https://www.northumbriaconstruct.com/projects.html" }
   ],
+  "academicExperience": {
+    "summary": "Selected academic assessments applying digital construction, BIM and information management principles to complex building design, delivery and facilities-management scenarios.",
+    "assessments": [
+      {
+        "title": "Digital Consultancy Report on Northumberland Street (NLDS) Facility",
+        "type": "Digital consultancy assessment",
+        "summary": "A retrofit-focused consultancy report proposing a green-roof strategy for the NLDS facility and examining how BIM can improve energy analysis, cost estimation and information management. It extends the approach into facilities management through BIM-enabled predictive maintenance, IoT and energy monitoring.",
+        "topics": ["BIM", "Energy analysis", "5D cost estimation", "Predictive maintenance", "Facility management"],
+        "file": "/uploads/digital-consultancy-report-nlds-facility.pdf"
+      },
+      {
+        "title": "CIS Building Delivery Challenge Identification and Resolution Proposal",
+        "type": "Digital construction assessment",
+        "summary": "A delivery proposal for Northumbria University's CIS Building identifying circulation, MEP coordination and lift-integration challenges. It develops practical resolutions using Integrated Project Delivery, BIM, virtual reality, clash detection and ISO 19650-aligned information-management workflows.",
+        "topics": ["Integrated Project Delivery", "BIM and VR", "Clash detection", "ISO 19650", "Information management"],
+        "file": "/uploads/cis-building-delivery-challenge-proposal.pdf"
+      }
+    ]
+  },
   "norcon": {
     "status": "In development",
     "summary": "NorCon Projects is an emerging lightweight Project Operating System being developed to address fragmented project information, controls and collaboration through a clearer working structure.",
