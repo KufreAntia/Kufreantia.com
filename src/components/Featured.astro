@@ -139,8 +139,9 @@ const defaultItem = [...featured].sort((a, b) =>
 
 <style>
   .featured-section{padding:110px 5vw;border-block:1px solid var(--line)}
-  .featured-heading{display:grid;grid-template-columns:.45fr 1.55fr;align-items:end;margin-bottom:60px}
-  .featured-heading h2{margin:0;font:300 clamp(58px,8vw,112px)/.82 var(--serif);letter-spacing:-.05em}
+  .featured-heading{margin-bottom:46px}
+  .featured-heading p{margin:0 0 18px}
+  .featured-heading h2{max-width:760px;margin:0;font:300 clamp(48px,5.8vw,82px)/.9 var(--serif);letter-spacing:-.045em}
   .featured-layout{display:grid;grid-template-columns:minmax(0,2.65fr) minmax(260px,1fr);min-height:690px;background:var(--white)}
   .featured-master{min-width:0;border-right:1px solid var(--line)}
   .featured-panel{height:100%;animation:featured-fade .32s ease}
@@ -176,7 +177,7 @@ const defaultItem = [...featured].sort((a, b) =>
   @keyframes featured-fade{from{opacity:0}to{opacity:1}}
   @media(max-width:900px){.featured-layout{grid-template-columns:minmax(0,2fr) minmax(240px,1fr)}.featured-copy{padding-inline:30px}.featured-feed-item{grid-template-columns:1fr}.featured-thumb{width:100%}}
   @media(max-width:760px){
-    .featured-section{padding:78px 0}.featured-heading{grid-template-columns:1fr;gap:16px;padding-inline:6vw;margin-bottom:40px}.featured-heading h2{font-size:clamp(58px,18vw,82px)}
+    .featured-section{padding:78px 0}.featured-heading{padding-inline:6vw;margin-bottom:36px}.featured-heading p{margin-bottom:14px}.featured-heading h2{font-size:clamp(46px,14vw,64px)}
     .featured-layout{display:flex;min-height:0;flex-direction:column;background:transparent}.featured-master{border:0}.featured-panel{height:auto;background:var(--white)}
     .featured-media{aspect-ratio:16/10}.featured-copy{padding:28px 6vw 34px}.featured-copy h3{font-size:clamp(34px,10vw,46px)}.featured-copy>p{font-size:16px}
     .featured-feed-wrap{width:100%;max-width:100%;max-height:none;margin-top:38px;overflow-x:clip}.featured-feed-label{padding:0 6vw 18px;border:0}.featured-feed{display:flex;width:100%;gap:12px;padding:0 6vw 12px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;scroll-padding-inline:6vw}
