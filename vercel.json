@@ -1,8 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
+    { "source": "/about", "destination": "/experience/", "permanent": true },
     { "source": "/portfolio", "destination": "/experience/", "permanent": true },
-    { "source": "/cv", "destination": "/about/", "permanent": true },
+    { "source": "/cv", "destination": "/experience/", "permanent": true },
     { "source": "/speaking", "destination": "/contributions-recognition/#selected-contributions", "permanent": true },
     { "source": "/awards", "destination": "/contributions-recognition/#recent-milestones", "permanent": true },
     { "source": "/research", "destination": "/contributions-recognition/#selected-contributions", "permanent": true },
