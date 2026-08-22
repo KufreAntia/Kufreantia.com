@@ -74,7 +74,7 @@ const defaultItem = [...featured].sort((a, b) =>
           >
             <span class="featured-thumb" data-media-shell>
               {item.thumbnail && <img src={item.thumbnail} alt="" loading="lazy" decoding="async" />}
-              <span class="featured-thumb-fallback" aria-hidden="true">{item.source.slice(0, 1)}</span>
+              {!item.thumbnail && <span class="featured-thumb-fallback" aria-hidden="true">{item.source.slice(0, 1)}</span>}
             </span>
             <span class="featured-feed-copy">
               <span class="featured-feed-meta"><span>{item.source}</span>{item.date && <time datetime={item.sortDate ?? undefined}>{item.date}</time>}</span>
@@ -167,7 +167,7 @@ const defaultItem = [...featured].sort((a, b) =>
   .featured-feed-item.active{background:rgba(210,173,88,.12)}
   .featured-feed-item.active:before{opacity:1}
   .featured-thumb{position:relative;display:grid;place-items:center;width:78px;aspect-ratio:4/3;overflow:hidden;background:var(--ink);color:var(--lime)}
-  .featured-thumb img{position:relative;z-index:1;width:100%;height:100%;object-fit:contain}
+  .featured-thumb img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;object-position:center}
   .featured-thumb-fallback{font:300 34px var(--serif)}
   .featured-feed-copy{min-width:0}
   .featured-feed-meta{display:block;margin-bottom:9px}
