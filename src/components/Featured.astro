@@ -1,9 +1,9 @@
 ---
 import featuredData from '../data/featured.json';
 
-type FeaturedItem = (typeof featuredData)[number];
+type FeaturedItem = (typeof featuredData.items)[number];
 const timestamp = (item: FeaturedItem) => item.sortDate ? Date.parse(`${item.sortDate}T00:00:00Z`) : Number.NEGATIVE_INFINITY;
-const featured = [...featuredData].sort((a, b) => {
+const featured = [...featuredData.items].sort((a, b) => {
   const dateDifference = timestamp(b) - timestamp(a);
   return dateDifference || a.title.localeCompare(b.title);
 });

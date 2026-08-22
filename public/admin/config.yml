@@ -47,13 +47,38 @@ collections:
               - { label: Title, name: title, widget: string }
               - { label: Summary, name: summary, widget: text }
               - { label: Link, name: href, widget: string }
-          - { label: Featured experience title, name: featuredTitle, widget: string }
-          - { label: Featured experience summary, name: featuredSummary, widget: text }
-          - { label: Featured project image, name: featuredImage, widget: image }
-          - { label: Featured project image alternative text, name: featuredMediaAlt, widget: string }
           - { label: Hero portrait, name: heroImage, widget: image, required: false, hint: "Natural professional portrait; vertical 4:5, at least 1600 px high." }
           - { label: Hero video, name: heroVideo, widget: string, required: false, hint: "Optional YouTube, Vimeo or MP4 URL." }
           - { label: Hero media alternative text, name: heroMediaAlt, widget: string }
+
+      - name: featured
+        label: 1. Home — Featured stories
+        file: src/data/featured.json
+        format: json
+        fields:
+          - label: Featured stories
+            name: items
+            widget: list
+            summary: "{{fields.source}} — {{fields.title}}"
+            hint: "Drag items to change their order when dates are equal or omitted. Dated stories are shown newest first."
+            fields:
+              - { label: ID, name: id, widget: string, hint: "A unique, URL-friendly identifier such as apm-student-of-the-year-2026." }
+              - { label: Title, name: title, widget: string }
+              - { label: Source, name: source, widget: string }
+              - { label: Display date, name: date, widget: string, required: false, hint: "Text shown to visitors, for example 30 July 2026 or 2026." }
+              - { label: Sort date, name: sortDate, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD", required: false, hint: "Optional. Dated stories are automatically shown newest first." }
+              - { label: Description, name: description, widget: text }
+              - { label: Category, name: category, widget: string }
+              - { label: Media type, name: mediaType, widget: select, options: [image, video] }
+              - { label: Main image or video URL, name: mediaSrc, widget: string, required: false, hint: "Use an uploaded /uploads/... path or a complete https:// URL." }
+              - { label: Video poster URL, name: poster, widget: string, required: false }
+              - { label: Video captions file, name: captions, widget: string, required: false, hint: "Optional WebVTT file path." }
+              - { label: Feed thumbnail URL, name: thumbnail, widget: string, required: false }
+              - { label: Media alternative text, name: mediaAlt, widget: string, required: false }
+              - { label: Destination URL, name: externalUrl, widget: string, required: false }
+              - { label: Button label, name: ctaLabel, widget: string, required: false }
+              - { label: Highlighted, name: isHighlighted, widget: boolean, default: false, hint: "Marks this story as the preferred lead item." }
+              - { label: Lead priority, name: heroPriority, widget: number, value_type: int, min: 1, required: false, hint: "Lower numbers take priority when more than one story is highlighted." }
 
       - name: about
         label: 2. About
