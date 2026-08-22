@@ -1,49 +1,46 @@
 {
-  "intro": "Selected engineering and academic experience alongside industry–academia initiatives and emerging digital project tools.",
-  "engineeringIntro": "My engineering practice includes highway infrastructure, building construction, technical office engineering, section delivery, project controls and UK site operations.",
-  "engineeringImage": "/uploads/03-engineering-practice.webp",
   "engineeringImageAlt": "Kufre Antia wearing PPE on an active construction site",
-  "professionalPracticeImage": "/uploads/04-professional-practice.webp",
-  "professionalPracticeImageAlt": "Kufre Antia participating in a collaborative digital construction session at Northumbria University's Live Projects Hub",
-  "roles": [
+  "initiatives": [
     {
-      "period": "2026–Present",
-      "role": "Construction Professional",
-      "organisation": "Various contractors through agency placements",
-      "context": "Site engineering support on residential and hospitality projects in the United Kingdom.",
-      "responsibilities": ["Setting out and quality checks", "Technical coordination and progress records", "Safe and accurate site delivery"],
-      "tools": ["AutoCAD", "Surveying and setting-out equipment", "Technical drawings"]
+      "title": "Bridge the Gap",
+      "status": "APM Challenge · Regional finalist",
+      "summary": "A student-led project exploring the disconnect between construction education and industry expectations through research, interviews, stakeholder engagement and practical career resources.",
+      "url": "https://www.northumbriaconstruct.com/projects.html#bridge-the-gap"
     },
     {
-      "period": "2019–2023",
-      "role": "Technical Office Engineer → Section Engineer",
-      "organisation": "Julius Berger Nigeria Plc",
-      "context": "Abuja–Kaduna–Zaria–Kano Dual Carriageway Reconstruction Project.",
-      "responsibilities": ["Project controls, reporting and technical coordination", "Planning and monitoring section delivery", "Quality, subcontractor and stakeholder coordination"],
-      "tools": ["Primavera P6", "Microsoft Project", "AutoCAD", "Progress and cost reporting"]
+      "title": "Oxford-Style Debate",
+      "status": "Professional engagement",
+      "summary": "A structured debate format bringing students and industry contributors together to examine current construction questions from different perspectives.",
+      "url": "https://www.northumbriaconstruct.com/projects.html#oxford-style-debate"
     },
     {
-      "period": "2016–2019",
-      "role": "Civil Construction Engineer",
-      "organisation": "Xantias Construction Limited",
-      "context": "Building design, construction and site engineering across educational, hospitality and residential projects.",
-      "responsibilities": ["Site supervision and technical coordination", "Drawing, specification and quality compliance", "Measurement, reporting and programme support"],
-      "tools": ["AutoCAD", "Microsoft Project", "Quantity take-off", "Site records"]
+      "title": "Site Visits, Seminars & Webinars",
+      "status": "Continuing programme",
+      "summary": "Practical learning and knowledge-sharing activities intended to improve access to projects, practitioners and professional institutions.",
+      "url": "https://www.northumbriaconstruct.com/news-insights.html"
+    },
+    {
+      "title": "Northumbria Construct - Ibom Hub",
+      "status": "Developing initiative",
+      "summary": "An emerging strand intended to extend industry–academia engagement through locally relevant professional connections and learning opportunities.",
+      "url": "https://www.northumbriaconstruct.com/projects.html"
     }
   ],
-  "northumbriaConstruct": {
-    "summary": "I founded Northumbria Construct as an industry–academia initiative to help connect students and emerging professionals with universities, professional institutions and the construction industry.",
-    "purpose": "Its activities are designed to create practical routes into professional knowledge and networks through debates, seminars, site visits, webinars and collaborative projects.",
-    "externalUrl": "https://www.northumbriaconstruct.com/",
-    "image": "/uploads/05-northumbria-construct.webp",
-    "imageAlt": "Northumbria Construct participants following an industry engagement event"
+  "engineeringImage": "/uploads/03-engineering-practice.webp",
+  "intro": "Selected engineering and academic experience alongside industry–academia initiatives.",
+  "professionalPracticeImageAlt": "Kufre Antia participating in a collaborative digital construction session at Northumbria University's Live Projects Hub",
+  "norcon": {
+    "status": "In development",
+    "summary": "NorCon Projects is an emerging lightweight Project Management SaaS being developed to address communication, collaboration and ownership for student and small project teams.",
+    "purpose": "The product direction is intended for small project teams and emerging project professionals. It focuses on accessible governance, document and reporting workflows, with an emphasis on clarity rather than unnecessary complexity.",
+    "externalUrl": "https://www.northumbriaconstruct.com/innovation-lab.html",
+    "principles": [
+      "Structured project set-up, governance and permissions",
+      "Document ingestion, intelligence and version control",
+      "Change control, benefits and sustainability tracking",
+      "Project reporting and operating workflows"
+    ]
   },
-  "initiatives": [
-    { "title": "Bridge the Gap", "status": "APM Challenge · Regional finalist", "summary": "A student-led project exploring the disconnect between construction education and industry expectations through research, interviews, stakeholder engagement and practical career resources.", "url": "https://www.northumbriaconstruct.com/projects.html#bridge-the-gap" },
-    { "title": "Oxford-Style Debate", "status": "Professional engagement", "summary": "A structured debate format bringing students and industry contributors together to examine current construction questions from different perspectives.", "url": "https://www.northumbriaconstruct.com/projects.html#oxford-style-debate" },
-    { "title": "Site Visits, Seminars & Webinars", "status": "Continuing programme", "summary": "Practical learning and knowledge-sharing activities intended to improve access to projects, practitioners and professional institutions.", "url": "https://www.northumbriaconstruct.com/news-insights.html" },
-    { "title": "Ibom Hub", "status": "Developing initiative", "summary": "An emerging strand intended to extend industry–academia engagement through locally relevant professional connections and learning opportunities.", "url": "https://www.northumbriaconstruct.com/projects.html" }
-  ],
   "academicExperience": {
     "summary": "Selected academic assessments applying digital construction, BIM and information management principles to complex building design, delivery and facilities-management scenarios.",
     "assessments": [
@@ -51,23 +48,89 @@
         "title": "Digital Consultancy Report on Northumberland Street (NLDS) Facility",
         "type": "Digital consultancy assessment",
         "summary": "A retrofit-focused consultancy report proposing a green-roof strategy for the NLDS facility and examining how BIM can improve energy analysis, cost estimation and information management. It extends the approach into facilities management through BIM-enabled predictive maintenance, IoT and energy monitoring.",
-        "topics": ["BIM", "Energy analysis", "5D cost estimation", "Predictive maintenance", "Facility management"],
+        "topics": [
+          "BIM",
+          "Energy analysis",
+          "5D cost estimation",
+          "Predictive maintenance",
+          "Facility management"
+        ],
         "file": "/uploads/digital-consultancy-report-nlds-facility.pdf"
       },
       {
         "title": "CIS Building Delivery Challenge Identification and Resolution Proposal",
         "type": "Digital construction assessment",
         "summary": "A delivery proposal for Northumbria University's CIS Building identifying circulation, MEP coordination and lift-integration challenges. It develops practical resolutions using Integrated Project Delivery, BIM, virtual reality, clash detection and ISO 19650-aligned information-management workflows.",
-        "topics": ["Integrated Project Delivery", "BIM and VR", "Clash detection", "ISO 19650", "Information management"],
+        "topics": [
+          "Integrated Project Delivery",
+          "BIM and VR",
+          "Clash detection",
+          "ISO 19650",
+          "Information management"
+        ],
         "file": "/uploads/cis-building-delivery-challenge-proposal.pdf"
       }
     ]
   },
-  "norcon": {
-    "status": "In development",
-    "summary": "NorCon Projects is an emerging lightweight Project Operating System being developed to address fragmented project information, controls and collaboration through a clearer working structure.",
-    "purpose": "The product direction is intended for small project teams and emerging project professionals. It focuses on accessible governance, document and reporting workflows, with an emphasis on clarity rather than unnecessary complexity.",
-    "externalUrl": "https://www.northumbriaconstruct.com/innovation-lab.html",
-    "principles": ["Structured project set-up, governance and permissions", "Document ingestion, intelligence and version control", "Change control, benefits and sustainability tracking", "Project reporting and operating workflows"]
-  }
+  "northumbriaConstruct": {
+    "summary": "I founded Northumbria Construct as an industry–academia initiative to help connect students and emerging professionals with universities, professional institutions and the construction industry.",
+    "purpose": "Its activities are designed to create practical routes into professional knowledge and networks through debates, seminars, site visits, webinars and collaborative projects.",
+    "externalUrl": "https://www.northumbriaconstruct.com/",
+    "image": "/uploads/05-northumbria-construct.webp",
+    "imageAlt": "Northumbria Construct participants following an industry engagement event"
+  },
+  "professionalPracticeImage": "/uploads/04-professional-practice.webp",
+  "engineeringIntro": "My engineering practice includes design, BIM, project planning and control on real estate and highway infrastructure.",
+  "roles": [
+    {
+      "period": "2026–Present",
+      "role": "Construction Professional",
+      "organisation": "Various contractors through agency placements",
+      "context": "Site engineering support on residential and hospitality projects in the United Kingdom.",
+      "responsibilities": [
+        "Setting out and quality checks",
+        "Technical coordination and progress records",
+        "Safe and accurate site delivery"
+      ],
+      "tools": [
+        "AutoCAD",
+        "Surveying and setting-out equipment",
+        "Technical drawings"
+      ]
+    },
+    {
+      "period": "2019–2023",
+      "role": "Technical Office Engineer → Section Engineer",
+      "organisation": "Julius Berger Nigeria Plc",
+      "context": "Abuja–Kaduna–Zaria–Kano Dual Carriageway Reconstruction Project.",
+      "responsibilities": [
+        "Project controls, reporting and technical coordination",
+        "Planning and monitoring section delivery",
+        "Quality, subcontractor and stakeholder coordination"
+      ],
+      "tools": [
+        "Primavera P6",
+        "Microsoft Project",
+        "AutoCAD",
+        "Progress and cost reporting"
+      ]
+    },
+    {
+      "period": "2016–2019",
+      "role": "Civil Construction Engineer",
+      "organisation": "Xantias Construction Limited",
+      "context": "Building design, construction and site engineering across educational, hospitality and residential projects.",
+      "responsibilities": [
+        "Site supervision and technical coordination",
+        "Drawing, specification and quality compliance",
+        "Measurement, reporting and programme support"
+      ],
+      "tools": [
+        "AutoCAD",
+        "Microsoft Project",
+        "Quantity take-off",
+        "Site records"
+      ]
+    }
+  ]
 }
